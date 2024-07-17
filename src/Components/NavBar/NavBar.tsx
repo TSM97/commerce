@@ -35,13 +35,13 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      className='flex sm:justify-around justify-between items-center p-5 text-3xl fixed left-0 w-[100vw]'
+      className='flex sm:justify-around justify-between items-center p-5 text-3xl fixed left-0 w-[100vw] z-50'
       variants={parentVariants}
       animate={hidden ? 'hidden' : 'visible'}
       transition={{
         ease: [0.1, 0.25, 0.3, 1],
         duration: 0.6,
-        staggerChildren: 0.05,
+        // staggerChildren: 0.05,
       }}
     >
       <p>Logo</p>
