@@ -1,15 +1,26 @@
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { color, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 
-const linkList: string[] = ["item1", "item1", "item1", "item1", "item1"];
+const navList: string[] = ["item1", "item1", "item1", "item1", "item1"];
 
 const parentVariants = {
-  visible: { opacity: 1, y: 0, backgroundColor: "rgba(255, 255, 255, 1)" },
-  hidden: { opacity: 0, y: "-4rem", backgroundColor: "rgba(255, 255, 255, 0)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    color: "black",
+  },
+  hidden: {
+    opacity: 0,
+    y: "-4rem",
+    backgroundColor: "rgba(255, 255, 255, 0)",
+    color: "white",
+  },
   initial: {
     opacity: 1,
     y: 0,
     backgroundColor: "rgba(255, 255, 255, 0)",
+    color: "white",
   },
 };
 
@@ -24,9 +35,6 @@ export default function NavBar() {
   const [prevScroll, setPrevScroll] = useState(0);
 
   function update(latest: number, prev: number): void {
-    console.log(latest);
-    console.log(hidden);
-
     if (latest != 0 && latest < prev) {
       setHidden(false);
     } else if (latest > 100 && latest > prev) {
@@ -43,7 +51,7 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      className={`flex sm:justify-around justify-between items-center p-5 text-3xl fixed left-0 w-[100vw] z-50 rounded-b-[50px]`}
+      className={`flex sm:justify-around justify-between items-center p-5 min-h-[10dvh] text-3xl fixed left-0 w-[100vw] z-50 rounded-b-[50px]`}
       variants={parentVariants}
       // style={{ backgroundColor: background }}
       animate={hidden === "initial" ? "initial" : hidden ? "hidden" : "visible"}
@@ -54,7 +62,7 @@ export default function NavBar() {
     >
       <p>Logo</p>
       <div className="flex gap-5">
-        {linkList.map((item, i) => (
+        {navList.map((item, i) => (
           <motion.a
             key={i}
             variants={childVariants}
@@ -62,6 +70,9 @@ export default function NavBar() {
             transition={{
               ease: [0.1, 0.25, 0.3, 2],
               duration: 0.4,
+              color: {
+                duration: 1,
+              },
             }}
           >
             {item}
