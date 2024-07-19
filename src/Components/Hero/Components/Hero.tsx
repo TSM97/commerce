@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <div
       ref={container}
-      className="relative flex items-center justify-center h-screen overflow-hidden"
+      className="relative flex items-center justify-center h-[90dvh] overflow-hidden"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="relative z-50 w-full h-full p-20 flex flex-col justify-between text-white">
@@ -22,17 +22,18 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.7))",
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.7))",
           }}
         ></div>
-        <div className="relative w-[50vw] text-[2vw] self-end uppercase">
+        <div className="relative w-[65vw] text-[2vw] self-end">
           <p>
-            Beauty and quality need the right time to be conceived and realised
-            even in a world that is in too much of a hurry.
+            Discover the true taste of local honey, harvested with care from our
+            very own beehives. Each jar reflects our passion for beekeeping and
+            commitment to quality.
           </p>
         </div>
-        <div className="relative text-[5vw] uppercase">
-          <p>Background Parallax</p>
+        <div className="relative text-[5vw]">
+          <p>Based in Athens, Greece</p>
         </div>
       </div>
       <div className="fixed top-[-10vh] left-0 h-[120vh] w-full">

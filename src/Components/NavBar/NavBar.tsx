@@ -1,7 +1,8 @@
-import { color, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
+import Logo from "../../assets/ATHBees.webp";
 
-const navList: string[] = ["item1", "item1", "item1", "item1", "item1"];
+const navList: string[] = ["About", "Products", "News", "Contact"];
 
 const parentVariants = {
   visible: {
@@ -51,30 +52,36 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      className={`flex sm:justify-around justify-between items-center p-5 min-h-[10dvh] text-3xl fixed left-0 w-[100vw] z-50 rounded-b-[50px]`}
+      className={`flex sm:justify-around justify-between items-center p-2 max-h-[13dvh] text-4xl fixed left-0 w-[98vw] z-50 rounded-b-[50px]`}
       variants={parentVariants}
       // style={{ backgroundColor: background }}
       animate={hidden === "initial" ? "initial" : hidden ? "hidden" : "visible"}
       transition={{
         ease: [0.1, 0.25, 0.3, 1],
-        duration: 0.6,
+        duration: 0.4,
       }}
     >
-      <p>Logo</p>
-      <div className="flex gap-5">
+      <motion.img
+        initial={{ opacity: 0, y: -150 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        src={Logo}
+        className="h-[13dvh] cursor-pointer"
+        alt="AthenianBees Logo"
+      />
+      <div className="flex gap-16">
         {navList.map((item, i) => (
           <motion.a
+            className="NavButton cursor-pointer text-nowrap"
             key={i}
             variants={childVariants}
             initial={{ opacity: 1, y: 0 }}
             transition={{
               ease: [0.1, 0.25, 0.3, 2],
               duration: 0.4,
-              color: {
-                duration: 1,
-              },
             }}
           >
+            <sup>&#8226; </sup>
             {item}
           </motion.a>
         ))}

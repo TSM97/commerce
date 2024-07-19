@@ -1,10 +1,11 @@
-import NavBar from './Components/NavBar';
-import HeroSection from './Components/Hero';
+import NavBar from "./Components/NavBar";
+import HeroSection from "./Components/Hero";
+import "./App.css";
 
 export default function App() {
   return (
     <>
-      <section className='container mx-auto'>
+      <section className="flex justify-center w-100dvw">
         <NavBar />
       </section>
       <HeroSection />
