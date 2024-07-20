@@ -12,7 +12,11 @@ export default {
         '2xl': '6rem',
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        white: '#fffefa', // Replace with your desired color
+      },
+    },
   },
   plugins: [],
 };

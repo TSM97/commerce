@@ -1,5 +1,6 @@
 #root {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
+  background-color: #fffefa;
   /* font-family: "Noto Serif", serif; */
 }
 body {
@@ -9,7 +10,7 @@ body {
   position: relative;
 }
 .NavButton::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
