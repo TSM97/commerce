@@ -1,4 +1,4 @@
-import Background from "../../../assets/HeroSectionImg.webp";
+import Background from "../../assets/HeroSectionImg.webp";
 import { useScroll, useTransform, motion } from "framer-motion";
 
 export default function Intro() {
@@ -18,7 +18,7 @@ export default function Intro() {
         </div>
         <img
           src={Background}
-          alt="image"
+          alt="Hero Section Image"
           style={{
             width: "100%",
             height: "100%",
