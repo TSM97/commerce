@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       colors: {
-        white: '#fffdf7',
+        white: 'rgb(255, 251, 242)',
         primary: {
           DEFAULT: '#e8772e',
         }

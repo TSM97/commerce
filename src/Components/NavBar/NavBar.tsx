@@ -8,7 +8,7 @@ const parentVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    backgroundColor: "var(--background-color)",
+    backgroundColor: "var(--background-transparent-color)",
     color: "rgb(0, 0, 0)",
   },
   hidden: {
@@ -52,9 +52,8 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      className={`flex sm:justify-around justify-between items-center p-2 max-h-[13dvh] text-[2vw] fixed left-0 w-[98vw] z-50 rounded-b-[50px]`}
+      className={`flex sm:justify-around backdrop-blur-sm justify-between items-center p-2 max-h-[13dvh] text-[2vw] fixed left-0 w-[98vw] z-50 rounded-b-[50px]`}
       variants={parentVariants}
-      // style={{ backgroundColor: background }}
       animate={hidden === "initial" ? "initial" : hidden ? "hidden" : "visible"}
       transition={{
         ease: [0.1, 0.25, 0.3, 1],
@@ -64,7 +63,14 @@ export default function NavBar() {
       <motion.img
         initial={{ opacity: 0, y: -150 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+        transition={{
+          duration: 0.5,
+          scale: {
+            duration: 0.6,
+            ease: "easeInOut",
+          },
+        }}
         src={Logo}
         className="h-[13dvh] cursor-pointer"
         alt="AthenianBees Logo"
