@@ -1,6 +1,8 @@
 #root {
-  font-family: 'Playfair Display', serif;
-  background-color: #fffefa;
+  font-family: "Playfair Display", serif;
+  --primary-color: #e8772e;
+  --background-color: #fffdf7;
+  background-color: var(--background-color);
   /* font-family: "Noto Serif", serif; */
 }
 body {
@@ -10,19 +12,19 @@ body {
   position: relative;
 }
 .NavButton::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background-color: #e8772e;
+  background-color: var(--primary-color);
   transform-origin: bottom right;
   transform: scaleX(0);
   transition: transform 0.5s ease;
 }
 .NavButton:hover sup {
-  color: #e8772e;
+  color: var(--primary-color);
 }
 .NavButton:hover::before {
   transform-origin: bottom left;

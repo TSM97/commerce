@@ -4,9 +4,12 @@ export default function RightPartial() {
   return (
     <article className="text-left h-full p-4 max-w-[80dvw] md:max-w-[40dvw]">
       <header className="font-bold text-3xl pb-4">News</header>
-      {articleData.map((article) => {
+      {articleData.map((article, key) => {
         return (
-          <div className="p-6 flex flex-col lg:flex-row gap-3 border-gray-800 rounded-lg shadow-md mb-4">
+          <div
+            key={`${article}${key}`}
+            className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4"
+          >
             <img
               className="object-cover lg:w-1/2 mr-4 none"
               alt="article image"

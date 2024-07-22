@@ -14,7 +14,10 @@ export default {
     },
     extend: {
       colors: {
-        white: '#fffefa', // Replace with your desired color
+        white: '#fffdf7',
+        primary: {
+          DEFAULT: '#e8772e',
+        }
       },
     },
   },
