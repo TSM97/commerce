@@ -4,6 +4,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     container: {
+      margin: {
+        DEFAULT: 'auto',
+      },
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
@@ -17,7 +20,7 @@ export default {
         white: 'rgb(255, 251, 242)',
         primary: {
           DEFAULT: '#e8772e',
-        }
+        },
       },
     },
   },
