@@ -20,6 +20,10 @@ export default {
         white: 'rgb(255, 251, 242)',
         primary: {
           DEFAULT: '#e8772e',
+          "750": "#e8894b",
+          "500": "#e89159",
+          "250": "#e8a67b",
+          "100": "#e8ccbb"
         },
       },
     },
