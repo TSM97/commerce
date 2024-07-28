@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Beekeeping Product Display App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##DISCLAIMER##
+APP IS NOT READY YET
+##################
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This application is a Beekeeping Product Display platform built with modern web technologies. It allows users to view beekeeping products and articles, while administrators can manage content through a secure admin interface.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend:** React with TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS, Framer Motion
+- **Backend & Database:** Firebase (Firestore)
+- **Authentication:** Firebase Authentication
+- **File Storage:** Firebase Storage
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Responsive product display gallery
+- Article system for beekeeping tips and information
+- Admin panel for content management
+- User authentication
+- Image upload and management
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm or yarn
+- Firebase account
+
+### Installation
+
+1. Clone the repository:
+2. Install dependencies:
+3. Create a `.env` file in the root directory and add your Firebase configuration:
+###
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+###
+4. Start the development server:
+   -npm run dev
+   
+## Firebase Setup
+
+1. Create a new Firebase project in the Firebase Console.
+2. Enable Firestore, Storage, and Authentication services.
+3. Set up Firestore security rules to protect your data.
+4. Configure Storage rules to allow image uploads.
+
+   
