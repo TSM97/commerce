@@ -25,10 +25,10 @@ export default function AdminModal({
             className="bg-gradient-to-br from-primary-250 to-primary-500 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
           >
             <div className="relative z-10">
-              <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-red-500 font-extrabold grid place-items-center mx-auto">
+              <div className="bg-white w-16 h-16 mb-2 rounded-full text-5xl text-red-500 font-extrabold grid place-items-center mx-auto">
                 !
               </div>
-              <h3 className="text-3xl font-bold text-center mb-2">
+              <h3 className="text-2xl font-bold text-center mb-2">
                 Are you sure you want to delete the last Article?
               </h3>
               <div className="flex gap-2">

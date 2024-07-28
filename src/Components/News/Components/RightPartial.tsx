@@ -4,12 +4,14 @@ import { db } from "../../../firebaseConfig"; // Adjust the path to your firebas
 import { useEffect, useState } from "react";
 
 import Image1 from "../../../assets/News1.webp";
+import { NavHashLink } from "react-router-hash-link";
 
 type Article = {
   id: string;
   title: string;
   shortDescription: string;
   fullDescription: string;
+  aTag?: string;
   createdAt: Timestamp;
 };
 
@@ -34,9 +36,10 @@ export default function RightPartial() {
     };
     fetchArticles();
   }, []);
+  console.log(articles);
 
   return (
-    <article className="text-left h-full p-4 max-w-[80dvw] md:max-w-[40dvw]">
+    <article className="text-left h-full p-4 max-w-[80dvw] md:min-w-[40dvw]">
       <header className="font-bold text-3xl pb-4">News</header>
       {articles.map((article, key) => {
         // const date = new Intl.DateTimeFormat("en-US", {
@@ -67,10 +70,24 @@ export default function RightPartial() {
                 </h5>
               </a>
               <p className="mb-3 font-normal">{article?.shortDescription}</p>
-              <div className="flex w-full justify-end">
-                <button className="rounded-2xl border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none">
-                  Read more
-                </button>
+              <div className="flex w-full justify-end cursor-pointer">
+                {article.aTag !== "" ? (
+                  <a
+                    target="_blank"
+                    href={article.aTag}
+                    className="rounded-2xl border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                  >
+                    Read more
+                  </a>
+                ) : (
+                  <NavHashLink
+                    target="_blank"
+                    to={"/sdfsdf"}
+                    className="rounded-2xl border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                  >
+                    Read more
+                  </NavHashLink>
+                )}
               </div>
               <div className="text-end align-bottom pt-2">{formattedDate}</div>
             </section>

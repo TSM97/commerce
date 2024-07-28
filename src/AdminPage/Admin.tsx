@@ -2,14 +2,19 @@ import { useRef, useState } from "react";
 import { db } from "../firebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 
+import { lastDocType } from "./types/types";
 import uploadImage from "../Utils/uploadImage";
 import AdminModal from "./Components/AdminModal";
+import deleteLastDoc from "./utils/deleteLastDoc";
 
 export default function Admin() {
   const titleRef = useRef<HTMLInputElement>(null);
   const shortDescRef = useRef<HTMLInputElement>(null);
+  const aTagRef = useRef<HTMLInputElement>(null);
+
   const fullDescRef = useRef<HTMLTextAreaElement>(null);
 
+  const [lastDoc, setLastDoc] = useState<lastDocType>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnSubmit = async (e: any) => {
@@ -18,15 +23,19 @@ export default function Admin() {
     const title = titleRef.current?.value || "";
     const shortDescription = shortDescRef.current?.value || "";
     const fullDescription = fullDescRef.current?.value || "";
+    const aTag = aTagRef.current?.value;
 
     try {
       const docRef = await addDoc(collection(db, "articles"), {
         title,
         shortDescription,
         fullDescription,
+        aTag,
         createdAt: Timestamp.now(),
       });
       console.log("Document written with ID: ", docRef.id);
+
+      setLastDoc({ id: docRef?.id, date: Timestamp.now() }); // keep track of the last doc written in firestore
 
       // Reset form fields
       if (titleRef.current) titleRef.current.value = "";
@@ -95,8 +104,24 @@ export default function Admin() {
                 rows={4}
                 className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                 placeholder="Write your article`s Section"
+                required
               />
             </section>
+            <div className="col-span-2">
+              <label
+                htmlFor="aTag"
+                className="block mb-2 text-lg font-medium text-white-900"
+              >
+                The Url that you want to Link instead of writing your article*
+              </label>
+              <input
+                ref={aTagRef}
+                type="text"
+                id="aTag"
+                className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
+                placeholder="https://theuselessweb.com/"
+              />
+            </div>
             {/* TODO: NOT READY YET - Should Implement React-Drop-zone for this element 
 
           {/* <section className="col-span-2">
@@ -111,7 +136,8 @@ export default function Admin() {
               Submit
             </button>
             <button
-              onClick={() => setIsOpen(true)}
+              // onClick={() => setIsOpen(true)}
+              onClick={() => deleteLastDoc(lastDoc, setLastDoc)}
               data-modal-target="AdminModal"
               data-modal-toggle="AdminModal"
               type="button"
