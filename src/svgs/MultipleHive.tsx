@@ -1,7 +1,7 @@
 export default function MultipleHive() {
   return (
     <svg
-      className="fill-primary w-[45dvw] lg:block hidden absolute -bottom-[23dvw] -left-0 opacity-15"
+      className="fill-primary w-[45dvw] absolute -bottom-[23dvw] -left-0 opacity-15 z-0"
       viewBox="0 0 14 14"
       role="img"
       focusable="false"

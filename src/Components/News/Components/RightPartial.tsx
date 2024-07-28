@@ -39,7 +39,7 @@ export default function RightPartial() {
   console.log(articles);
 
   return (
-    <article className="text-left h-full p-4 max-w-[80dvw] md:min-w-[40dvw]">
+    <article className="text-left h-full p-4 w-[80dvw] xl:w-[40dvw]  md:text-md text-sm z-10">
       <header className="font-bold text-3xl pb-4">News</header>
       {articles.map((article, key) => {
         // const date = new Intl.DateTimeFormat("en-US", {
@@ -55,27 +55,29 @@ export default function RightPartial() {
         return (
           <div
             key={`${article}${key}`}
-            className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4"
+            className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 h-fit min-h-[300px]"
           >
             <img
-              className="object-cover lg:w-1/2 mr-4 none"
+              className="object-cover w-full lg:h-[250px] sm:w-1/2 mr-4 none"
               alt="article image"
               style={{ borderRadius: "30% 70% 41% 59% / 74% 14% 86% 26%" }}
               src={Image1}
             />
             <section className="flex flex-col justify-between w-full">
               <a href="#">
-                <h5 className="mb-2 font-bold text-xl tracking-tight">
+                <h5 className="mb-2 font-bold md:text-2xl tracking-tight">
                   {article?.title}
                 </h5>
               </a>
-              <p className="mb-3 font-normal">{article?.shortDescription}</p>
-              <div className="flex w-full justify-end cursor-pointer">
+              <p className="mb-3 md:text-xl font-normal">
+                {article?.shortDescription}
+              </p>
+              <div className="flex w-full items-end justify-end cursor-pointer md:flex-col flex-row gap-2">
                 {article.aTag !== "" ? (
                   <a
                     target="_blank"
                     href={article.aTag}
-                    className="rounded-2xl border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                    className="rounded-2xl border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
                   </a>
@@ -88,8 +90,10 @@ export default function RightPartial() {
                     Read more
                   </NavHashLink>
                 )}
+                <div className="text-end align-bottom pt-2">
+                  {formattedDate}
+                </div>
               </div>
-              <div className="text-end align-bottom pt-2">{formattedDate}</div>
             </section>
           </div>
         );
