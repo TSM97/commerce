@@ -1,8 +1,8 @@
 # Beekeeping Product Display App
 
-##DISCLAIMER##
+### DISCLAIMER
+
 APP IS NOT READY YET
-##################
 
 ## Overview
 
@@ -23,7 +23,7 @@ This application is a Beekeeping Product Display platform built with modern web 
 - Article system for beekeeping tips and information
 - Admin panel for content management
 - User authentication
-- Image upload and management
+- Upload and management
 
 ## Getting Started
 
@@ -54,6 +54,6 @@ VITE_FIREBASE_APP_ID=your_app_id
 1. Create a new Firebase project in the Firebase Console.
 2. Enable Firestore, Storage, and Authentication services.
 3. Set up Firestore security rules to protect your data.
-4. Configure Storage rules to allow image uploads.
+4. Configure Storage rules to allow uploads.
 
    
