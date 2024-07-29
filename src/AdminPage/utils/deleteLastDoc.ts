@@ -6,7 +6,6 @@ export const deleteLastArticle = async () => {
   if (article) {
     await deleteDoc(article.ref);
     console.log("Article deleted successfully");
-    alert("Article deleted successfully");
   } else {
     console.log("No article to delete");
     alert("No article to delete");

@@ -2,18 +2,19 @@ import { useRef, useState } from "react";
 import { db } from "../firebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 
+import Logo from "../assets/ATHBees.webp";
 import { lastDocType } from "./types/types";
 import uploadImage from "../Utils/uploadImage";
 import AdminModal from "./Components/AdminModal";
+import { motion } from "framer-motion";
+import { NavHashLink } from "react-router-hash-link";
 
 export default function Admin() {
   const titleRef = useRef<HTMLInputElement>(null);
   const shortDescRef = useRef<HTMLInputElement>(null);
   const aTagRef = useRef<HTMLInputElement>(null);
-
   const fullDescRef = useRef<HTMLTextAreaElement>(null);
 
-  const [lastDoc, setLastDoc] = useState<lastDocType>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnSubmit = async (e: any) => {
@@ -34,8 +35,6 @@ export default function Admin() {
       });
       console.log("Document written with ID: ", docRef.id);
 
-      setLastDoc({ id: docRef?.id, date: Timestamp.now() }); // keep track of the last doc written in firestore
-
       // Reset form fields
       if (titleRef.current) titleRef.current.value = "";
       if (shortDescRef.current) shortDescRef.current.value = "";
@@ -52,8 +51,26 @@ export default function Admin() {
 
   return (
     <>
-      <section className="container m-auto min-h-screen pt-10">
-        <div className="text-4xl my-8 pb-2 text-center border-2 border-t-0 border-r-0 border-l-0 border-b-black border-dashed">
+      <section className="container m-auto min-h-screen pt-3">
+        <NavHashLink to={"/"}>
+          <motion.img
+            initial={{ opacity: 0, y: -150 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{
+              duration: 0.5,
+              scale: {
+                duration: 0.6,
+                ease: "easeInOut",
+              },
+            }}
+            src={Logo}
+            className="h-[6dvw] cursor-pointer"
+            alt="AthenianBees Logo"
+          />
+        </NavHashLink>
+
+        <div className="text-4xl mb-8 pb-2 text-center border-2 border-t-0 border-r-0 border-l-0 border-b-black border-dashed">
           Article Upload
         </div>
         <form onSubmit={handleOnSubmit}>

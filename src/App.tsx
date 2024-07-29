@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 
 import NavBar from "./Components/NavBar";
@@ -9,6 +9,8 @@ import Description from "./Components/News/Description";
 import "./App.css";
 
 export default function App() {
+  const location = useLocation(); // Get the current location
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -22,6 +24,7 @@ export default function App() {
 
   const isAdminPage = location.pathname === "/admin";
 
+  console.log(isAdminPage);
   return (
     <>
       <section className="flex justify-center w-100dvw">
