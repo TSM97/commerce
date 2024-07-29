@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../../../firebaseConfig"; // Adjust the path to your firebaseConfig file
 
 import ArticleType from "../../../types/articleType";
@@ -7,7 +7,12 @@ const fetchArticles = async (
   setArticles: React.Dispatch<React.SetStateAction<ArticleType[]>>
 ) => {
   try {
-    const querySnapshot = await getDocs(collection(db, "articles"));
+    const articlesQuery = query(
+      collection(db, "articles"),
+      orderBy("createdAt", "desc")
+    );
+
+    const querySnapshot = await getDocs(articlesQuery);
     const articlesList: ArticleType[] = [];
     querySnapshot.forEach((doc) => {
       articlesList.push({
