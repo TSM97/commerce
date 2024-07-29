@@ -5,7 +5,6 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { lastDocType } from "./types/types";
 import uploadImage from "../Utils/uploadImage";
 import AdminModal from "./Components/AdminModal";
-import deleteLastDoc from "./utils/deleteLastDoc";
 
 export default function Admin() {
   const titleRef = useRef<HTMLInputElement>(null);
@@ -136,8 +135,7 @@ export default function Admin() {
               Submit
             </button>
             <button
-              // onClick={() => setIsOpen(true)}
-              onClick={() => deleteLastDoc(lastDoc, setLastDoc)}
+              onClick={() => setIsOpen(true)}
               data-modal-target="AdminModal"
               data-modal-toggle="AdminModal"
               type="button"

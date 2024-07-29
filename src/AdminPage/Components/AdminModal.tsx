@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { deleteLastArticle } from "../utils/deleteLastDoc";
 
 export default function AdminModal({
   isOpen,
@@ -39,7 +40,10 @@ export default function AdminModal({
                   No
                 </button>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={async () => {
+                    await deleteLastArticle();
+                    setIsOpen(false);
+                  }}
                   className="bg-red-500 hover:opacity-90 transition-opacity font-semibold w-full py-2 rounded"
                 >
                   Delete

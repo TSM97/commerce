@@ -1,28 +1,14 @@
-import { deleteDoc, doc, Timestamp } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
-import { lastDocType } from "../types/types";
+import { deleteDoc } from "firebase/firestore";
+import { fetchLastArticle } from "./fetchLastDoc";
 
-export default async function deleteLastDoc(
-  lastDoc: lastDocType,
-  setLastDoc: React.Dispatch<React.SetStateAction<lastDocType>>
-) {
-  if (!lastDoc?.id) {
-    alert("No document to delete!");
-    return;
-  }
-
-  if (Timestamp.now().seconds - lastDoc.date.seconds > 3600) {
-    alert("No document uploaded the last Hour!");
-    return;
+export const deleteLastArticle = async () => {
+  const article = await fetchLastArticle();
+  if (article) {
+    await deleteDoc(article.ref);
+    console.log("Article deleted successfully");
+    alert("Article deleted successfully");
   } else {
-    try {
-      await deleteDoc(doc(db, "articles", lastDoc.id));
-      console.log("Document deleted with ID: ", lastDoc.id);
-      setLastDoc(null); // Reset the last document ID
-      alert("Last article deleted successfully!");
-    } catch (error) {
-      console.error("Error deleting document: ", error);
-      alert("Error deleting article. Please try again.");
-    }
+    console.log("No article to delete");
+    alert("No article to delete");
   }
-}
+};

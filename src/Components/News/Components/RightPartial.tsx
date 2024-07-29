@@ -64,20 +64,18 @@ export default function RightPartial() {
               src={Image1}
             />
             <section className="flex flex-col justify-between w-full">
-              <a href="#">
-                <h5 className="mb-2 font-bold md:text-2xl tracking-tight">
-                  {article?.title}
-                </h5>
-              </a>
+              <h5 className="mb-2 font-bold md:text-2xl tracking-tight">
+                {article?.title}
+              </h5>
               <p className="mb-3 md:text-xl font-normal">
                 {article?.shortDescription}
               </p>
-              <div className="flex w-full items-end justify-end cursor-pointer md:flex-col flex-row gap-2">
+              <div className="flex w-full items-end justify-end md:flex-col flex-row gap-2">
                 {article.aTag !== "" ? (
                   <a
                     target="_blank"
                     href={article.aTag}
-                    className="rounded-2xl border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                    className="rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
                   </a>
@@ -85,7 +83,7 @@ export default function RightPartial() {
                   <NavHashLink
                     target="_blank"
                     to={"/sdfsdf"}
-                    className="rounded-2xl border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                    className="rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
                   </NavHashLink>
