@@ -1,59 +1,35 @@
-import { articleData } from "../data";
-import { collection, getDocs, Timestamp } from "firebase/firestore";
-import { db } from "../../../firebaseConfig"; // Adjust the path to your firebaseConfig file
 import { useEffect, useState } from "react";
 
 import Image1 from "../../../assets/News1.webp";
-import { NavHashLink } from "react-router-hash-link";
-
-type Article = {
-  id: string;
-  title: string;
-  shortDescription: string;
-  fullDescription: string;
-  aTag?: string;
-  createdAt: Timestamp;
-};
+import { useNavigate } from "react-router-dom";
+import ArticleType from "../../../types/articleType";
+import fetchArticles from "../utils/fetchArticles";
 
 export default function RightPartial() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const navigate = useNavigate();
+  const [articles, setArticles] = useState<ArticleType[]>([]);
+
+  const handleReadMore = (article: ArticleType) => {
+    navigate(`/article/${article.id}`, { state: { article } });
+  };
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "articles"));
-        const articlesList: Article[] = [];
-        querySnapshot.forEach((doc) => {
-          articlesList.push({
-            id: doc.id,
-            ...(doc.data() as Omit<Article, "id">),
-          });
-        });
-        setArticles(articlesList);
-      } catch (error) {
-        console.error("Error fetching articles: ", error);
-      }
-    };
-    fetchArticles();
+    fetchArticles(setArticles);
   }, []);
-  console.log(articles);
 
   return (
     <article className="text-left h-full p-4 w-[80dvw] xl:w-[40dvw]  md:text-md text-sm z-10">
       <header className="font-bold text-3xl pb-4">News</header>
       {articles.map((article, key) => {
-        // const date = new Intl.DateTimeFormat("en-US", {
-        //   year: "numeric",
-        //   month: "2-digit",
-        //   day: "2-digit",
-        // }).format(article?.createdAt.toDate());
+        //format date in order to show to NewsMini
         const formattedDate = new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "2-digit",
           day: "2-digit",
         }).format(article?.createdAt?.toDate());
+
         return (
-          <div
+          <article
             key={`${article}${key}`}
             className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 h-fit min-h-[300px]"
           >
@@ -80,20 +56,19 @@ export default function RightPartial() {
                     Read more
                   </a>
                 ) : (
-                  <NavHashLink
-                    target="_blank"
-                    to={"/sdfsdf"}
+                  <button
+                    onClick={() => handleReadMore(article)}
                     className="rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
-                  </NavHashLink>
+                  </button>
                 )}
                 <div className="text-end align-bottom pt-2">
                   {formattedDate}
                 </div>
               </div>
             </section>
-          </div>
+          </article>
         );
       })}
     </article>

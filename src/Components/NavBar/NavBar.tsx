@@ -5,27 +5,6 @@ import { NavHashLink } from "react-router-hash-link";
 
 const navList: string[] = ["Home", "News", "Products", "About", "Contact"];
 
-const parentVariants = {
-  visible: {
-    opacity: 1,
-    y: 0,
-    backgroundColor: "var(--background-transparent-color)",
-    color: "rgb(0, 0, 0)",
-  },
-  hidden: {
-    opacity: 0,
-    y: "-4rem",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    color: "var(--background-color)",
-  },
-  initial: {
-    opacity: 1,
-    y: 0,
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    color: "var(--background-color)",
-  },
-};
-
 const childVariants = {
   visible: { opacity: 1, y: 0 },
   hidden: { opacity: 0, y: "-2rem" },
@@ -46,6 +25,31 @@ export default function NavBar() {
     }
   }
 
+  const parentVariants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      backgroundColor: "var(--background-transparent-color)",
+      color: "rgb(0, 0, 0)",
+    },
+    hidden: {
+      opacity: 0,
+      y: "-4rem",
+      backgroundColor: "rgba(255, 255, 255, 0)",
+      color: "var(--background-color)",
+    },
+    initial: {
+      opacity: 1,
+      y: 0,
+      backgroundColor: "rgba(255, 255, 255, 0)",
+      color: `${
+        location.pathname.includes("/article")
+          ? "rgb(0, 0, 0)"
+          : "var(--background-color)"
+      }`,
+    },
+  };
+
   useMotionValueEvent(scrollY, "change", (latest: number) => {
     update(latest, prevScroll);
     setPrevScroll(latest);
@@ -61,21 +65,23 @@ export default function NavBar() {
         duration: 0.4,
       }}
     >
-      <motion.img
-        initial={{ opacity: 0, y: -150 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.1 }}
-        transition={{
-          duration: 0.5,
-          scale: {
-            duration: 0.6,
-            ease: "easeInOut",
-          },
-        }}
-        src={Logo}
-        className="h-[13dvh] cursor-pointer"
-        alt="AthenianBees Logo"
-      />
+      <NavHashLink to={"/#Home"}>
+        <motion.img
+          initial={{ opacity: 0, y: -150 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{
+            duration: 0.5,
+            scale: {
+              duration: 0.6,
+              ease: "easeInOut",
+            },
+          }}
+          src={Logo}
+          className="h-[13dvh] cursor-pointer"
+          alt="AthenianBees Logo"
+        />
+      </NavHashLink>
       <div className="flex gap-12">
         {navList.map((item, i) => (
           <motion.div

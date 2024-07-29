@@ -4,7 +4,7 @@ import Logo from "../../../assets/ATHBees.webp";
 
 export default function LeftPartial() {
   return (
-    <div className="flex flex-col justify-center text-[3vw] text-center max-w-[80dvw] xl:max-w-[40dvw] leading-none gap-[3vw]">
+    <div className="flex flex-col justify-center text-2xl lg:text-[3vw] text-center max-w-[80dvw] xl:max-w-[40dvw] leading-none gap-[3vw]">
       <motion.img
         initial={{ opacity: 0, x: -150 }}
         whileInView={{ opacity: 1, x: 0 }}

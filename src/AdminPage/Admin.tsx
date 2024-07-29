@@ -3,7 +3,6 @@ import { db } from "../firebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 import Logo from "../assets/ATHBees.webp";
-import { lastDocType } from "./types/types";
 import uploadImage from "../Utils/uploadImage";
 import AdminModal from "./Components/AdminModal";
 import { motion } from "framer-motion";
@@ -39,6 +38,7 @@ export default function Admin() {
       if (titleRef.current) titleRef.current.value = "";
       if (shortDescRef.current) shortDescRef.current.value = "";
       if (fullDescRef.current) fullDescRef.current.value = "";
+      if (aTagRef.current) aTagRef.current.value = "";
 
       alert("Article uploaded successfully!");
     } catch (error) {
@@ -108,12 +108,18 @@ export default function Admin() {
               />
             </div>
             <section className="col-span-2">
-              <label
-                htmlFor="fullDesc"
-                className="block mb-2 text-lg font-medium"
-              >
-                Full Description
-              </label>
+              <div className="flex gap-4">
+                <label
+                  htmlFor="fullDesc"
+                  className="block mb-2 text-lg font-medium"
+                >
+                  Full Description
+                </label>
+                <div className="text-blue-700">
+                  In order to change Paragraph Write
+                  <span className="font-bold text-xl">" || "</span>
+                </div>
+              </div>
               <textarea
                 ref={fullDescRef}
                 id="fullDesc"
@@ -144,7 +150,7 @@ export default function Admin() {
             <ImgUpload />
           </section> */}
           </div>
-          <div className="flex gap-4 justify-between">
+          <div className="flex gap-4 justify-between pb-20">
             <button
               type="submit"
               className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"

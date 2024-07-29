@@ -6,6 +6,7 @@ import NavBar from "./Components/NavBar";
 import Admin from "./AdminPage/Admin";
 import { Hero, Intro } from "./Components/Hero";
 import Description from "./Components/News/Description";
+import { ArticlePage } from "./Components/ArticlePage";
 import "./App.css";
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
           }
         />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/article/:id" element={<ArticlePage />} />
       </Routes>
     </>
   );
