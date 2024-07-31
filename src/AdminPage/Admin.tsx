@@ -81,7 +81,7 @@ export default function Admin() {
               },
             }}
             src={Logo}
-            className="h-[6dvw] cursor-pointer"
+            className="h-[15dvw] lg:h-[6dvw] cursor-pointer"
             alt="AthenianBees Logo"
           />
         </NavHashLink>
@@ -90,7 +90,7 @@ export default function Admin() {
           Article Upload
         </div>
         <form onSubmit={handleOnSubmit}>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="flex flex-col lg:grid gap-6 mb-6 md:grid-cols-2">
             <div>
               <label
                 htmlFor="Title"
@@ -124,7 +124,7 @@ export default function Admin() {
               />
             </div>
             <section className="col-span-2">
-              <div className="flex gap-4">
+              <div className="lg:flex gap-4">
                 <label
                   htmlFor="fullDesc"
                   className="block mb-2 text-lg font-medium"
@@ -185,8 +185,8 @@ export default function Admin() {
               </div>
             </section>
           </div>
-          <div className="flex gap-4 justify-between">
-            <div className="flex gap-3 items-center">
+          <div className="lg:flex gap-4 justify-between">
+            <div className="flex gap-3 items-center pb-3">
               <button
                 type="submit"
                 className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
