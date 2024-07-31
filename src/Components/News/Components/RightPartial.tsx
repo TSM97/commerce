@@ -38,9 +38,10 @@ export default function RightPartial() {
           >
             <img
               className="object-cover w-full lg:h-[250px] sm:w-1/2 mr-4 none"
-              alt="article image"
+              loading="lazy"
+              alt="Article's image"
               style={{ borderRadius: "30% 70% 41% 59% / 74% 14% 86% 26%" }}
-              src={Image1}
+              src={article?.imageUrl}
             />
             <section className="flex flex-col justify-between w-full">
               <h5 className="mb-2 font-bold md:text-2xl tracking-tight">

@@ -30,22 +30,27 @@ export default function ArticlePage() {
   return (
     <section className="container mx-auto pt-[13dvh] min-h-screen">
       <article>
-        <div className="flex flex-col items-start w-full pt-[4dvw] pb-[3dvw]">
+        <div className="flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]">
           <h1 className="min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black">
             {article?.title}
           </h1>
           <h5 className="text-xl">{formattedDateTime}</h5>
         </div>
       </article>
-      <article className="lg:max-w-[80%]">
-        {article?.fullDescription?.split("||")?.map((paragraph) => {
+      <img
+        src={article?.imageUrl}
+        alt={`${article?.title} image`}
+        className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70dvh] pb-[2dvw]"
+      />
+      <article className="lg:max-w-[80%] pb-[30dvh]">
+        {article?.fullDescription?.split("||")?.map((paragraph, key) => {
           return (
-            <>
-              <p className="first-letter:uppercase text-[1.1rem]">
+            <article key={key}>
+              <div className="first-letter:uppercase text-[1.1rem]">
                 {paragraph}
-              </p>
+              </div>
               <br />
-            </>
+            </article>
           );
         })}
       </article>

@@ -17,7 +17,15 @@ export default {
     },
     extend: {
       colors: {
-        white: 'rgb(255, 251, 242)',
+        black: {
+          "750": "#070707",
+          "500": "#171717",
+          "250": "#262626"
+        },
+        white: {
+          DEFAULT: 'rgb(255, 251, 242)',
+          "default": "#ffffff"
+        },
         primary: {
           DEFAULT: '#e8772e',
           "750": "#e8894b",

@@ -6,6 +6,7 @@ export type ArticleType = {
   shortDescription: string;
   fullDescription: string;
   aTag?: string;
+  imageUrl: string;
   createdAt: Timestamp;
 };
 

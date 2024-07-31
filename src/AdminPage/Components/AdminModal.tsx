@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { deleteLastArticle } from "../utils/deleteLastDoc";
+import { useState } from "react";
 
 export default function AdminModal({
   isOpen,
@@ -8,6 +9,8 @@ export default function AdminModal({
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -26,9 +29,18 @@ export default function AdminModal({
             className="bg-gradient-to-br from-primary-250 to-primary-500 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
           >
             <div className="relative z-10">
-              <div className="bg-white w-16 h-16 mb-2 rounded-full text-5xl text-red-500 font-extrabold grid place-items-center mx-auto">
+              <motion.div
+                animate={isLoading ? { rotate: 360 } : { rotate: 0 }}
+                transition={{
+                  duration: 0.7,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut",
+                }}
+                className="bg-white w-16 h-16 mb-2 rounded-full text-5xl text-red-500 font-extrabold grid place-items-center mx-auto"
+              >
                 !
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold text-center mb-2">
                 Are you sure you want to delete the last Article?
               </h3>
@@ -41,7 +53,9 @@ export default function AdminModal({
                 </button>
                 <button
                   onClick={async () => {
+                    setIsLoading(true);
                     await deleteLastArticle();
+                    setIsLoading(false);
                     setIsOpen(false);
                   }}
                   className="bg-red-500 hover:opacity-90 transition-opacity font-semibold w-full py-2 rounded"

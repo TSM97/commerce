@@ -3,51 +3,67 @@ import { db } from "../firebaseConfig";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 import Logo from "../assets/ATHBees.webp";
-import uploadImage from "../Utils/uploadImage";
 import AdminModal from "./Components/AdminModal";
 import { motion } from "framer-motion";
 import { NavHashLink } from "react-router-hash-link";
+import useImageUpload from "../hooks/useImageUpload";
+import { useDropzone } from "react-dropzone";
 
 export default function Admin() {
   const titleRef = useRef<HTMLInputElement>(null);
   const shortDescRef = useRef<HTMLInputElement>(null);
   const aTagRef = useRef<HTMLInputElement>(null);
   const fullDescRef = useRef<HTMLTextAreaElement>(null);
-
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const { uploadImage, loading, error } = useImageUpload();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOnSubmit = async (e: any) => {
+  const onDrop = (acceptedFiles: File[]) => {
+    if (acceptedFiles && acceptedFiles.length > 0) {
+      setSelectedImage(acceptedFiles[0]);
+    }
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [],
+    },
+    maxFiles: 1,
+  });
+
+  const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const title = titleRef.current?.value || "";
-    const shortDescription = shortDescRef.current?.value || "";
-    const fullDescription = fullDescRef.current?.value || "";
-    const aTag = aTagRef.current?.value;
-
+    if (!selectedImage) {
+      alert("Please select an image.");
+      return;
+    }
     try {
-      const docRef = await addDoc(collection(db, "articles"), {
-        title,
-        shortDescription,
-        fullDescription,
-        aTag,
+      const imageUrl = await uploadImage(selectedImage);
+
+      // Save article data with image URL to Firestore
+      await addDoc(collection(db, "articles"), {
+        title: titleRef.current?.value || "",
+        shortDescription: shortDescRef.current?.value || "",
+        fullDescription: fullDescRef.current?.value || "",
+        aTag: aTagRef.current?.value || "",
+        imageUrl,
         createdAt: Timestamp.now(),
       });
-      console.log("Document written with ID: ", docRef.id);
 
-      // Reset form fields
+      // Reset form fields and image state
       if (titleRef.current) titleRef.current.value = "";
       if (shortDescRef.current) shortDescRef.current.value = "";
       if (fullDescRef.current) fullDescRef.current.value = "";
       if (aTagRef.current) aTagRef.current.value = "";
+      setSelectedImage(null);
 
       alert("Article uploaded successfully!");
-    } catch (error) {
-      console.error("Error adding document: ", error);
+    } catch (uploadError) {
+      console.error("Error uploading article: ", uploadError);
       alert("Error uploading article. Please try again.");
     }
   };
-
-  // uploadImage("dropzone-file");
 
   return (
     <>
@@ -144,19 +160,47 @@ export default function Admin() {
                 placeholder="https://theuselessweb.com/"
               />
             </div>
-            {/* TODO: NOT READY YET - Should Implement React-Drop-zone for this element 
-
-          {/* <section className="col-span-2">
-            <ImgUpload />
-          </section> */}
+            {/* Img drag n' drop */}
+            <section className="w-fit">
+              <div className="bg-white-default border border-white-300 text-black-250 text-lg rounded-lg block w-full  p-2.5 white">
+                <input {...getInputProps()} />
+                {selectedImage ? (
+                  <div className="flex items-center gap-4">
+                    <p>{selectedImage.name}</p>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedImage(null)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <p
+                    {...getRootProps({ className: "dropzone cursor-pointer" })}
+                  >
+                    Drag 'n' drop an image here, or click to select one
+                  </p>
+                )}
+              </div>
+            </section>
           </div>
-          <div className="flex gap-4 justify-between pb-20">
-            <button
-              type="submit"
-              className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
-            >
-              Submit
-            </button>
+          <div className="flex gap-4 justify-between">
+            <div className="flex gap-3 items-center">
+              <button
+                type="submit"
+                className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
+              >
+                Submit
+              </button>
+              {loading && (
+                <div
+                  className="w-6 h-6 rounded-full animate-spin
+                    border-2 border-dashed border-primary-500 border-t-transparent"
+                />
+              )}
+            </div>
+
             <button
               onClick={() => setIsOpen(true)}
               data-modal-target="AdminModal"
@@ -166,6 +210,10 @@ export default function Admin() {
             >
               Delete the last article that you Uploaded
             </button>
+          </div>
+          <div> {error && <p>{error}</p>}</div>
+          <div className="text-red-500 pb-20">
+            * In case of URL dont write a full Description
           </div>
         </form>
       </section>
