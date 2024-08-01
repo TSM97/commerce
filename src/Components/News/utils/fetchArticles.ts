@@ -2,9 +2,11 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../../../firebaseConfig"; // Adjust the path to your firebaseConfig file
 
 import ArticleType from "../../../types/articleType";
+import { ITEMS_PER_PAGE } from "../../../config";
 
 const fetchArticles = async (
-  setArticles: React.Dispatch<React.SetStateAction<ArticleType[]>>
+  setArticles: React.Dispatch<React.SetStateAction<ArticleType[]>>,
+  setTotalPages: React.Dispatch<React.SetStateAction<number>>
 ) => {
   try {
     const articlesQuery = query(
@@ -21,6 +23,7 @@ const fetchArticles = async (
       });
     });
     setArticles(articlesList);
+    setTotalPages(Math.ceil(articlesList.length / ITEMS_PER_PAGE));
   } catch (error) {
     console.error("Error fetching articles: ", error);
   }

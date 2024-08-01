@@ -9,7 +9,7 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
   };
   return (
     <>
-      {articles.map((article, key) => {
+      {articles.map((article) => {
         //format date in order to show to NewsMini
         const formattedDate = new Intl.DateTimeFormat("en-US", {
           year: "numeric",
@@ -22,21 +22,21 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
 
         return (
           <article
-            key={`${article}${key}`}
-            className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 h-fit min-h-[300px]"
+            key={article?.id}
+            className="p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 lg:h-[300px]"
           >
             <img
-              className="object-cover w-full lg:h-[250px] sm:w-1/2 mr-4 none"
+              className="object-cover w-full h-[150px] lg:h-[250px] sm:w-1/2 mr-4 none"
               loading="lazy"
               alt="Article's image"
               style={{ borderRadius: "30% 70% 41% 59% / 74% 14% 86% 26%" }}
               src={article?.imageUrl}
             />
-            <section className="flex flex-col justify-between w-full">
-              <h5 className="mb-2 font-bold md:text-2xl tracking-tight">
+            <section className="flex flex-col justify-between w-full overflow-y-hidden">
+              <h5 className="mb-2 font-bold md:text-2xl tracking-tight overflow-y-hidden">
                 {article?.title}
               </h5>
-              <p className="mb-3 md:text-xl font-normal">
+              <p className="mb-3 md:text-xl font-normal overflow-y-hidden">
                 {article?.shortDescription}
               </p>
               <div className="flex w-full items-center md:items-end justify-end md:flex-col flex-row gap-2">

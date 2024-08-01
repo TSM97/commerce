@@ -18,6 +18,7 @@ export default {
     extend: {
       colors: {
         black: {
+          DEFAULT: '#000000',
           "750": "#070707",
           "500": "#171717",
           "250": "#262626"
