@@ -33,10 +33,16 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
               src={article?.imageUrl}
             />
             <section className="flex flex-col justify-between w-full overflow-y-hidden">
-              <h5 className="mb-2 font-bold md:text-2xl tracking-tight overflow-y-hidden">
+              <h5
+                id="titleID"
+                className="mb-2 font-bold md:text-2xl tracking-tight overflow-y-hidden text-base line-clamp-3 md:line-clamp-2"
+              >
                 {article?.title}
               </h5>
-              <p className="mb-3 md:text-xl font-normal overflow-y-hidden">
+              <p
+                id="short_DescriptionId"
+                className="mb-3 md:text-xl font-normal overflow-y-hidden  text-base line-clamp-6 md:line-clamp-3"
+              >
                 {article?.shortDescription}
               </p>
               <div className="flex w-full items-center md:items-end justify-end md:flex-col flex-row gap-2">
