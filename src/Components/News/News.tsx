@@ -2,7 +2,7 @@ import LeftPartial from "./Components/LeftPartial";
 import RightPartial from "./Components/RightPartial";
 import MultipleHive from "../../svgs/MultipleHive";
 
-export default function Description() {
+export default function News() {
   return (
     <div
       id="News"

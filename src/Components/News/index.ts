@@ -1,3 +1,3 @@
-import Description from "./Description";
+import News from "./News";
 
-export default Description;
+export default News;

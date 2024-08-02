@@ -5,7 +5,7 @@ import Lenis from "lenis";
 import NavBar from "./Components/NavBar";
 import Admin from "./AdminPage/Admin";
 import { Hero, Intro } from "./Components/Hero";
-import Description from "./Components/News/Description";
+import News from "./Components/News/News";
 import { ArticlePage } from "./Components/ArticlePage";
 import "./App.css";
 
@@ -37,7 +37,7 @@ export default function App() {
           element={
             <section>
               <Intro />
-              <Description />
+              <News />
               <Hero />
               <div className="h-screen"></div>
             </section>
