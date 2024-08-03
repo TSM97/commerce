@@ -25,7 +25,6 @@ export default function App() {
 
   const isAdminPage = location.pathname === "/admin";
 
-  console.log(isAdminPage);
   return (
     <>
       <section className="flex justify-center w-100dvw">

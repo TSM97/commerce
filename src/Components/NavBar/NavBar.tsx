@@ -69,7 +69,10 @@ export default function NavBar() {
   const menuSlide = {
     initial: { y: "calc(-100dvh)" },
 
-    enter: { y: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+    enter: {
+      y: "0",
+      transition: { duration: 0.7, ease: [0.76, 0, 0.1, 1.3] },
+    },
 
     exit: {
       y: "calc(100px)",
@@ -103,23 +106,35 @@ export default function NavBar() {
           duration: 0.4,
         }}
       >
-        <NavHashLink to={"/#Home"}>
-          <motion.img
-            initial={{ opacity: 0, y: -150 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{
-              duration: 0.5,
-              scale: {
-                duration: 0.6,
-                ease: "easeInOut",
-              },
-            }}
-            src={Logo}
-            className="h-[13dvh] cursor-pointer"
-            alt="AthenianBees Logo"
-          />
-        </NavHashLink>
+        <motion.div
+          initial={{ opacity: 0, y: -150 }}
+          animate={
+            hidden == "initial"
+              ? { opacity: 1, y: 0 }
+              : active
+              ? { opacity: 1, y: 0 }
+              : hidden
+              ? { opacity: 1, y: -150 }
+              : { opacity: 1, y: 0 }
+          }
+          whileHover={{ scale: 1.1 }}
+          transition={{
+            duration: 0.5,
+            scale: {
+              duration: 0.6,
+              ease: "easeInOut",
+            },
+          }}
+        >
+          <NavHashLink to={"/#Home"}>
+            <img
+              src={Logo}
+              className="h-[13dvh] cursor-pointer"
+              alt="AthenianBees Logo"
+            />
+          </NavHashLink>
+        </motion.div>
+
         <div className="hidden lg:flex gap-12">
           {navList.map((item, i) => (
             <motion.div

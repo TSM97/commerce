@@ -25,7 +25,6 @@ export default function Pagination({
     setCurrentPage(page);
   };
 
-  console.log(currentPage);
   return (
     <div>
       <>
