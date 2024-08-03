@@ -25,7 +25,7 @@ export default function Hero() {
               "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.7))",
           }}
         ></div>
-        <div className="relative w-[90dvw] lg:w-[65dvw] text-2xl lg:text-[4dvw] xl:text-[2vw] lg:self-end leading-normal">
+        <div className="relative w-[90dvw] lg:w-[65dvw] text-[6dvw] md:text-[5dvw] lg:text-[4dvw] xl:text-[2vw] lg:self-end leading-normal">
           <p>
             Discover the true taste of local honey, harvested with care from our
             very own beehives. Each jar reflects our passion for beekeeping and
