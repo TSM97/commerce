@@ -1,0 +1,15 @@
+# Applies to all search engine bots
+User-agent: *
+
+# Disallow access to sensitive or non-public areas
+Disallow: /private/
+Disallow: /admin/
+Disallow: /config/
+Disallow: /api/
+Disallow: /.env
+
+# Allow access to public areas
+Allow: /public/
+
+# Sitemap location
+Sitemap: https://www.localhost.com/sitemap.xml

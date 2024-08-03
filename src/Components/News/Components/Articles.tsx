@@ -54,6 +54,9 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
                     className="rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
+                    <span className="sr-only">
+                      Read this article about {article.title}
+                    </span>
                   </a>
                 ) : (
                   <button
