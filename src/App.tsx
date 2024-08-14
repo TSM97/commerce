@@ -41,7 +41,6 @@ export default function App() {
               <Products />
               <Hero />
               <News />
-              <section className='h-screen relative bg-white'></section>
             </>
           }
         />

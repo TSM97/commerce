@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Lobster-Two';
+  src: url('/fonts/LobsterTwo-Italic.woff2') format('woff2'),
+    url('/fonts/LobsterTwo-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Martel';
+  src: url('/fonts/Martel-Regular.woff2') format('woff2'),
+    url('/fonts/Martel-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}

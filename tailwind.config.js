@@ -14,6 +14,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        lobster: ['"Lobster-Two"', 'cursive'],
+        martel: ['Martel', 'serif'],
+      },
       colors: {
         black: {
           DEFAULT: '#000000',
@@ -24,6 +28,9 @@ export default {
         white: {
           DEFAULT: 'rgb(255, 251, 242)',
           default: '#ffffff',
+        },
+        honey: {
+          DEFAULT: '#efa926',
         },
         primary: {
           DEFAULT: '#e8772e',
