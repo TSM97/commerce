@@ -5,8 +5,10 @@ import {
   useScroll,
 } from 'framer-motion';
 import { useState } from 'react';
-import Logo from '../../assets/ATHBees.webp';
 import { NavHashLink } from 'react-router-hash-link';
+
+import Logo from '../../assets/ATHBees.webp';
+import { menuSlide, parentVariants } from './variants';
 import AnimatedHamburgerButton from './Components/HamburgerButtom';
 
 const navList: string[] = ['Home', 'Products', 'News', 'About', 'Contact'];
@@ -21,6 +23,7 @@ export default function NavBar() {
   const [hidden, setHidden] = useState<boolean | 'initial'>('initial');
   const [prevScroll, setPrevScroll] = useState(0);
   const [active, setActive] = useState(false);
+  const [clickingLink, setClickingLink] = useState(false);
 
   function update(latest: number, prev: number): void {
     if (latest != 0 && latest < prev) {
@@ -32,57 +35,22 @@ export default function NavBar() {
     }
   }
 
-  const parentVariants = {
-    isActivePhone: {
-      opacity: 1,
-      height: '45dvh',
-      backgroundColor: 'var(--background-transparent-color)',
-      color: 'rgb(0, 0, 0)',
-    },
-    visible: {
-      opacity: 1,
-      height: '13dvh',
-      y: 0,
-      backgroundColor: 'var(--background-transparent-color)',
-      color: 'rgb(0, 0, 0)',
-    },
-    hidden: {
-      opacity: 0,
-      height: '13dvh',
-      y: '-4rem',
-      backgroundColor: 'rgba(255, 255, 255, 0)',
-      color: 'var(--background-color)',
-    },
-    initial: {
-      opacity: 1,
-      height: '13dvh',
-      y: 0,
-      backgroundColor: 'rgba(255, 255, 255, 0)',
-      color: `${
-        location.pathname.includes('/article')
-          ? 'rgb(0, 0, 0)'
-          : 'var(--background-color)'
-      }`,
-    },
-  };
+  function handleLinkClick() {
+    setClickingLink(true);
+    setHidden(true);
+    setActive(false);
 
-  const menuSlide = {
-    initial: { y: 'calc(-100dvh)' },
-
-    enter: {
-      y: '0',
-      transition: { duration: 0.7, ease: [0.76, 0, 0.1, 1.3] },
-    },
-
-    exit: {
-      y: 'calc(100px)',
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
-    },
-  };
+    // Prevent the scroll handler from triggering during navigation
+    setTimeout(() => {
+      setClickingLink(false);
+    }, 500); // Increased timeout to allow scroll to settle
+  }
 
   useMotionValueEvent(scrollY, 'change', (latest: number) => {
-    update(latest, prevScroll);
-    setPrevScroll(latest);
+    if (!clickingLink) {
+      update(latest, prevScroll);
+      setPrevScroll(latest);
+    }
   });
 
   return (
@@ -147,7 +115,7 @@ export default function NavBar() {
                 duration: 0.4,
               }}
             >
-              <NavHashLink to={`/#${item}`}>
+              <NavHashLink onClick={handleLinkClick} to={`/#${item}`}>
                 <div>
                   <sup>&#8226; </sup>
                   {item}

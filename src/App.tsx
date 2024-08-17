@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
+// import Lenis from 'lenis';
 
 import NavBar from './Components/NavBar';
 import Admin from './AdminPage/Admin';
@@ -14,16 +14,16 @@ import { DraggableProducts } from './Components/Products/DraggableProducts';
 export default function App() {
   const location = useLocation(); // Get the current location
 
-  useEffect(() => {
-    const lenis = new Lenis();
+  // useEffect(() => {
+  //   const lenis = new Lenis();
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  //   function raf(time: number) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
 
-    requestAnimationFrame(raf);
-  }, []);
+  //   requestAnimationFrame(raf);
+  // }, []);
 
   const isAdminPage = location.pathname === '/admin';
 

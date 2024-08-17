@@ -2,8 +2,8 @@ const HoneyJar = (props: any) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     xmlSpace='preserve'
-    width={800}
-    height={800}
+    width={80}
+    height={80}
     viewBox='0 0 512 512'
     {...props}
   >
