@@ -20,7 +20,7 @@ export default function Products() {
       <section className='p-[4dvw] xl:w-1/2'>
         <img
           src={Product}
-          className=' lg:min-w-[35dvw] w-[300px] h-[300px] lg:h-[35dvw] object-cover rounded-full z-10'
+          className=' lg:min-w-[30dvw] w-[300px] h-[300px] lg:h-[30dvw] object-cover rounded-full z-10'
         />
         {/* <Lottie
             className='absolute -top-20 -right-24'
@@ -54,7 +54,7 @@ export default function Products() {
         <section className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {benefitsList.map((el, i) => (
             <div
-              className='p-4 flex text-lg font-semibold font-martel items-center gap-4'
+              className='p-4 flex text-md font-semibold font-martel items-center gap-4'
               key={i}
             >
               {el?.icon}

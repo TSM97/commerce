@@ -6,17 +6,13 @@ import {
 } from 'framer-motion';
 import { useState } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
+import { useLocation } from 'react-router-dom';
 
 import Logo from '../../assets/ATHBees.webp';
-import { menuSlide, parentVariants } from './variants';
+import { menuSlide, parentVariants, childVariants } from './variants';
 import AnimatedHamburgerButton from './Components/HamburgerButtom';
 
 const navList: string[] = ['Home', 'Products', 'News', 'About', 'Contact'];
-
-const childVariants = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: '-2rem' },
-};
 
 export default function NavBar() {
   const { scrollY } = useScroll();
@@ -24,6 +20,24 @@ export default function NavBar() {
   const [prevScroll, setPrevScroll] = useState(0);
   const [active, setActive] = useState(false);
   const [clickingLink, setClickingLink] = useState(false);
+  const location = useLocation();
+
+  const initial = {
+    opacity: 1,
+    height: '13dvh',
+    y: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    color: `${
+      location.pathname.includes('/article')
+        ? 'rgb(0, 0, 0)'
+        : 'var(--background-color)'
+    }`,
+  };
+
+  const parentVars = {
+    ...parentVariants,
+    initial,
+  };
 
   function update(latest: number, prev: number): void {
     if (latest != 0 && latest < prev) {
@@ -35,10 +49,12 @@ export default function NavBar() {
     }
   }
 
-  function handleLinkClick() {
-    setClickingLink(true);
-    setHidden(true);
-    setActive(false);
+  function handleLinkClick(item: string) {
+    if (item != 'Home') {
+      setClickingLink(true);
+      setHidden(true);
+      setActive(false);
+    }
 
     // Prevent the scroll handler from triggering during navigation
     setTimeout(() => {
@@ -55,10 +71,9 @@ export default function NavBar() {
 
   return (
     <>
-      {' '}
       <motion.nav
         className={`flex lg:justify-around backdrop-blur-sm justify-between items-center p-2 text-[3vw] xl:text-[2vw] fixed left-0 w-[98vw] z-50 rounded-b-[50px]`}
-        variants={parentVariants}
+        variants={parentVars}
         animate={
           active
             ? 'isActivePhone'
@@ -115,7 +130,10 @@ export default function NavBar() {
                 duration: 0.4,
               }}
             >
-              <NavHashLink onClick={handleLinkClick} to={`/#${item}`}>
+              <NavHashLink
+                onClick={() => handleLinkClick(item)}
+                to={`/#${item}`}
+              >
                 <div>
                   <sup>&#8226; </sup>
                   {item}

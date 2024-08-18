@@ -36,12 +36,12 @@ export default function App() {
         <Route
           path='/'
           element={
-            <>
+            <main id='main'>
               <Intro />
               <Products />
               <Hero />
               <News />
-            </>
+            </main>
           }
         />
         <Route path='/admin' element={<Admin />} />

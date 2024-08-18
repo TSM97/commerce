@@ -19,17 +19,6 @@ export const parentVariants = {
     backgroundColor: 'rgba(255, 255, 255, 0)',
     color: 'var(--background-color)',
   },
-  initial: {
-    opacity: 1,
-    height: '13dvh',
-    y: 0,
-    backgroundColor: 'rgba(255, 255, 255, 0)',
-    color: `${
-      location.pathname.includes('/article')
-        ? 'rgb(0, 0, 0)'
-        : 'var(--background-color)'
-    }`,
-  },
 };
 
 export const menuSlide = {
@@ -44,4 +33,9 @@ export const menuSlide = {
     y: 'calc(100px)',
     transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
   },
+};
+
+export const childVariants = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: '-2rem' },
 };
