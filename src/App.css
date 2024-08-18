@@ -1,5 +1,6 @@
 #root {
   font-family: 'Playfair Display', serif;
+  --honey-color: rgba(239, 175, 57, 1);
   --primary-color: rgba(232, 119, 46, 1);
   --background-color: rgba(255, 251, 242, 1);
   --background-transparent-color: rgba(255, 251, 242, 0.6);
