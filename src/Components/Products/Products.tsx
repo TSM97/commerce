@@ -1,8 +1,5 @@
-import Lottie from 'lottie-react';
-
 import Product from '../../assets/HoneyProduct1.webp';
 import WaveBG from '../../svgs/WaveBG.svg';
-import AnimateBee from '../../svgs/AnimatedBee.json';
 import { benefitsList } from './data';
 
 export default function Products() {
@@ -22,20 +19,6 @@ export default function Products() {
           src={Product}
           className=' lg:min-w-[30dvw] w-[300px] h-[300px] lg:h-[30dvw] object-cover rounded-full z-10'
         />
-        {/* <Lottie
-            className='absolute -top-20 -right-24'
-            animationData={AnimateBee}
-            loop
-            autoplay
-            style={{ width: 250, height: 250 }}
-          /> */}
-        {/* <div
-          className='w-[35dvw] h-[35dvw] bg-cover bg-center z-10'
-          style={{
-            backgroundImage: `url(${Product})`,
-            clipPath: 'circle(50% at 50% 50%)',
-          }}
-        /> */}
       </section>
       <section className='py-[2dvw] flex flex-col gap-4 pr-[3dvw]'>
         <div className='font-lobster text-4xl text-honey'>Discover</div>
