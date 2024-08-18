@@ -56,10 +56,15 @@ export default function NavBar() {
       setActive(false);
     }
 
+    // fast fix in order to keep navbar between article page and main page
+    if (location.pathname.includes('/article') || item === 'News') {
+      setPrevScroll(prevScroll + 1);
+    }
+
     // Prevent the scroll handler from triggering during navigation
     setTimeout(() => {
       setClickingLink(false);
-    }, 500); // Increased timeout to allow scroll to settle
+    }, 200); // Increased timeout to allow scroll to settle
   }
 
   useMotionValueEvent(scrollY, 'change', (latest: number) => {

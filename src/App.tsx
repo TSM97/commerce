@@ -28,7 +28,7 @@ export default function App() {
   const isAdminPage = location.pathname === '/admin';
 
   return (
-    <>
+    <section id='main'>
       <section className='flex justify-center w-100dvw'>
         {!isAdminPage && <NavBar />}
       </section>
@@ -36,17 +36,17 @@ export default function App() {
         <Route
           path='/'
           element={
-            <main id='main'>
+            <>
               <Intro />
               <Products />
               <Hero />
               <News />
-            </main>
+            </>
           }
         />
         <Route path='/admin' element={<Admin />} />
         <Route path='/article/:id' element={<ArticlePage />} />
       </Routes>
-    </>
+    </section>
   );
 }

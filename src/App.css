@@ -6,9 +6,6 @@
   background-color: var(--background-color);
   /* font-family: "Noto Serif", serif; */
 }
-#main {
-  scroll-behavior: smooth;
-}
 body {
   margin: 0 auto;
   overflow-x: hidden;
