@@ -18,7 +18,6 @@ export default function Products() {
     >
       <section className='py-[2dvw] px-[4dvw] min-w-[50%] xl:w-1/2 flex flex-col items-center'>
         <TiltCard />
-        <div>testing Testbranch</div>
         {/* <>
           <img
             src={Product}
