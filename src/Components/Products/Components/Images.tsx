@@ -13,8 +13,6 @@ const Images = ({ imgIndex }: { imgIndex: number }) => {
             animate={{
               scale: imgIndex === idx ? 0.95 : 0.85,
             }}
-            draggable={includesOneProduct}
-            transition={SPRING_OPTIONS}
             className='aspect-square object-cover shrink-0 rounded-xl bg-neutral-800'
           />
         );

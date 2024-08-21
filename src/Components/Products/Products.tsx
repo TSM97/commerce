@@ -1,29 +1,32 @@
+import useScreenSize from '../../hooks/UseScreenSize';
 import WaveBG from '../../svgs/WaveBG.svg';
 import { benefitsList } from './data';
 import { DraggableProducts } from './DraggableProducts';
 
 export default function Products() {
+  const { isTablet } = useScreenSize();
+
   return (
     <section
       id='Products'
-      className='min-h-screen xl:h-screen py-[3dvw] px-[3dvw] flex flex-col xl:flex-row items-center lg:items-start lg:bg-none gap-[3dvw]'
+      className={`lg:min-h-screen py-[3dvw] px-[3dvw] flex flex-col lg:flex-row items-center lg:items-start gap-[3dvw]`}
       style={{
-        backgroundImage: `url(${WaveBG})`,
+        backgroundImage: isTablet ? '' : `url(${WaveBG})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }}
     >
-      <section className='min-w-[50%] h-[90%] flex flex-col items-center justify-center xl:w-1/2'>
-        {/* <img
+      {/* <img
           src={Product}
           className=' lg:min-w-[30dvw] w-[300px] h-[300px] lg:h-[30dvw] object-cover rounded-full z-10'
         /> */}
-        <DraggableProducts />
-      </section>
+      <DraggableProducts />
       <section className='py-[2dvw] flex flex-col gap-4 pr-[3dvw]'>
-        <div className='font-lobster text-4xl text-honey'>Discover</div>
-        <div className='font-martel text-5xl'>
+        <div className='font-lobster text-2xl lg:text-4xl text-honey'>
+          Discover
+        </div>
+        <div className='font-martel text-3xl lg:text-5xl'>
           <div>The Remarkable</div>
           <div>Benefits of Honey</div>
         </div>
