@@ -9,7 +9,7 @@ export default function Products() {
   return (
     <section
       id='Products'
-      className={`lg:min-h-screen py-[3dvw] px-[3dvw] flex flex-col lg:flex-row items-center lg:items-start gap-[3dvw]`}
+      className='xl:min-h-[70dvh] py-[3dvw] px-[3dvw] flex flex-col lg:flex-row items-center lg:items-start gap-[3dvw]'
       style={{
         backgroundImage: isTablet ? '' : `url(${WaveBG})`,
         backgroundSize: 'cover',

@@ -1,4 +1,4 @@
-import { imgs, includesOneProduct } from '../data';
+import { products, includesOneProduct } from '../data';
 
 const Dots = ({
   imgIndex,
@@ -10,7 +10,7 @@ const Dots = ({
   return (
     !includesOneProduct && (
       <div className='mt-4 flex w-full justify-center gap-2'>
-        {imgs.map((_, idx) => {
+        {products.map((_, idx) => {
           return (
             <button
               key={idx}

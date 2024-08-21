@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        lobster: ['"Lobster-Two"', 'cursive'],
+        lobster: ['Lobster-Two', 'cursive'],
         martel: ['Martel', 'serif'],
       },
       colors: {
@@ -38,6 +38,9 @@ export default {
           500: '#e89159',
           250: '#e8a67b',
           100: '#e8ccbb',
+        },
+        svgColor: {
+          DEFAULT: '#fce8d5',
         },
       },
     },
