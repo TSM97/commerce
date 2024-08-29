@@ -92,10 +92,7 @@ export const DraggableProducts = () => {
                     </del>
                   </div>
                 </div>
-                <CustomButton
-                  className='absolute bottom-3 right-3'
-                  onClick={() => console.log('epatha klik')}
-                >
+                <CustomButton className='absolute bottom-3 right-3'>
                   Contact
                 </CustomButton>
               </div>

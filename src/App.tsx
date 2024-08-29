@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 // import Lenis from 'lenis';
 
@@ -7,9 +6,10 @@ import Admin from './AdminPage/Admin';
 import { Hero, Intro } from './Components/Hero';
 import News from './Components/News/News';
 import { ArticlePage } from './Components/ArticlePage';
-import './App.css';
 import Products from './Components/Products';
-import { DraggableProducts } from './Components/Products/DraggableProducts';
+import About from './Components/About';
+
+import './App.css';
 
 export default function App() {
   const location = useLocation(); // Get the current location
@@ -41,6 +41,7 @@ export default function App() {
               <Products />
               <Hero />
               <News />
+              <About />
               <section className='h-screen bg-white z-10'></section>
             </>
           }

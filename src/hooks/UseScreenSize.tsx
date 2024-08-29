@@ -17,7 +17,6 @@ export default function useScreenSize() {
     // Clean up the event listener when the component unmounts
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  console.log(screenSize.width);
   const screen = {
     isMobile: screenSize.width <= 640,
     isTablet: screenSize.width <= 1024,
