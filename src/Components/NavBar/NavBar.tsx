@@ -79,6 +79,7 @@ export default function NavBar() {
       <motion.nav
         className={`flex lg:justify-around backdrop-blur-sm justify-between items-center p-2 text-[3vw] xl:text-[2vw] fixed left-0 w-[98vw] z-50 rounded-b-[50px]`}
         variants={parentVars}
+        initial={initial}
         animate={
           active
             ? 'isActivePhone'

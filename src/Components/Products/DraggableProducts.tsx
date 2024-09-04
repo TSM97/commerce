@@ -71,7 +71,7 @@ export const DraggableProducts = () => {
               >
                 <img
                   draggable='false'
-                  className='aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-xl bg-neutral-800'
+                  className='aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-t-xl bg-neutral-800'
                   src={product?.img}
                 />
                 <div className='px-4 py-3 full'>
@@ -92,7 +92,11 @@ export const DraggableProducts = () => {
                     </del>
                   </div>
                 </div>
-                <CustomButton className='absolute bottom-3 right-3'>
+                <CustomButton
+                  elementType='navLink'
+                  className='absolute bottom-3 right-3'
+                  to={`/#Home`}
+                >
                   Contact
                 </CustomButton>
               </div>
