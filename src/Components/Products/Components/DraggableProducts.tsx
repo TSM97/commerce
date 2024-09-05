@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
 
-import { products, includesOneProduct, SPRING_OPTIONS } from './data';
-import Dots from './Components/Dots';
-import CustomButton from '../CustomButton';
+import { products, includesOneProduct, SPRING_OPTIONS } from '../data';
+import Dots from './Dots';
+import CustomButton from '../../CustomButton';
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 10;

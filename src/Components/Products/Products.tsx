@@ -1,7 +1,7 @@
 import useScreenSize from '../../hooks/UseScreenSize';
-import WaveBG from '../../svgs/WaveBG.svg';
 import { benefitsList } from './data';
-import { DraggableProducts } from './DraggableProducts';
+import { DraggableProducts } from './Components/DraggableProducts';
+import WaveBG from '../../svgs/WaveBG.svg';
 
 export default function Products() {
   const { isTablet } = useScreenSize();
