@@ -1,13 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import ArticleType from "../../../types/articleType";
 import CustomButton from "../../CustomButton";
 
 export default function Articles({ articles }: { articles: ArticleType[] }) {
-  const navigate = useNavigate();
-
-  const handleReadMore = (article: ArticleType) => {
-    navigate(`/article/${article.id}`, { state: { article } });
-  };
   return (
     <>
       {articles.map((article) => {
@@ -61,7 +55,10 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
                     </span>
                   </CustomButton>
                 ) : (
-                  <CustomButton onClick={() => handleReadMore(article)}>
+                  <CustomButton
+                    elementType="navLink"
+                    to={`/article/${article.id}`}
+                  >
                     Read more
                   </CustomButton>
                 )}

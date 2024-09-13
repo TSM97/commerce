@@ -1,4 +1,4 @@
-import useScreenSize from "../../hooks/UseScreenSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import { benefitsList } from "./data";
 import { DraggableProducts } from "./Components/DraggableProducts";
 import WaveBG from "../../svgs/WaveBG.svg";

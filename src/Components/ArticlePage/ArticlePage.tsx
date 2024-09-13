@@ -1,18 +1,24 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import ArticleType from "../../types/articleType";
 import { useEffect } from "react";
+import { useArticlesStore } from "../../stores/useArticlesStore";
 
 export default function ArticlePage() {
+  const { articles } = useArticlesStore();
+  const { id } = useParams<{ id: string }>(); // Extracting `id` from URL params
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top of the page
   }, []);
 
-  const location = useLocation();
-  const { article }: { article: ArticleType } = location.state || {}; // Access the article data from state
+  const article: ArticleType | null =
+    articles.find((el) => el?.id === id) ?? null;
 
-  // Manually converting Firestore Timestamp to JavaScript Date
-  const timestamp = article?.createdAt;
+  if (!article) return;
+
+  // Manually converting Firestore Timestamp to JavaScript Date\
+  const timestamp = article.createdAt;
   const date = new Date(
     timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
   );
