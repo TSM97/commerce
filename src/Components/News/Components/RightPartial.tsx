@@ -16,21 +16,23 @@ export default function RightPartial() {
     indexOfLastArticle
   );
 
-  console.log(articles);
-
-  return !loading ? (
+  return (
     <article className="flex flex-col justify-between text-left h-full p-4 w-[80dvw] xl:w-[40dvw]  md:text-md text-sm z-10">
-      <article>
-        <header className="font-bold text-3xl pb-4">News</header>
-        <Articles articles={currentArticles} />
-      </article>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
+      {!loading ? (
+        <>
+          <article>
+            <header className="font-bold text-3xl pb-4">News</header>
+            <Articles articles={currentArticles} />
+          </article>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+          />
+        </>
+      ) : (
+        <></> //Should make a skeleton component here!
+      )}
     </article>
-  ) : (
-    <div>loading...</div>
   );
 }

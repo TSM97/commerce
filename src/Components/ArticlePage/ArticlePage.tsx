@@ -12,6 +12,7 @@ export default function ArticlePage() {
     window.scrollTo(0, 0); // Scrolls to the top of the page
   }, []);
 
+  //find specific article based on the id tha passed to url
   const article: ArticleType | null =
     articles.find((el) => el?.id === id) ?? null;
 
