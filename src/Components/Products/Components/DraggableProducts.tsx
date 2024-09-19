@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
-import { products, includesOneProduct, SPRING_OPTIONS } from "../data";
+import { SPRING_OPTIONS } from "../data";
 import Dots from "./Dots";
 import CustomButton from "../../CustomButton";
+import { useProductsStore } from "../../../stores/useProductsStore";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 10;
@@ -11,6 +12,9 @@ const DRAG_BUFFER = 10;
 
 export const DraggableProducts = () => {
   const [imgIndex, setImgIndex] = useState(0);
+  const { products } = useProductsStore();
+
+  const includesOneProduct = products.length === 1;
 
   const dragX = useMotionValue(0);
 
@@ -26,10 +30,11 @@ export const DraggableProducts = () => {
           return pv + 1;
         });
       }
+      console.log(imgIndex);
     }, AUTO_DELAY);
 
     return () => clearInterval(intervalRef);
-  }, [dragX]);
+  }, [dragX, imgIndex, products.length]);
 
   const onDragEnd = () => {
     const x = dragX.get();
@@ -75,22 +80,22 @@ export const DraggableProducts = () => {
                 <img
                   draggable="false"
                   className="aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-t-xl bg-neutral-800"
-                  src={product?.img}
+                  src={product?.imageUrl}
                 />
                 <div className="px-4 py-3 full">
                   <span className="text-gray-400 mr-3 uppercase text-xs">
-                    {product?.subtitle}
+                    {product?.Quantity}
                   </span>
                   <p className="text-lg font-bold text-black capitalize">
-                    {product?.title}
+                    {product?.Description}
                   </p>
                   <div className="flex items-center">
                     <p className="text-lg font-semibold text-black cursor-auto my-3">
-                      {product?.lastPrice}
+                      {product?.Price}
                     </p>
                     <del>
                       <p className="text-sm text-gray-600 cursor-auto ml-2">
-                        {product?.firstPrice}
+                        {product?.PrevPrice}
                       </p>
                     </del>
                   </div>
@@ -130,7 +135,11 @@ export const DraggableProducts = () => {
           <Images imgIndex={imgIndex} />
         </motion.div>
       </div> */}
-      <Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
+      <Dots
+        imgIndex={imgIndex}
+        setImgIndex={setImgIndex}
+        includesOneProduct={includesOneProduct}
+      />
     </section>
   );
 };

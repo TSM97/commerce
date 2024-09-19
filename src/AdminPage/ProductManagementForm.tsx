@@ -1,18 +1,16 @@
-import { Timestamp } from "firebase/firestore";
 import uploadDataToFirestore from "../Utils/uploadDataToFireStore";
 import { useDropzone } from "react-dropzone";
 import { useRef, useState } from "react";
 import UseImageUpload from "../hooks/useImageUpload";
-import AdminModal from "./Components/AdminModal";
 
 export default function ProductManagementForm() {
   const Quantity = useRef<HTMLInputElement>(null);
   const Description = useRef<HTMLInputElement>(null);
   const Price = useRef<HTMLInputElement>(null);
   const PrevPrice = useRef<HTMLInputElement>(null);
+  const Order = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const { uploadImage, loading, error } = UseImageUpload();
-  const [isOpen, setIsOpen] = useState(false);
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -42,8 +40,8 @@ export default function ProductManagementForm() {
         Description: Description.current?.value || "",
         Price: parseFloat(Price.current?.value || "0"), // Convert to a number,
         PrevPrice: parseFloat(PrevPrice.current?.value || "0"), // Convert to a number,
+        order: parseInt(Order.current?.value || "0"), // Convert to a number,
         imageUrl,
-        createdAt: Timestamp.now(),
       };
 
       // Save article data with image URL to Firestore
@@ -71,8 +69,8 @@ export default function ProductManagementForm() {
     <>
       {" "}
       <form onSubmit={handleOnSubmit}>
-        <div className="flex flex-col lg:grid gap-6 mb-6 md:grid-cols-2">
-          <div>
+        <div className="flex flex-col lg:grid gap-6 mb-6 md:grid-cols-3">
+          <div className=" col-span-2">
             <label
               htmlFor="Description"
               className="block mb-2 text-lg font-medium text-white-900"
@@ -138,6 +136,21 @@ export default function ProductManagementForm() {
               id="PrevPrice"
               className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
               placeholder="10,65"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="Order"
+              className="block mb-2 text-lg font-medium text-white-900"
+            >
+              Order
+            </label>
+            <input
+              ref={Order}
+              type="number"
+              id="Order"
+              className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
+              placeholder="0"
               required
             />
           </div>
@@ -180,19 +193,12 @@ export default function ProductManagementForm() {
             )}
           </div>
 
-          <button
-            onClick={() => setIsOpen(true)}
-            data-modal-target="AdminModal"
-            data-modal-toggle="AdminModal"
-            type="button"
-            className="border-black border-2 hover:bg-red-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            Delete the last article that you Uploaded
+          <button className="hover:bg-primary border-2 border-black-250 hover:text-white font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
+            Modify Product
           </button>
         </div>
         <div> {error && <p>{error}</p>}</div>
       </form>
-      <AdminModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 }

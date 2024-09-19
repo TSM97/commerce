@@ -12,16 +12,21 @@ import About from "./Components/About";
 
 import "./App.css";
 import { useArticlesStore } from "./stores/useArticlesStore";
+import { useProductsStore } from "./stores/useProductsStore";
 
 export default function App() {
   const location = useLocation(); // Get the current location
 
   //! If I upload an article data to the article's Section dont refresh. Is it actually a problem at our case?
   const { fetchArticles } = useArticlesStore();
+  const { fetchProducts, products } = useProductsStore();
 
   useEffect(() => {
     fetchArticles(); // Fetch articles on component mount
-  }, [fetchArticles]);
+    fetchProducts();
+  }, [fetchArticles, fetchProducts]);
+
+  console.log(products);
 
   const isAdminPage = location.pathname === "/admin";
 
