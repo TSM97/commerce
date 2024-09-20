@@ -43,6 +43,9 @@ export default {
           DEFAULT: '#fce8d5',
         },
       },
+      grayscale: {
+        90: '90%',
+      }
     },
   },
   plugins: [],

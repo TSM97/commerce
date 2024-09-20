@@ -15,8 +15,8 @@ export default function ProductManagementForm() {
   const Price = useRef<HTMLInputElement>(null);
   const PrevPrice = useRef<HTMLInputElement>(null);
   const order = useRef<HTMLInputElement>(null);
-  const hasStock = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [inStock, setInStock] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<productType | null>(
     null
   );
@@ -42,7 +42,8 @@ export default function ProductManagementForm() {
     if (selectedProduct) {
       resetFormFields(
         { Quantity, Description, Price, PrevPrice, order },
-        setSelectedImage
+        setSelectedImage,
+        setInStock
       );
       if (Quantity.current)
         Quantity.current.value = selectedProduct.Quantity || "";
@@ -54,6 +55,7 @@ export default function ProductManagementForm() {
         PrevPrice.current.value = selectedProduct.PrevPrice.toString() || "";
       if (order.current)
         order.current.value = selectedProduct.order.toString() || "";
+      setInStock(selectedProduct?.inStock);
       // Optionally load the product image if needed
     }
   }, [selectedProduct]);
@@ -78,6 +80,7 @@ export default function ProductManagementForm() {
           ? parseFloat(PrevPrice.current.value)
           : null,
         order: parseInt(order.current?.value || "0"),
+        inStock,
         imageUrl,
       };
 
@@ -100,7 +103,8 @@ export default function ProductManagementForm() {
       // Reset form fields and image state
       resetFormFields(
         { Quantity, Description, Price, PrevPrice, order },
-        setSelectedImage
+        setSelectedImage,
+        setInStock
       );
 
       alert(`Data ${selectedProduct ? "modified" : "uploaded"} successfully!`);
@@ -111,11 +115,12 @@ export default function ProductManagementForm() {
     }
   };
 
+  console.log(inStock);
+
   return (
     <>
-      {" "}
       <form onSubmit={handleOnSubmit}>
-        <div className="flex flex-col lg:grid gap-6 mb-6 md:grid-cols-3">
+        <div className="flex flex-col lg:grid gap-6 md:grid-cols-3 mb-3">
           <div className=" col-span-2">
             <label
               htmlFor="Description"
@@ -189,14 +194,18 @@ export default function ProductManagementForm() {
               htmlFor="order"
               className="block mb-2 text-lg font-medium text-white-900"
             >
-              order
+              Order
             </label>
             <input
               ref={order}
               type="number"
               id="order"
               className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
-              placeholder="0"
+              placeholder={
+                selectedProduct
+                  ? `${selectedProduct?.order}`
+                  : `${products?.length + 1}`
+              }
               required
             />
           </div>
@@ -223,17 +232,18 @@ export default function ProductManagementForm() {
             </div>
           </section>
         </div>
-        <div className="text-lg flex gap-3 mb-4">
-          <input
-            ref={hasStock}
-            type="number"
-            id="hasStock"
-            className="bg-white-50 border border-white-300 text-black text-lg rounded-lg block w-fit p-2.5"
-            placeholder="The product is Out of Stock"
-            disabled
-            onClick={() => {}}
-          />
-          <button className="">Control Stock</button>
+        <div className="w-fit bg-white-default border border-white-300 text-black-250 text-lg rounded-lg block p-2.5 white mb-6">
+          <label>
+            <input
+              type="checkbox"
+              className="accent-honey"
+              checked={inStock}
+              onChange={() => setInStock(!inStock)} // Handle the change event
+            />
+            <span className="pl-2">{`Product ${
+              inStock ? "is in stock" : "is out of stock"
+            }`}</span>
+          </label>
         </div>
         <div className="lg:flex gap-4 justify-between">
           <div className="flex gap-3 pb-3">
@@ -250,7 +260,8 @@ export default function ProductManagementForm() {
                     setSelectedProduct(null);
                     resetFormFields(
                       { Quantity, Description, Price, PrevPrice, order },
-                      setSelectedImage
+                      setSelectedImage,
+                      setInStock
                     );
                   }}
                   className="px-3 cursor-pointer  border-2 border-red-600 text-red-600 flex items-center font-bold  rounded-full h-10"

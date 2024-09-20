@@ -4,6 +4,7 @@ type productType = {
   Description: string;
   Price: number;
   order: number;
+  inStock: boolean;
   PrevPrice: number;
   imageUrl: string;
 };

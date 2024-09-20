@@ -46,6 +46,8 @@ export const DraggableProducts = () => {
     }
   };
 
+  console.log(products[0]?.inStock, products[1]?.inStock);
+
   return (
     <section
       id="Products"
@@ -75,7 +77,9 @@ export const DraggableProducts = () => {
             return (
               <div
                 key={idx}
-                className="min-w-[97%] relative lg:h-full mx-[1.5%] bg-white shadow-md rounded-3xl duration-500 hover:shadow-lg"
+                className={`${
+                  !product?.inStock ? "grayscale-[90%]" : null
+                } min-w-[97%] relative lg:h-full mx-[1.5%] bg-white shadow-md rounded-3xl duration-500 hover:shadow-lg`}
               >
                 <img
                   draggable="false"
@@ -90,15 +94,18 @@ export const DraggableProducts = () => {
                   <p className="text-lg font-bold text-black capitalize">
                     {product?.Description}
                   </p>
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-2">
                     <p className="text-lg font-semibold text-black cursor-auto my-3">
                       {product?.Price?.toFixed(2)}
                     </p>
                     <del>
-                      <p className="text-sm text-gray-600 cursor-auto ml-2">
+                      <p className="text-sm text-gray-600 cursor-auto">
                         {product?.PrevPrice?.toFixed(2)}
                       </p>
                     </del>
+                    {!product?.inStock ? (
+                      <p className="text-red-500">Προιόν Μη Διαθέσιμο</p>
+                    ) : null}
                   </div>
                 </div>
                 <CustomButton
