@@ -2,8 +2,6 @@ import Hive from "../../svgs/Hive";
 import HoneyJar from "../../svgs/HoneyJar";
 import TreeHive from "../../svgs/TreeHive";
 import HoneySpoon from "../../svgs/HoneySpoon";
-import Product from "../../assets/HoneyProduct1.webp";
-import Product2 from "../../assets/HoneyProduct2.webp";
 
 type Benefit = {
   icon: React.ReactNode;

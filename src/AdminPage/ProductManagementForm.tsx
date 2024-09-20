@@ -1,16 +1,27 @@
 import uploadDataToFirestore from "../Utils/uploadDataToFireStore";
 import { useDropzone } from "react-dropzone";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import UseImageUpload from "../hooks/useImageUpload";
+import ModifyDropdown from "./Components/ModifyDropdown";
+import { useProductsStore } from "../stores/useProductsStore";
+import productType from "../types/productType";
+import updateProductInFirestore from "../Utils/updateProductInFirestore";
+import PrevArrowDelete from "../svgs/PrevArrowDelete";
+import resetFormFields from "./utils/resetFormFields";
 
 export default function ProductManagementForm() {
   const Quantity = useRef<HTMLInputElement>(null);
   const Description = useRef<HTMLInputElement>(null);
   const Price = useRef<HTMLInputElement>(null);
   const PrevPrice = useRef<HTMLInputElement>(null);
-  const Order = useRef<HTMLInputElement>(null);
+  const order = useRef<HTMLInputElement>(null);
+  const hasStock = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<productType | null>(
+    null
+  );
   const { uploadImage, loading, error } = UseImageUpload();
+  const { products } = useProductsStore();
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -26,39 +37,74 @@ export default function ProductManagementForm() {
     maxFiles: 1,
   });
 
+  // Populate form fields when a product is selected
+  useEffect(() => {
+    if (selectedProduct) {
+      resetFormFields(
+        { Quantity, Description, Price, PrevPrice, order },
+        setSelectedImage
+      );
+      if (Quantity.current)
+        Quantity.current.value = selectedProduct.Quantity || "";
+      if (Description.current)
+        Description.current.value = selectedProduct.Description || "";
+      if (Price.current)
+        Price.current.value = selectedProduct.Price.toString() || "";
+      if (PrevPrice.current && selectedProduct.PrevPrice)
+        PrevPrice.current.value = selectedProduct.PrevPrice.toString() || "";
+      if (order.current)
+        order.current.value = selectedProduct.order.toString() || "";
+      // Optionally load the product image if needed
+    }
+  }, [selectedProduct]);
+
+  // upload new product or modify existing one
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedImage) {
+    if (!selectedImage && !selectedProduct) {
       alert("Please select an image.");
       return;
     }
     try {
-      const imageUrl = await uploadImage(selectedImage);
+      const imageUrl = selectedImage
+        ? await uploadImage(selectedImage, 90)
+        : selectedProduct?.imageUrl;
 
       const productData = {
         Quantity: Quantity.current?.value || "",
         Description: Description.current?.value || "",
         Price: parseFloat(Price.current?.value || "0"), // Convert to a number,
-        PrevPrice: parseFloat(PrevPrice.current?.value || "0"), // Convert to a number,
-        order: parseInt(Order.current?.value || "0"), // Convert to a number,
+        PrevPrice: PrevPrice.current?.value
+          ? parseFloat(PrevPrice.current.value)
+          : null,
+        order: parseInt(order.current?.value || "0"),
         imageUrl,
       };
 
-      // Save article data with image URL to Firestore
-      await uploadDataToFirestore({
-        collectionName: "products",
-        imageUrl,
-        fields: productData,
-      });
+      if (selectedProduct) {
+        await updateProductInFirestore({
+          collectionName: "products",
+          imageUrl,
+          documentId: selectedProduct.id,
+          product: productData,
+        });
+      } else {
+        // Save article data with image URL to Firestore
+        await uploadDataToFirestore({
+          collectionName: "products",
+          imageUrl,
+          fields: productData,
+        });
+      }
 
       // Reset form fields and image state
-      if (Quantity.current) Quantity.current.value = "";
-      if (Description.current) Description.current.value = "";
-      if (Price.current) Price.current.value = "";
-      if (PrevPrice.current) PrevPrice.current.value = "";
-      setSelectedImage(null);
+      resetFormFields(
+        { Quantity, Description, Price, PrevPrice, order },
+        setSelectedImage
+      );
 
-      alert("Data uploaded successfully!");
+      alert(`Data ${selectedProduct ? "modified" : "uploaded"} successfully!`);
+      setSelectedProduct(null);
     } catch (uploadError) {
       console.error("Data uploading article: ", uploadError);
       alert("Data uploading data. Please try again.");
@@ -140,15 +186,15 @@ export default function ProductManagementForm() {
           </div>
           <div>
             <label
-              htmlFor="Order"
+              htmlFor="order"
               className="block mb-2 text-lg font-medium text-white-900"
             >
-              Order
+              order
             </label>
             <input
-              ref={Order}
+              ref={order}
               type="number"
-              id="Order"
+              id="order"
               className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
               placeholder="0"
               required
@@ -177,14 +223,43 @@ export default function ProductManagementForm() {
             </div>
           </section>
         </div>
+        <div className="text-lg flex gap-3 mb-4">
+          <input
+            ref={hasStock}
+            type="number"
+            id="hasStock"
+            className="bg-white-50 border border-white-300 text-black text-lg rounded-lg block w-fit p-2.5"
+            placeholder="The product is Out of Stock"
+            disabled
+            onClick={() => {}}
+          />
+          <button className="">Control Stock</button>
+        </div>
         <div className="lg:flex gap-4 justify-between">
-          <div className="flex gap-3 items-center pb-3">
-            <button
-              type="submit"
-              className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
-            >
-              Submit
-            </button>
+          <div className="flex gap-3 pb-3">
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg h-fit sm:w-auto px-5 py-2.5 text-center"
+              >
+                {selectedProduct ? "Modify" : "Submit"}
+              </button>
+              {selectedProduct ? (
+                <div
+                  onClick={() => {
+                    setSelectedProduct(null);
+                    resetFormFields(
+                      { Quantity, Description, Price, PrevPrice, order },
+                      setSelectedImage
+                    );
+                  }}
+                  className="px-3 cursor-pointer  border-2 border-red-600 text-red-600 flex items-center font-bold  rounded-full h-10"
+                >
+                  <PrevArrowDelete className="h-full" />
+                  <span> Stop Modify!</span>
+                </div>
+              ) : null}
+            </div>
             {loading && (
               <div
                 className="w-6 h-6 rounded-full animate-spin
@@ -192,10 +267,7 @@ export default function ProductManagementForm() {
               />
             )}
           </div>
-
-          <button className="hover:bg-primary border-2 border-black-250 hover:text-white font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
-            Modify Product
-          </button>
+          <ModifyDropdown products={products} onSelect={setSelectedProduct} />
         </div>
         <div> {error && <p>{error}</p>}</div>
       </form>

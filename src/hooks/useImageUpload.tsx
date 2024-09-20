@@ -7,7 +7,10 @@ const UseImageUpload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const uploadImage = async (file: File): Promise<string> => {
+  const uploadImage = async (
+    file: File,
+    quality: 70 | 80 | 90 | 100 = 70
+  ): Promise<string> => {
     setLoading(true);
     setError(null);
 
@@ -18,7 +21,7 @@ const UseImageUpload = () => {
           1000, // maxWidth
           800, // maxHeight
           "WEBP",
-          80, // quality
+          quality, // quality
           0, // rotation
           async (uri: string | File | Blob | ProgressEvent<FileReader>) => {
             if (typeof uri === "string") {

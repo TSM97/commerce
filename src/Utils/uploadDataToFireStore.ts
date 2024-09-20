@@ -1,5 +1,5 @@
-import { db } from '../firebaseConfig';
-import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { db } from "../firebaseConfig";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 interface UploadDataParams {
   collectionName: string;

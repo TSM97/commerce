@@ -79,8 +79,9 @@ export const DraggableProducts = () => {
               >
                 <img
                   draggable="false"
-                  className="aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-t-xl bg-neutral-800"
+                  className="aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-t-xl bg-neutral-800 text-honey"
                   src={product?.imageUrl}
+                  alt={`${product?.Description} img`}
                 />
                 <div className="px-4 py-3 full">
                   <span className="text-gray-400 mr-3 uppercase text-xs">
@@ -91,11 +92,11 @@ export const DraggableProducts = () => {
                   </p>
                   <div className="flex items-center">
                     <p className="text-lg font-semibold text-black cursor-auto my-3">
-                      {product?.Price}
+                      {product?.Price?.toFixed(2)}
                     </p>
                     <del>
                       <p className="text-sm text-gray-600 cursor-auto ml-2">
-                        {product?.PrevPrice}
+                        {product?.PrevPrice?.toFixed(2)}
                       </p>
                     </del>
                   </div>
@@ -112,29 +113,6 @@ export const DraggableProducts = () => {
           })}
         </motion.div>
       </div>
-
-      {/* <div className='relative overflow-hidden w-3/4 h-3/4 py-8'>
-        <motion.div
-          drag='x'
-          dragConstraints={{
-            left: 0,
-            right: 0,
-          }}
-          style={{
-            x: dragX,
-          }}
-          animate={{
-            translateX: `-${imgIndex * 100}%`,
-          }}
-          transition={SPRING_OPTIONS}
-          onDragEnd={onDragEnd}
-          className={`flex ${
-            !includesOneProduct && 'cursor-grab active:cursor-grabbing'
-          } h-full items-center`}
-        >
-          <Images imgIndex={imgIndex} />
-        </motion.div>
-      </div> */}
       <Dots
         imgIndex={imgIndex}
         setImgIndex={setImgIndex}

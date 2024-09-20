@@ -1,8 +1,9 @@
 type productType = {
+  id: string;
   Quantity: string;
   Description: string;
   Price: number;
-  Order: number;
+  order: number;
   PrevPrice: number;
   imageUrl: string;
 };

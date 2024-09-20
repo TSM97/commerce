@@ -24,7 +24,7 @@ export const useProductsStore = create<ProductStore>((set, get) => ({
     set({ loading: true, error: null });
     const { data, error } = await fetchFromFirebase(
       "products",
-      query(collection(db, "products"), orderBy("order", "desc"))
+      query(collection(db, "products"), orderBy("order", "asc"))
     );
 
     if (error) {
