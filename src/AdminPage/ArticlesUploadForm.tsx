@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { useRef, useState } from "react";
 import UseImageUpload from "../hooks/useImageUpload";
 import AdminModal from "./Components/AdminModal";
+import useResetFormFields from "./hooks/useResetFormFields";
 
 export default function ArticlesUploadForm() {
   const titleRef = useRef<HTMLInputElement>(null);
@@ -14,6 +15,10 @@ export default function ArticlesUploadForm() {
   const [isFullDescRequired, setIsFullDescRequired] = useState(true);
   const { uploadImage, loading, error } = UseImageUpload();
   const [isOpen, setIsOpen] = useState(false);
+  const { resetFormFields } = useResetFormFields(
+    { titleRef, shortDescRef, fullDescRef, aTagRef },
+    setSelectedImage
+  );
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -56,12 +61,8 @@ export default function ArticlesUploadForm() {
       });
 
       // Reset form fields and image state
-      if (titleRef.current) titleRef.current.value = "";
-      if (shortDescRef.current) shortDescRef.current.value = "";
-      if (fullDescRef.current) fullDescRef.current.value = "";
-      if (aTagRef.current) aTagRef.current.value = "";
+      resetFormFields();
       setSelectedImage(null);
-
       alert("Data uploaded successfully!");
     } catch (uploadError) {
       console.error("Data uploading article: ", uploadError);

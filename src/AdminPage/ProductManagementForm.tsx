@@ -64,12 +64,13 @@ export default function ProductManagementForm() {
   // upload new product or modify existing one
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    //check if image id dropped on product submit
     if (!selectedImage && !selectedProduct) {
       alert("Please select an image.");
       return;
     }
     try {
-      //set values from refs
+      //Set values from refs
       const productData = {
         Quantity: Quantity.current?.value || "",
         Description: Description.current?.value || "",
@@ -80,13 +81,26 @@ export default function ProductManagementForm() {
         order: parseInt(order.current?.value || "0"),
         inStock,
       };
-
+      //selectedProduct-true means that user trying to modify an existing product
       if (selectedProduct) {
-        //Modify an already existing product
         const imageUrl = selectedImage
           ? await uploadImage(selectedImage, 90)
           : selectedProduct?.imageUrl;
 
+        //find the product with the same order
+        const existingOrderProduct = products?.find(
+          (prod) =>
+            prod?.order === productData?.order && prod.id !== selectedProduct.id
+        );
+        //reverse the orders that want to exchange
+        if (existingOrderProduct) {
+          await updateProductInFirestore({
+            collectionName: "products",
+            documentId: existingOrderProduct?.id,
+            imageUrl: existingOrderProduct?.imageUrl,
+            product: { ...existingOrderProduct, order: selectedProduct.order },
+          });
+        }
         await updateProductInFirestore({
           collectionName: "products",
           imageUrl,
@@ -112,7 +126,7 @@ export default function ProductManagementForm() {
 
       // Reset form fields and image state
       resetFormFields();
-
+      window.location.reload();
       alert(`Data ${selectedProduct ? "modified" : "uploaded"} successfully!`);
       setSelectedProduct(null);
     } catch (uploadError) {

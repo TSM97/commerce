@@ -7,7 +7,7 @@ type FormFields = {
 export default function useResetFormFields(
   fields: FormFields,
   setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>,
-  setInStock: React.Dispatch<React.SetStateAction<boolean>>
+  setInStock?: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   // Define reset logic and memoize it using useCallback to avoid re-creating the function
   const resetFormFields = useCallback(() => {
@@ -19,7 +19,9 @@ export default function useResetFormFields(
 
     // Reset selected image and inStock state
     setSelectedImage(null);
-    setInStock(true);
+    if (setInStock) {
+      setInStock(true);
+    }
   }, [fields, setSelectedImage, setInStock]);
 
   return { resetFormFields };
