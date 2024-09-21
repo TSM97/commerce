@@ -1,24 +1,24 @@
-import { deleteDoc } from 'firebase/firestore';
-import { fetchLastArticle } from './fetchLastDoc';
-import { deleteObject, ref } from 'firebase/storage';
-import { storage } from '../../firebaseConfig';
+import { deleteDoc, doc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
+import { db, storage } from "../../firebaseConfig";
+import { useArticlesStore } from "../../stores/useArticlesStore";
 
 export const deleteLastArticle = async () => {
-  //! Use store instead of fetchLastArticle to prevent on call from firestore
-  const article = await fetchLastArticle();
-  if (article) {
-    const imageUrl = article.data().imageUrl;
+  const articles = useArticlesStore.getState().articles;
+  if (articles) {
+    const lastArticle = articles[0];
+    const imgUrl = lastArticle.imageUrl;
 
-    if (imageUrl) {
-      const imageRef = ref(storage, imageUrl);
+    if (imgUrl) {
+      const imageRef = ref(storage, imgUrl);
       await deleteObject(imageRef);
-      console.log('Image deleted successfully');
     }
-
-    await deleteDoc(article.ref);
-    console.log('Article deleted successfully');
+    const lastArticleRef = doc(db, "articles", lastArticle?.id);
+    await deleteDoc(lastArticleRef);
+    console.log("Article deleted successfully");
+    alert("Article deleted successfully");
   } else {
-    console.log('No article to delete');
-    alert('No article to delete');
+    console.log("No article to delete");
+    alert("No article to delete");
   }
 };
