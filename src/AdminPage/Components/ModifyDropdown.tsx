@@ -66,11 +66,11 @@ export default function ModifyDropdown({
             {products?.map((product) => {
               return (
                 <>
-                  <li className='flex items-center justify-between px-1'>
+                  <li className='flex items-center justify-between px-1  rounded border border-transparent hover:border-t hover:border-t-transparent hover:border-r-transparent hover:border-l-transparent hover:border-b hover:border-honey hover:bg-primary-100'>
                     <div
                       onClick={() => handleSelect(product?.id)}
                       key={product?.id}
-                      className=' h-fit py-2 rounded border border-transparent hover:border-t hover:border-t-transparent hover:border-r-transparent hover:border-l-transparent hover:border-b hover:border-honey hover:bg-primary-100'
+                      className=' h-fit py-2'
                     >
                       <label
                         htmlFor='checkbox-item-11'
