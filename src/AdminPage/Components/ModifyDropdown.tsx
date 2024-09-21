@@ -24,7 +24,6 @@ export default function ModifyDropdown({
     setIsOpen(false);
 
     const modProduct = products.find((pr) => pr?.id === productId) || null;
-    console.log(productId);
     onSelect(modProduct);
   };
   const handleDeleteClick = (product: productType) => {

@@ -135,8 +135,6 @@ export default function ProductManagementForm() {
     }
   };
 
-  console.log(inStock);
-
   return (
     <>
       <form onSubmit={handleOnSubmit}>

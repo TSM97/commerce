@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import Logo from "../../assets/ATHBees.webp";
 import { menuSlide, parentVariants, childVariants } from "./variants";
 import AnimatedHamburgerButton from "./Components/HamburgerButtom";
+import NavBee from "../../svgs/NavBee";
 
 const navList: string[] = ["Home", "Products", "News", "About", "Contact"];
 
@@ -140,8 +141,8 @@ export default function NavBar() {
                 onClick={() => handleLinkClick(item)}
                 to={`/#${item}`}
               >
-                <div>
-                  <sup>&#8226; </sup>
+                <div className="group relative">
+                  <NavBee className="absolute -top-0 -left-9 h-[3vw] xl:h-[2vw] w-[3vw] xl:w-[2vw]  group-hover:stroke-primary" />
                   {item}
                 </div>
               </NavHashLink>
@@ -177,12 +178,7 @@ export default function NavBar() {
                       duration: 0.4,
                     }}
                   >
-                    <NavHashLink to={`/#${item}`}>
-                      <div>
-                        <sup>&#8226; </sup>
-                        {item}
-                      </div>
-                    </NavHashLink>
+                    <NavHashLink to={`/#${item}`}>{item}</NavHashLink>
                   </motion.div>
                 ))}
               </div>

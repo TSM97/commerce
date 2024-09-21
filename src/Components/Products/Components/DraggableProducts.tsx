@@ -30,7 +30,6 @@ export const DraggableProducts = () => {
           return pv + 1;
         });
       }
-      console.log(imgIndex);
     }, AUTO_DELAY);
 
     return () => clearInterval(intervalRef);
@@ -45,8 +44,6 @@ export const DraggableProducts = () => {
       setImgIndex((pv) => pv - 1);
     }
   };
-
-  console.log(products[0]?.inStock, products[1]?.inStock);
 
   return (
     <section

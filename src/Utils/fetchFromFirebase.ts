@@ -5,7 +5,6 @@ const fetchFromFirebase = async (
   collectionName: string,
   customQuery?: Query
 ) => {
-  console.log("fetsara!");
   try {
     let querySnapshot;
 
