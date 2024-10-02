@@ -13,6 +13,7 @@ const deleteProductFromFirestore = async (
     const productRef = doc(db, 'products', productId);
     await deleteDoc(productRef);
     console.log(`Product with ID: ${productId} deleted successfully.`);
+    window.location.reload();
   } catch (error) {
     console.error('Error deleting product: ', error);
     throw error;

@@ -1,4 +1,4 @@
-import { RefObject, useCallback } from "react";
+import { RefObject, useCallback } from 'react';
 
 type FormFields = {
   [key: string]: RefObject<HTMLInputElement | HTMLTextAreaElement>;
@@ -13,10 +13,11 @@ export default function useResetFormFields(
   const resetFormFields = useCallback(() => {
     Object.values(fields).forEach((field) => {
       if (field.current) {
-        field.current.value = "";
+        field.current.value = '';
       }
     });
 
+    console.log('done');
     // Reset selected image and inStock state
     setSelectedImage(null);
     if (setInStock) {
