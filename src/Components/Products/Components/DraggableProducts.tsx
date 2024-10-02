@@ -7,7 +7,7 @@ import CustomButton from "../../CustomButton";
 import { useProductsStore } from "../../../stores/useProductsStore";
 
 const ONE_SECOND = 1000;
-const AUTO_DELAY = ONE_SECOND * 10;
+const AUTO_DELAY = ONE_SECOND * 7;
 const DRAG_BUFFER = 10;
 
 export const DraggableProducts = () => {
@@ -50,7 +50,7 @@ export const DraggableProducts = () => {
       id="Products"
       className="w-full lg:min-w-[50%] h-full flex flex-col items-center justify-center lg:w-1/2 py-[2dvw]  lg:order-1 order-2"
     >
-      <div className="w-3/4 md:w-[65%] h-full relative overflow-hidden pb-8">
+      <div className="w-5/6 md:w-[65%] h-full relative overflow-hidden pb-8">
         <motion.div
           drag={includesOneProduct ? false : "x"}
           dragConstraints={{
