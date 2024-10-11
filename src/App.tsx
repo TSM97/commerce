@@ -32,9 +32,9 @@ export default function App() {
 
   return (
     <section id="main">
-      <section className="flex justify-center w-100dvw">
+      {/* <section className="flex justify-center w-100dvw">
         {!isAdminPage && <NavBar />}
-      </section>
+      </section> */}
       <Routes>
         <Route
           path="/"

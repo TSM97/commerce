@@ -35,7 +35,7 @@ export default function ArticlePage() {
   }).format(date);
 
   return (
-    <section className="container mx-auto pt-[13dvh] min-h-screen">
+    <section className="container mx-auto pt-[13vh] min-h-screen">
       <article>
         <div className="flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]">
           <h1 className="min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black">
@@ -47,9 +47,9 @@ export default function ArticlePage() {
       <img
         src={article?.imageUrl}
         alt={`${article?.title} image`}
-        className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70dvh] pb-[2dvw]"
+        className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
       />
-      <article className="lg:max-w-[80%] pb-[30dvh]">
+      <article className="lg:max-w-[80%] pb-[30vh]">
         {article?.fullDescription?.split("||")?.map((paragraph, key) => {
           return (
             <article key={key}>

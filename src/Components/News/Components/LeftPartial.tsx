@@ -11,7 +11,7 @@ export default function LeftPartial() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         src={Logo}
-        className="h-[18dvh] object-contain"
+        className="h-[18vh] object-contain"
         alt="AthenianBees Logo"
       />
       <motion.div

@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <div
       ref={container}
-      className="relative flex items-center justify-center h-[90dvh] overflow-hidden"
+      className="relative flex items-center justify-center h-[90vh] overflow-hidden"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="relative z-50 w-full h-full p-5 md:p-10 lg:p-20 flex flex-col justify-between text-white">

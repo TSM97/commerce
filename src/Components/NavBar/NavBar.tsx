@@ -25,7 +25,7 @@ export default function NavBar() {
 
   const initial = {
     opacity: 1,
-    height: "13dvh",
+    height: "13vh",
     y: 0,
     backgroundColor: "rgba(255, 255, 255, 0)",
     color: `${
@@ -119,7 +119,7 @@ export default function NavBar() {
           <NavHashLink to={"/#Home"}>
             <img
               src={Logo}
-              className="h-[13dvh] cursor-pointer"
+              className="h-[13vh] cursor-pointer"
               alt="AthenianBees Logo"
             />
           </NavHashLink>
@@ -155,7 +155,7 @@ export default function NavBar() {
       </motion.nav>
       {active && (
         <AnimatePresence mode="wait">
-          <section className="fixed text-[4dvh] top-[7.5dvh] left-1/2 -translate-x-1/2 z-50">
+          <section className="fixed text-[4vh] top-[7.5vh] left-1/2 -translate-x-1/2 z-50">
             {" "}
             <motion.div
               variants={menuSlide}
