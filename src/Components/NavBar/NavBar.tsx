@@ -40,10 +40,11 @@ export default function NavBar() {
     initial,
   };
 
+  // * +5/-5 on prev is for Mobile touch smoothness
   function update(latest: number, prev: number): void {
-    if (latest != 0 && latest < prev) {
+    if (latest != 0 && latest < prev - 5) {
       setHidden(false);
-    } else if (latest > 100 && latest > prev) {
+    } else if (latest > 100 && latest > prev + 5) {
       setHidden(true);
     } else if (latest == 0 && latest < prev) {
       setHidden("initial");
