@@ -18,7 +18,7 @@ export default function Intro() {
         </div>
         <img
           src={Background}
-          alt='Hero Section Image'
+          alt='Atheenian Bees'
           style={{
             width: '100%',
             height: '100%',
