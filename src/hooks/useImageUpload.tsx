@@ -1,11 +1,47 @@
-import { useState } from "react";
-import { storage } from "../firebaseConfig";
-import Resizer from "react-image-file-resizer";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { useState } from 'react';
+import { storage } from '../firebaseConfig';
+import Resizer from 'react-image-file-resizer';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 
 const UseImageUpload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  //Image resize method
+  const resizeImage = (
+    file: File,
+    quality: 70 | 80 | 90 | 100
+  ): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      Resizer.imageFileResizer(
+        file, // Input
+        1000, // Max
+        800,
+        'WEBP',
+        quality,
+        0, // rotation
+        (uri) => {
+          if (typeof uri === 'string') {
+            resolve(uri);
+          } else {
+            reject(new Error('Failed to resize image'));
+          }
+        },
+        'base64',
+        500, // Min
+        500 // Min
+      );
+    });
+  };
+
+  const uploadImageToFirebase = async (
+    base64Image: string,
+    fileName: string
+  ): Promise<string> => {
+    const storageRef = ref(storage, `images/${Date.now()}_${fileName}`); // Create file path
+    const uploadTask = await uploadString(storageRef, base64Image, 'data_url');
+    return await getDownloadURL(uploadTask.ref);
+  };
 
   const uploadImage = async (
     file: File,
@@ -15,42 +51,15 @@ const UseImageUpload = () => {
     setError(null);
 
     try {
-      const resizedImage = await new Promise<string>((resolve, reject) => {
-        Resizer.imageFileResizer(
-          file,
-          1000, // maxWidth
-          800, // maxHeight
-          "WEBP",
-          quality, // quality
-          0, // rotation
-          async (uri: string | File | Blob | ProgressEvent<FileReader>) => {
-            if (typeof uri === "string") {
-              try {
-                const storageRef = ref(
-                  storage,
-                  `images/${Date.now()}_${file.name}`
-                );
-                const uploadTask = await uploadString(
-                  storageRef,
-                  uri,
-                  "data_url"
-                );
-                const downloadURL = await getDownloadURL(uploadTask.ref);
-                resolve(downloadURL);
-              } catch (uploadError) {
-                reject(uploadError);
-              }
-            }
-          },
-          "base64",
-          500, // minWidth
-          500 // minHeight
-        );
-      });
+      // Step 1: Resize the image
+      const resizedImage = await resizeImage(file, quality);
 
-      return resizedImage;
+      // Step 2: Upload the resized image to Firebase
+      const downloadURL = await uploadImageToFirebase(resizedImage, file.name);
+
+      return downloadURL; // Return the download URL
     } catch (err) {
-      setError("Failed to upload image.");
+      setError('Failed to upload image.');
       throw err;
     } finally {
       setLoading(false);
