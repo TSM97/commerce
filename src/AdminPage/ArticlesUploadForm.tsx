@@ -45,9 +45,11 @@ export default function ArticlesUploadForm() {
       const imageUrl = await uploadImage(selectedImage);
 
       const articleData = {
-        title: titleRef.current?.value || '',
-        shortDescription: shortDescRef.current?.value || '',
-        fullDescription: fullDescRef.current?.value || '',
+        el: {
+          title: titleRef.current?.value || '',
+          shortDescription: shortDescRef.current?.value || '',
+          fullDescription: fullDescRef.current?.value || '',
+        },
         aTag: aTagRef.current?.value || '',
         imageUrl,
         createdAt: Timestamp.now(),
@@ -125,7 +127,7 @@ export default function ArticlesUploadForm() {
               ref={fullDescRef}
               id='fullDesc'
               rows={4}
-              className='block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
+              className='block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14'
               placeholder='Write your article`s Section'
               required={isFullDescRequired}
             />
@@ -198,7 +200,7 @@ export default function ArticlesUploadForm() {
           </button>
         </div>
         <div> {error && <p>{error}</p>}</div>
-        <div className='text-red-500 pb-20'>
+        <div className='text-red-500'>
           * In case of URL dont write a full Description
         </div>
       </form>
