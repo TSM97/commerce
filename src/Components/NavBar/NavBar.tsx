@@ -12,6 +12,7 @@ import Logo from "../../assets/ATHBees.webp";
 import { menuSlide, parentVariants, childVariants } from "./variants";
 import AnimatedHamburgerButton from "./Components/HamburgerButtom";
 import NavBee from "../../svgs/NavBee";
+import LocalSwitcher from "../Common/LocalSwitcher/LocalSwitcher";
 
 const navList: string[] = ["Home", "Products", "News", "About", "Contact"];
 
@@ -150,6 +151,7 @@ export default function NavBar() {
             </motion.div>
           ))}
         </div>
+        {/* {!active && <LocalSwitcher />} */}
         <div className="lg:hidden">
           <AnimatedHamburgerButton setActive={setActive} active={active} />
         </div>
