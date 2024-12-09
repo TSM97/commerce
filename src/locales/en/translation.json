@@ -1,4 +1,17 @@
 {
   "welcomeMessage": "Welcome",
-  "greeting": "Hello, how are you?"
+  "greeting": "Hello, how are you?",
+  "Home": "Home",
+  "Products": "Products",
+  "News": "News",
+  "About": "About",
+  "Contact": "Contact",
+  "product_Title": "Discover",
+  "product_Subtitle1": "The Remarkable",
+  "product_Subtitle2": "Benefits of Honey",
+  "product_Description": "The benefits of honey extend beyond its sweet taste. It’s rich in antioxidants, which help fight free radicals and support overall health. Honey’s natural antibacterial properties make it effective for soothing sore throats and aiding wound healing. It also promotes digestive health by balancing gut bacteria and has anti-inflammatory effects that can alleviate seasonal allergies.",
+  "product_Jar": "Contains a variety of nutrients",
+  "product_Hive": "Improve health and immune support",
+  "product_TreeHive": "Promotes burn and wound healing",
+  "product_HoneySpoon": "Better for blood sugar levels"
 }

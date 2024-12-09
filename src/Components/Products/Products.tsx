@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import useScreenSize from '../../hooks/UseScreenSize';
 import { benefitsList } from './data';
 import { DraggableProducts } from './Components/DraggableProducts';
@@ -5,6 +7,7 @@ import WaveBG from '../../svgs/WaveBG.svg';
 
 export default function Products() {
   const { isTablet } = useScreenSize();
+  const { t } = useTranslation();
 
   return (
     <section
@@ -23,20 +26,13 @@ export default function Products() {
       <DraggableProducts />
       <section className='py-[2dvw] flex flex-col gap-4 pr-[3dvw] lg:order-2 order-1'>
         <div className='font-lobster text-2xl lg:text-4xl text-honey'>
-          Discover
+          {t('product_Title')}
         </div>
         <div className='font-martel text-3xl lg:text-5xl'>
-          <div>The Remarkable</div>
-          <div>Benefits of Honey</div>
+          <div>{t('product_Subtitle1')}</div>
+          <div>{t('product_Subtitle2')}</div>
         </div>
-        <div className='text-lg'>
-          The benefits of honey extend beyond its sweet taste. It’s rich in
-          antioxidants, which help fight free radicals and support overall
-          health. Honey’s natural antibacterial properties make it effective for
-          soothing sore throats and aiding wound healing. It also promotes
-          digestive health by balancing gut bacteria and has anti-inflammatory
-          effects that can alleviate seasonal allergies.
-        </div>
+        <div className='text-lg'>{t('product_Description')}</div>
         <section className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {benefitsList.map((el, i) => (
             <div
@@ -44,7 +40,7 @@ export default function Products() {
               key={i}
             >
               {el?.icon}
-              <div>{el?.text}</div>
+              <div>{t(el?.text)}</div>
             </div>
           ))}
         </section>
