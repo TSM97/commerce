@@ -8,7 +8,6 @@ import WaveBG from "../../svgs/WaveBG.svg";
 export default function Products() {
   const { isTablet } = useScreenSize();
   const { t, i18n } = useTranslation();
-  console.log(i18n.language);
 
   return (
     <section

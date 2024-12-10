@@ -1,8 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-import ArticleType from '../../types/articleType';
-import { useEffect } from 'react';
-import { useArticlesStore } from '../../stores/useArticlesStore';
+import ArticleType from "../../types/articleType";
+import { useEffect } from "react";
+import { useArticlesStore } from "../../stores/useArticlesStore";
 
 export default function ArticlePage() {
   const { articles } = useArticlesStore();
@@ -25,35 +25,35 @@ export default function ArticlePage() {
   );
 
   // Format the date
-  const formattedDateTime = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
+  const formattedDateTime = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
     hour12: false,
   }).format(date);
 
   return (
-    <section className='container mx-auto pt-[13vh] min-h-screen'>
+    <section className="container mx-auto pt-[13vh] min-h-screen">
       <article>
-        <div className='flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]'>
-          <h1 className='min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black'>
+        <div className="flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]">
+          <h1 className="min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black">
             {article?.el?.title}
           </h1>
-          <h5 className='text-xl'>{formattedDateTime}</h5>
+          <h5 className="text-xl">{formattedDateTime}</h5>
         </div>
       </article>
       <img
         src={article?.imageUrl}
         alt={`${article?.el?.title} image`}
-        className='object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]'
+        className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
       />
-      <article className='lg:max-w-[80%] pb-[30vh]'>
-        {article?.el?.fullDescription?.split('||')?.map((paragraph, key) => {
+      <article className="lg:max-w-[80%] pb-[30vh]">
+        {article?.el?.fullDescription?.split("||")?.map((paragraph, key) => {
           return (
             <article key={key}>
-              <div className='first-letter:uppercase text-[1.1rem]'>
+              <div className="first-letter:uppercase text-[1.1rem]">
                 {paragraph}
               </div>
               <br />

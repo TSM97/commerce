@@ -1,8 +1,13 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from "firebase/firestore";
 
 export type ArticleType = {
   id: string;
-  el: {
+  el?: {
+    title: string;
+    shortDescription: string;
+    fullDescription: string;
+  };
+  en: {
     title: string;
     shortDescription: string;
     fullDescription: string;
