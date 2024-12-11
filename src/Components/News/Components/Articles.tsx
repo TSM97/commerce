@@ -1,9 +1,11 @@
 import ArticleType from "../../../types/articleType";
 import CustomButton from "../../CustomButton";
 import useLocale from "../../../hooks/useLocale";
+import { useTranslation } from "react-i18next";
 
 export default function Articles({ articles }: { articles: ArticleType[] }) {
   const { dynamicLocale } = useLocale();
+  const { t } = useTranslation();
   return (
     <>
       {articles.map((article) => {
@@ -64,7 +66,7 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
                     elementType="navLink"
                     to={`/article/${article.id}`}
                   >
-                    Read more
+                    {t("button_read_more")}
                   </CustomButton>
                 )}
                 <div className="text-end align-bottom md:pt-2">

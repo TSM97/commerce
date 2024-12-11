@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { useRef, useState } from "react";
 
 import uploadDataToFirestore from "../Utils/uploadDataToFireStore";
-import UseImageUpload from "../hooks/useImageUpload";
+import useImageUpload from "../hooks/useImageUpload";
 import AdminModal from "./Components/AdminModal";
 import useResetFormFields from "./hooks/useResetFormFields";
 
@@ -17,7 +17,7 @@ export default function ArticlesUploadForm() {
   const [isFullDescRequired, setIsFullDescRequired] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [greekFormShow, setGreekFormShow] = useState(false);
-  const { uploadImage, loading, error } = UseImageUpload();
+  const { uploadImage, loading, error } = useImageUpload();
   const { resetFormFields } = useResetFormFields(
     { titleRef, shortDescRef, fullDescRef, aTagRef },
     setSelectedImage
@@ -80,7 +80,6 @@ export default function ArticlesUploadForm() {
     <>
       <form onSubmit={handleOnSubmit}>
         <div className="flex flex-col lg:grid gap-6 mb-6 md:grid-cols-2">
-          {/* {greekFormShow ? ( */}
           <>
             <motion.div>
               <label
@@ -152,79 +151,6 @@ export default function ArticlesUploadForm() {
               />
             </motion.div>
           </>
-          {/* // ) : (
-          //   <>
-          //     <motion.div>
-          //       <label
-          //         htmlFor='Title'
-          //         className='block mb-2 text-lg font-medium text-white-900'
-          //       >
-          //         GRTitle
-          //       </label>
-          //       <input
-          //         ref={titleRef}
-          //         type='text'
-          //         id='Title'
-          //         className='bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white'
-          //         placeholder='John'
-          //         required
-          //       />
-          //     </motion.div>
-          //     <div>
-          //       <label
-          //         htmlFor='shortDesc'
-          //         className='block mb-2 text-lg font-medium text-white-900'
-          //       >
-          //         Short Description
-          //       </label>
-          //       <input
-          //         ref={shortDescRef}
-          //         type='text'
-          //         id='shortDesc'
-          //         className='bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white'
-          //         placeholder='Doe'
-          //         required
-          //       />
-          //     </div>
-          //     <section className='col-span-2'>
-          //       <div className='lg:flex gap-4'>
-          //         <label
-          //           htmlFor='fullDesc'
-          //           className='block mb-2 text-lg font-medium'
-          //         >
-          //           Full Description
-          //         </label>
-          //         <div className='text-blue-700'>
-          //           In order to change Paragraph Write
-          //           <span className='font-bold text-xl'>" || "</span>
-          //         </div>
-          //       </div>
-          //       <textarea
-          //         ref={fullDescRef}
-          //         id='fullDesc'
-          //         rows={4}
-          //         className='block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14'
-          //         placeholder='Write your article`s Section'
-          //         required={isFullDescRequired}
-          //       />
-          //     </section>
-          //     <div className='col-span-2'>
-          //       <label
-          //         htmlFor='aTag'
-          //         className='block mb-2 text-lg font-medium text-white-900'
-          //       >
-          //         The Url that you want to Link instead of writing your article*
-          //       </label>
-          //       <input
-          //         ref={aTagRef}
-          //         type='text'
-          //         id='aTag'
-          //         className='bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white'
-          //         placeholder='https://theuselessweb.com/'
-          //       />
-          //     </div>
-          //   </>
-          // )} */}
           {/* Img drag n' drop */}
           <section className="w-fit">
             <div className="bg-white-default border border-white-300 text-black-250 text-lg rounded-lg block w-full  p-2.5 white">
@@ -254,8 +180,7 @@ export default function ArticlesUploadForm() {
         <div className="lg:flex gap-4 justify-between">
           <div className="flex gap-3 items-center pb-3">
             <button
-              type={greekFormShow ? "submit" : "button"}
-              onClick={() => setGreekFormShow(!greekFormShow)}
+              type="submit"
               className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"
             >
               Submit

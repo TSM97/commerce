@@ -1,8 +1,8 @@
 import ArticleType from "../types/articleType";
 import productType from "../types/productType";
-import i18n from "../Utils/i18n";
-
+import { useTranslation } from "react-i18next";
 export default function useLocale() {
+  const { i18n } = useTranslation();
   const isGreek = i18n.language === "el";
   const isEnglish = i18n.language === "en";
   const dynamicLocale = (data: ArticleType) => {

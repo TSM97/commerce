@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { NavHashLink } from "react-router-hash-link";
 import { useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 import Logo from "../../assets/ATHBees.webp";
 import { menuSlide, parentVariants, childVariants } from "./variants";
@@ -24,7 +24,6 @@ export default function NavBar() {
   const [active, setActive] = useState(false);
   const [clickingLink, setClickingLink] = useState(false);
   const location = useLocation();
-  const { t } = useTranslation();
 
   const initial = {
     opacity: 1,

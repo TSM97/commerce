@@ -2,14 +2,14 @@ export const wrapperVariants = {
   open: {
     scaleY: 1,
     transition: {
-      when: 'beforeChildren',
+      when: "beforeChildren",
       staggerChildren: 0.1,
     },
   },
   closed: {
     scaleY: 0,
     transition: {
-      when: 'afterChildren',
+      when: "afterChildren",
       staggerChildren: 0.1,
     },
   },
@@ -37,14 +37,14 @@ export const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      when: 'beforeChildren',
+      when: "beforeChildren",
     },
   },
   closed: {
     opacity: 0,
     y: -15,
     transition: {
-      when: 'afterChildren',
+      when: "afterChildren",
     },
   },
 };

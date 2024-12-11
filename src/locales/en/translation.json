@@ -13,5 +13,11 @@
   "product_Jar": "Contains a variety of nutrients",
   "product_Hive": "Improve health and immune support",
   "product_TreeHive": "Promotes burn and wound healing",
-  "product_HoneySpoon": "Better for blood sugar levels"
+  "product_HoneySpoon": "Better for blood sugar levels",
+  "honey_info": "Discover the true taste of local honey, harvested with care from our very own beehives. Each jar reflects our passion for beekeeping and commitment to quality.",
+  "based_in_athens": "Based in Athens, Greece",
+  "news_info": "Latest Updates in Beekeeping and Honey Production",
+  "button_contact": "επικοινωνία",
+  "button_read_more": "περισσότερα",
+  "latestUpdates": "Latest Updates in {{beekeeping}} and {{honey}} Production"
 }

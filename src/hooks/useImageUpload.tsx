@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { storage } from '../firebaseConfig';
-import Resizer from 'react-image-file-resizer';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { useState } from "react";
+import { storage } from "../firebaseConfig";
+import Resizer from "react-image-file-resizer";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
-const UseImageUpload = () => {
+const useImageUpload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,17 +17,17 @@ const UseImageUpload = () => {
         file, // Input
         1000, // Max
         800,
-        'WEBP',
+        "WEBP",
         quality,
         0, // rotation
         (uri) => {
-          if (typeof uri === 'string') {
+          if (typeof uri === "string") {
             resolve(uri);
           } else {
-            reject(new Error('Failed to resize image'));
+            reject(new Error("Failed to resize image"));
           }
         },
-        'base64',
+        "base64",
         500, // Min
         500 // Min
       );
@@ -39,7 +39,7 @@ const UseImageUpload = () => {
     fileName: string
   ): Promise<string> => {
     const storageRef = ref(storage, `images/${Date.now()}_${fileName}`); // Create file path
-    const uploadTask = await uploadString(storageRef, base64Image, 'data_url');
+    const uploadTask = await uploadString(storageRef, base64Image, "data_url");
     return await getDownloadURL(uploadTask.ref);
   };
 
@@ -59,7 +59,7 @@ const UseImageUpload = () => {
 
       return downloadURL; // Return the download URL
     } catch (err) {
-      setError('Failed to upload image.');
+      setError("Failed to upload image.");
       throw err;
     } finally {
       setLoading(false);
@@ -69,4 +69,4 @@ const UseImageUpload = () => {
   return { uploadImage, loading, error };
 };
 
-export default UseImageUpload;
+export default useImageUpload;

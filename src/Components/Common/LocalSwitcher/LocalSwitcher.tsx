@@ -17,13 +17,14 @@ const LocalSwitcher = () => {
       animate={open ? "open" : "closed"}
       className="relative flex items-center justify-center"
     >
-      <div
+      <motion.div
+        whileHover={{ scale: 1.1 }}
         className="cursor-pointer"
         tabIndex={-1}
         onClick={() => setOpen((pv) => !pv)}
       >
         <Earth />
-      </div>
+      </motion.div>
       <motion.div
         initial={wrapperVariants.closed}
         variants={wrapperVariants}

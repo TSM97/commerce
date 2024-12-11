@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import { SPRING_OPTIONS } from "../data";
 import Dots from "./Dots";
@@ -13,6 +14,7 @@ const DRAG_BUFFER = 10;
 export const DraggableProducts = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const { products } = useProductsStore();
+  const { t } = useTranslation();
 
   const includesOneProduct = products.length === 1;
 
@@ -110,7 +112,7 @@ export const DraggableProducts = () => {
                   className="absolute bottom-3 right-3"
                   to={`/#Contact`}
                 >
-                  Contact
+                  {t("Contact")}
                 </CustomButton>
               </div>
             );
