@@ -1,7 +1,9 @@
 import ArticleType from "../../../types/articleType";
 import CustomButton from "../../CustomButton";
+import useLocale from "../../../hooks/useLocale";
 
 export default function Articles({ articles }: { articles: ArticleType[] }) {
+  const { dynamicLocale } = useLocale();
   return (
     <>
       {articles.map((article) => {
@@ -32,13 +34,13 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
                 id="titleID"
                 className="mb-2 font-bold md:text-2xl tracking-tight overflow-y-hidden text-base line-clamp-3 md:line-clamp-2"
               >
-                {article?.el?.title}
+                {article?.[dynamicLocale(article)]?.title}
               </h5>
               <p
                 id="short_DescriptionId"
                 className="mb-3 md:text-xl font-normal overflow-y-hidden  text-base line-clamp-6 md:line-clamp-3"
               >
-                {article?.el?.shortDescription}
+                {article?.[dynamicLocale(article)]?.shortDescription}
               </p>
               <div className="flex w-full items-center md:items-end justify-end md:flex-col flex-row gap-2">
                 {article.aTag !== "" ? (
@@ -46,12 +48,15 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
                     elementType="anchorTag"
                     target="_blank"
                     href={article.aTag}
-                    ariaLabel={`Read more about ${article?.el?.title}`}
+                    ariaLabel={`Read more about ${
+                      article?.[dynamicLocale(article)]?.title
+                    }`}
                     className="rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
                   >
                     Read more
                     <span className="sr-only">
-                      Read this article about {article?.el?.title}
+                      Read this article about{" "}
+                      {article?.[dynamicLocale(article)]?.title}
                     </span>
                   </CustomButton>
                 ) : (

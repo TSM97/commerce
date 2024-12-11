@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import ArticleType from "../../types/articleType";
 import { useEffect } from "react";
 import { useArticlesStore } from "../../stores/useArticlesStore";
+import useLocale from "../../hooks/useLocale";
 
 export default function ArticlePage() {
   const { articles } = useArticlesStore();
   const { id } = useParams<{ id: string }>(); // Extracting `id` from URL params
+  const { dynamicLocale } = useLocale();
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top of the page
@@ -14,7 +16,7 @@ export default function ArticlePage() {
 
   //find specific article based on the id tha passed to url
   const article: ArticleType | null =
-    articles.find((el) => el?.id === id) ?? null;
+    articles.find((article) => article?.id === id) ?? null;
 
   if (!article) return;
 
@@ -39,27 +41,29 @@ export default function ArticlePage() {
       <article>
         <div className="flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]">
           <h1 className="min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black">
-            {article?.el?.title}
+            {article?.[dynamicLocale(article)]?.title}
           </h1>
           <h5 className="text-xl">{formattedDateTime}</h5>
         </div>
       </article>
       <img
         src={article?.imageUrl}
-        alt={`${article?.el?.title} image`}
+        alt={`${article?.[dynamicLocale(article)]?.title} image`}
         className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
       />
       <article className="lg:max-w-[80%] pb-[30vh]">
-        {article?.el?.fullDescription?.split("||")?.map((paragraph, key) => {
-          return (
-            <article key={key}>
-              <div className="first-letter:uppercase text-[1.1rem]">
-                {paragraph}
-              </div>
-              <br />
-            </article>
-          );
-        })}
+        {article?.[dynamicLocale(article)]?.fullDescription
+          ?.split("||")
+          ?.map((paragraph, key) => {
+            return (
+              <article key={key}>
+                <div className="first-letter:uppercase text-[1.1rem]">
+                  {paragraph}
+                </div>
+                <br />
+              </article>
+            );
+          })}
       </article>
     </section>
   );
