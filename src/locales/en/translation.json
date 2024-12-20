@@ -16,8 +16,8 @@
   "product_HoneySpoon": "Better for blood sugar levels",
   "honey_info": "Discover the true taste of local honey, harvested with care from our very own beehives. Each jar reflects our passion for beekeeping and commitment to quality.",
   "based_in_athens": "Based in Athens, Greece",
-  "news_info": "Latest Updates in Beekeeping and Honey Production",
-  "button_contact": "επικοινωνία",
-  "button_read_more": "περισσότερα",
-  "latestUpdates": "Latest Updates in {{beekeeping}} and {{honey}} Production"
+  "news_info": "Latest updates in <1>beekeeping</1> and <2>honey</2> production",
+  "button_contact": "CONTACT",
+  "button_read_more": "Read More",
+  "product_out_of_stock": "Out of Stock"
 }
