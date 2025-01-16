@@ -36,28 +36,31 @@ export default function ArticlePage() {
     hour12: false,
   }).format(date);
 
+  //keep track of the locale
+  const locale = dynamicLocale(article);
+
   return (
     <section className="container mx-auto pt-[13vh] min-h-screen">
       <article>
         <div className="flex flex-col items-start w-full pt-[2dvw] pb-[2dvw]">
           <h1 className="min-w-[50%] lg:max-w-[80%] text-3xl lg:text-6xl border-2 border-t-0 border-l-0 border-r-0 border-b-black">
-            {article?.[dynamicLocale(article)]?.title}
+            {article?.[locale]?.title}
           </h1>
           <h5 className="text-xl">{formattedDateTime}</h5>
         </div>
       </article>
       <img
         src={article?.imageUrl}
-        alt={`${article?.[dynamicLocale(article)]?.title} image`}
+        alt={`${article?.[locale]?.title} image`}
         className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
       />
       <article className="lg:max-w-[80%] pb-[30vh]">
-        {article?.[dynamicLocale(article)]?.fullDescription
+        {article?.[locale]?.fullDescription
           ?.split("||")
           ?.map((paragraph, key) => {
             return (
               <article key={key}>
-                <div className="first-letter:uppercase text-[1.1rem]">
+                <div className="first-letter:uppercase text-[1.3rem]">
                   {paragraph}
                 </div>
                 <br />
