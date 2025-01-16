@@ -1,5 +1,5 @@
 import ArticleType from '../../../types/articleType';
-import CustomButton from '../../CustomButton';
+import CustomButton from '../../Common/CustomButton';
 import useLocale from '../../../hooks/useLocale';
 import { useTranslation } from 'react-i18next';
 
@@ -22,10 +22,10 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
         return (
           <article
             key={article?.id}
-            className='p-6 flex flex-col lg:flex-row gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 lg:h-[300px]'
+            className='p-6 flex flex-col md:flex-row w-full gap-3 bg-white border-gray-800 rounded-lg shadow-md mb-4 lg:h-[300px]'
           >
             <img
-              className='object-cover sm:w-1/2 h-[150px] lg:h-[250px] mr-4 none'
+              className='object-cover sm:min-w-[50%] h-[150px] lg:h-[250px] mr-4 none'
               loading='lazy'
               alt="Article's image"
               style={{ borderRadius: '30% 70% 41% 59% / 74% 14% 86% 26%' }}
@@ -34,13 +34,13 @@ export default function Articles({ articles }: { articles: ArticleType[] }) {
             <section className='flex flex-col justify-between w-full overflow-y-hidden'>
               <h5
                 id='titleID'
-                className='mb-2 font-bold md:text-2xl tracking-tight overflow-y-hidden text-base line-clamp-3 md:line-clamp-2'
+                className='mb-2 font-bold text-xl md:text-2xl tracking-tight overflow-y-hidden line-clamp-3 md:line-clamp-2'
               >
                 {article?.[dynamicLocale(article)]?.title}
               </h5>
               <p
                 id='short_DescriptionId'
-                className='mb-3 md:text-xl font-normal overflow-y-hidden  text-base line-clamp-6 md:line-clamp-3'
+                className='mb-3 sm:text-lg md:text-xl font-normal overflow-y-hidden  text-base line-clamp-6 md:line-clamp-3'
               >
                 {article?.[dynamicLocale(article)]?.shortDescription}
               </p>

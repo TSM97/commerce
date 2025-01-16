@@ -2,6 +2,7 @@ type productType = {
   id: string;
   Quantity: string;
   Description: string;
+  DescriptionEL?: string;
   Price: number;
   order: number;
   inStock: boolean;

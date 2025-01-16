@@ -62,7 +62,7 @@ export default function ModifyDropdown({
         <div
           hidden={!isOpen}
           id='dropdownModify'
-          className='z-10 border border-honey rounded-lg shadow-xl w-60'
+          className='z-10 border border-honey rounded-lg shadow-xl w-fit'
         >
           <ul
             className='h-48 pb-3 overflow-y-auto text-sm text-black'
@@ -81,9 +81,9 @@ export default function ModifyDropdown({
                   >
                     <label
                       htmlFor='checkbox-item-11'
-                      className='w-full text-sm font-medium text-black rounded cursor-pointer '
+                      className='w-full text-sm font-medium text-black rounded cursor-pointer pr-2'
                     >
-                      {product?.Description}
+                      {`${product?.order}) ${product?.Description}`}
                     </label>
                   </div>
                   <motion.div

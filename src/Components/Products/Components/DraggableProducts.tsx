@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SPRING_OPTIONS } from '../data';
 import Dots from './Dots';
-import CustomButton from '../../CustomButton';
+import CustomButton from '../../Common/CustomButton';
 import { useProductsStore } from '../../../stores/useProductsStore';
 
 const ONE_SECOND = 1000;
@@ -14,7 +14,7 @@ const DRAG_BUFFER = 10;
 export const DraggableProducts = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const { products } = useProductsStore();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const inStockProducts = products.filter((pr) => pr.inStock);
   const outOfStockProducts = products.filter((pr) => !pr.inStock);
   const finalProductsArray = [...inStockProducts, ...outOfStockProducts];
@@ -94,11 +94,13 @@ export const DraggableProducts = () => {
                     {product?.Quantity}
                   </span>
                   <p className='text-lg font-bold text-black capitalize'>
-                    {product?.Description}
+                    {i18n.language === 'en'
+                      ? product?.Description
+                      : product?.DescriptionEL}
                   </p>
                   <div className='flex items-center gap-2'>
                     <p className='text-lg font-semibold text-black cursor-auto my-3'>
-                      {product?.Price?.toFixed(2)}
+                      {product?.Price?.toFixed(2)} €
                     </p>
                     <del>
                       <p className='text-sm text-gray-600 cursor-auto'>
