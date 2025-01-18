@@ -21,18 +21,39 @@ export default function Contact() {
                 id="name"
                 onChange={(e) => setField(e.target.name, e.target.value)}
                 placeholder=" "
-                className="peer shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-honey"
+                className="peer mb-5 shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-honey"
                 required
               />
               <label
                 htmlFor="name"
                 className={`absolute left-3 top-2 peer-placeholder-shown:top-2.5 bg-white px-1 text-gray-500 text-sm font-bold transition-all  peer-placeholder-shown:text-gray-700 peer-placeholder-shown:text-base ${
-                  formData.name != ""
+                  formData?.name != ""
                     ? " top-[-10px]"
                     : "peer-focus:top-[-10px] "
                 } peer-focus:text-honey peer-focus:text-sm`}
               >
                 Name
+              </label>
+            </div>
+            <div className="relative mb-2">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                onChange={(e) => setField(e.target.name, e.target.value)}
+                placeholder=" "
+                className="peer shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-honey"
+                required
+              />
+              <label
+                htmlFor="email"
+                className={`absolute left-3 top-2 peer-placeholder-shown:top-2.5 bg-white px-1 text-gray-500 text-sm font-bold transition-all  peer-placeholder-shown:text-gray-700 peer-placeholder-shown:text-base ${
+                  formData?.email != ""
+                    ? " top-[-10px]"
+                    : "peer-focus:top-[-10px] "
+                } peer-focus:text-honey peer-focus:text-sm`}
+              >
+                Εmail
               </label>
             </div>
           </form>
