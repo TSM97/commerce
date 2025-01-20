@@ -101,7 +101,7 @@ export default function Contact() {
                 className={`absolute left-3 top-2 bg-white px-1 text-gray-500 text-sm font-bold transition-all peer-placeholder-shown:cursor-text peer-focus:cursor-default peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base ${
                   formData?.message != ""
                     ? " top-[-11px]"
-                    : "peer-focus:top-[-10px] "
+                    : "peer-focus:top-[-11px] "
                 } peer-focus:text-honey peer-focus:text-sm`}
               >
                 Message
