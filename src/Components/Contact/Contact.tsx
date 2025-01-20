@@ -9,6 +9,13 @@ import { useState } from "react";
 export default function Contact() {
   const { formData, setField, resetForm } = useContactFormStore();
   const [isPurchase, setIsPurchase] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+    e.target.submit();
+  };
 
   return (
     <section
@@ -20,6 +27,7 @@ export default function Contact() {
           <form
             action="https://formsubmit.co/1a2b754bda3989be48a8ba06c5c57e96"
             method="POST"
+            onSubmit={handleSubmit}
           >
             <h2 className="font-extrabold mb-4 text-[1.3vw]">Contact Us</h2>
             <CustomInput
@@ -50,7 +58,11 @@ export default function Contact() {
             <input
               type="hidden"
               name="_autoresponse"
-              value="Thanks for you Contact, We will send you really soon! --- ATHEENIAN BEES ---"
+              value={`Thanks for you Contact, We will send you really soon to talk about ${
+                isPurchase
+                  ? "What would you  like to order"
+                  : "what would you like to learn"
+              }! --- ATHEENIAN BEES ---`}
             />
             {/* Email Subject */}
             <input
@@ -95,8 +107,12 @@ export default function Contact() {
                 Message
               </label>
             </div>
-            <CustomButton type="submit" className="w-full text-sm mb-4">
-              Submit
+            <CustomButton
+              type="submit"
+              className="w-full text-sm mb-4"
+              disabled={isLoading}
+            >
+              {isLoading ? "Sending..." : "Send"}
             </CustomButton>
           </form>
         </div>

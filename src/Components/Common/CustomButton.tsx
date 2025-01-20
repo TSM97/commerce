@@ -1,4 +1,4 @@
-import { NavHashLink } from 'react-router-hash-link';
+import { NavHashLink } from "react-router-hash-link";
 
 type CustomButtonProps = {
   onClick?: () => void;
@@ -8,8 +8,8 @@ type CustomButtonProps = {
   to?: string;
   children: React.ReactNode;
   className?: string;
-  type?: 'button' | 'submit' | 'reset';
-  elementType?: 'button' | 'anchorTag' | 'navLink';
+  type?: "button" | "submit" | "reset";
+  elementType?: "button" | "anchorTag" | "navLink";
   disabled?: boolean;
 };
 
@@ -18,16 +18,16 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   href,
   ariaLabel,
   children,
-  target = 'blank',
+  target = "blank",
   to,
-  className = '',
-  type = 'button',
-  elementType = 'button',
+  className = "",
+  type = "button",
+  elementType = "button",
   disabled = false,
   ...props
 }) => {
   switch (elementType) {
-    case 'button':
+    case "button":
       return (
         <button
           onClick={onClick}
@@ -39,7 +39,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           {children}
         </button>
       );
-    case 'anchorTag':
+    case "anchorTag":
       return (
         <a
           target={target}
@@ -52,7 +52,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           {children}
         </a>
       );
-    case 'navLink':
+    case "navLink":
       return (
         <NavHashLink
           className={`rounded-2xl cursor-pointer border-2 border-dashed border-black bg-white px-2 md:px-6 py-1 md:py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#e8772e] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none ${className}`}
