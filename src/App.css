@@ -1,10 +1,22 @@
 #root {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   --primary-color: rgba(232, 119, 46, 1);
   --background-color: rgba(255, 251, 242, 1);
   --background-transparent-color: rgba(255, 251, 242, 0.6);
   background-color: var(--background-color);
   /* font-family: "Noto Serif", serif; */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset !important;
 }
 body {
   margin: 0 auto;
@@ -16,7 +28,7 @@ body {
   position: relative;
 }
 .NavButton::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
