@@ -1,15 +1,8 @@
-import { useScroll, useTransform } from 'framer-motion';
 import bgFlowees from '../../svgs/nFlowees.svg';
 import { useRef } from 'react';
 
 export default function About() {
   const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['end end', 'end start'],
-    layoutEffect: false,
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
   return (
     <>
       <section>

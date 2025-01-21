@@ -9,7 +9,7 @@ import CustomButton from '../Common/CustomButton';
 import Spinner from '../Common/Spinner/Spinner';
 
 export default function Contact() {
-  const { formData, setField, resetForm } = useContactFormStore();
+  const { formData, setField } = useContactFormStore();
   const [isPurchase, setIsPurchase] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 

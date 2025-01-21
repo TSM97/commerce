@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import Logo from '../../../assets/ATHBees.webp';
 
 export default function LeftPartial() {
-  const { t } = useTranslation();
   return (
     <div className='flex flex-col justify-center text-2xl lg:text-[3vw] text-center max-w-[80dvw] xl:max-w-[40dvw] leading-none gap-[3vw]'>
       <motion.img
