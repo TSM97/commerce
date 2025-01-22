@@ -59,11 +59,14 @@ export default function Contact() {
             <input
               type="hidden"
               name="_autoresponse"
-              value={`Thanks for you Contact, We will send you really soon to talk about ${
+              value={`**"Thank you for contacting us! We will get back to you very soon to discuss ${
                 formData?.isPurchase
-                  ? "What would you  like to order"
-                  : "what would you like to learn"
-              }! --- ATHEENIAN BEES ---`}
+                  ? "what you would like to order"
+                  : "what you would like to learn"
+              }.
+
+--- ATHEENIAN BEES ---
+Please note that replying to this email will send your response to honeymakerapp@gmail.com."**`}
             />
             {/* Email Subject */}
             <input
