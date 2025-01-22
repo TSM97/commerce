@@ -59,6 +59,22 @@ export default function NavBar() {
     }
   }
 
+  // * Smooth scrolling and adjusting scroll position after click
+  const scrollBehavior = (el: HTMLElement, item: string) => {
+    const yOffset = item == "About" ? 0 : -50; // Adjust this value for 70px offset on specific SECTIONS
+    const yPosition = el.getBoundingClientRect().top + window.scrollY + yOffset;
+    window.scrollTo({
+      top: yPosition,
+    });
+  };
+
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    if (!clickingLink) {
+      update(latest, prevScroll);
+      setPrevScroll(latest);
+    }
+  });
+
   function handleLinkClick(item: string) {
     if (item != "Home") {
       setClickingLink(true);
@@ -68,7 +84,7 @@ export default function NavBar() {
 
     // fast fix in order to keep navbar between article page and main page
     if (location.pathname.includes("/article") || item === "News") {
-      setPrevScroll(prevScroll + 1);
+      setPrevScroll(prevScroll + 5);
     }
 
     // Prevent the scroll handler from triggering during navigation
@@ -76,14 +92,6 @@ export default function NavBar() {
       setClickingLink(false);
     }, 200); // Increased timeout to allow scroll to settle
   }
-
-  useMotionValueEvent(scrollY, "change", (latest: number) => {
-    if (!clickingLink) {
-      update(latest, prevScroll);
-      setPrevScroll(latest);
-    }
-  });
-
   return (
     <>
       <motion.nav
@@ -149,6 +157,7 @@ export default function NavBar() {
               <NavHashLink
                 onClick={() => handleLinkClick(item)}
                 to={`/#${item}`}
+                scroll={(el) => scrollBehavior(el, item)}
               >
                 <div className="group relative">
                   <NavBee className="absolute -top-0 -left-9 h-[3vw] xl:h-[2vw] w-[3vw] xl:w-[2vw]  group-hover:stroke-primary" />
