@@ -1,9 +1,9 @@
-import { create } from 'zustand';
-import { collection, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
-import fetchFromFirebase from '../Utils/fetchFromFirebase';
+import { create } from "zustand";
+import { collection, query, orderBy } from "firebase/firestore";
+import { db } from "../firebaseConfig";
+import fetchFromFirebase from "../Utils/fetchFromFirebase";
 
-import productType from '../types/productType';
+import productType from "../types/productType";
 
 type ProductStore = {
   products: productType[];
@@ -23,8 +23,8 @@ export const useProductsStore = create<ProductStore>((set, get) => ({
 
     set({ loading: true, error: null });
     const { data, error } = await fetchFromFirebase(
-      'products',
-      query(collection(db, 'products'), orderBy('order', 'asc'))
+      "products",
+      query(collection(db, "products"), orderBy("order", "asc"))
     );
 
     if (error) {

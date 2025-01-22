@@ -5,8 +5,9 @@ type ContactFormStore = {
     name: string;
     email: string;
     message: string;
+    isPurchase: boolean;
   };
-  setField: (field: string, value: string) => void;
+  setField: (field: string, value: string | boolean) => void;
   resetForm: () => void;
 };
 
@@ -15,6 +16,7 @@ export const useContactFormStore = create<ContactFormStore>((set) => ({
     name: "",
     email: "",
     message: "",
+    isPurchase: true,
   },
   setField: (field, value) =>
     set((state) => ({
@@ -29,6 +31,7 @@ export const useContactFormStore = create<ContactFormStore>((set) => ({
         name: "",
         email: "",
         message: "",
+        isPurchase: true,
       },
     }),
 }));

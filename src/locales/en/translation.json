@@ -19,5 +19,6 @@
   "news_info": "Latest updates in <1>beekeeping</1> and <2>honey</2> production",
   "button_contact": "CONTACT",
   "button_read_more": "Read More",
-  "product_out_of_stock": "Out of Stock"
+  "product_out_of_stock": "Out of Stock",
+  "contactForm_out_of_stock": "Will this product be back in stock soon?"
 }
