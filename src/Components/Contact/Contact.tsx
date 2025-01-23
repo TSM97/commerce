@@ -3,7 +3,8 @@ import { useState } from "react";
 import CustomInput from "../Common/Input/CustomInput";
 import { useContactFormStore } from "../../stores/useContactFormStore";
 import ContactOutline from "../../svgs/ContactOutline";
-import Background from "../../assets/BeekeepingClose.webp";
+import ContactOrderImg from "../../assets/ContactOrderImg.webp";
+import Contact_Q from "../../assets/Contact_Q.webp";
 import Checkbox from "../Common/CheckBox/CheckBox";
 import CustomButton from "../Common/CustomButton";
 import Spinner from "../Common/Spinner/Spinner";
@@ -116,8 +117,8 @@ Please note that replying to this email will send your response to honeymakerapp
               <CustomButton
                 type="submit"
                 className={`w-full ${
-                  isLoading ? "scale-0" : "mb-4"
-                } transition-transform duration-500 text-sm `}
+                  isLoading ? "scale-0 opacity-0" : "scale-100 opacity-100"
+                } transition-transform duration-500`}
                 disabled={isLoading}
               >
                 {isLoading ? "Sending..." : "Send"}
@@ -140,14 +141,28 @@ Please note that replying to this email will send your response to honeymakerapp
         </div>
         <div className="w-1/2 px-7">
           <div className="relative flex justify-center">
-            <img
-              className="object-cover h-[350px] lg:h-[350px] lg:w-[350px] mr-4 none"
-              loading="lazy"
-              alt="Article's image"
-              style={{ borderRadius: "74% 26% 76% 24% / 59% 60% 40% 41% " }}
-              src={Background}
-            />
-            <div className="absolute top-0 h-[410px] w-[410px]">
+            <div className="relative">
+              <img
+                className="object-cover h-[350px] lg:h-[350px] lg:w-[350px] mr-4 none"
+                loading="lazy"
+                alt="Article's image"
+                style={{ borderRadius: "74% 26% 76% 24% / 59% 60% 40% 41% " }}
+                src={formData?.isPurchase ? ContactOrderImg : Contact_Q}
+              />
+              <img
+                className="absolute top-0 left-0 object-cover h-[350px] lg:h-[350px] lg:w-[350px] mr-4 none"
+                loading="lazy"
+                alt="Article's image"
+                style={{ borderRadius: "74% 26% 76% 24% / 59% 60% 40% 41% " }}
+                src={formData?.isPurchase ? ContactOrderImg : Contact_Q}
+              />
+            </div>
+
+            <div
+              className={`absolute top-0 h-[410px] w-[410px] ${
+                !formData?.isPurchase ? "rotate-45 scale-110" : ""
+              } transition-transform duration-700`}
+            >
               <ContactOutline />
             </div>
           </div>
