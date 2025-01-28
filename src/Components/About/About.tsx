@@ -22,8 +22,8 @@ export default function About() {
             <span className='text-honey tracking-wide'> Atheenian Bees</span>
           </div>
         </section>
-        <div className='w-full md:w-3/4 min-h-[80vh] text-2xl mx-auto flex xl:flex-row flex-col p-12'>
-          <div className='flex xl:w-1/2 flex-col justify-around pb-2 order-2 xl:order-1'>
+        <div className='w-full xl:w-3/4 min-h-[80vh] text-2xl mx-auto flex md:flex-row flex-col p-12'>
+          <div className='flex md:w-1/2 flex-col justify-around pb-2 order-2 md:order-1'>
             <p>
               <div className='text-3xl font-lobster text-honey tracking-wider pb-4'>
                 .Individually
@@ -68,10 +68,10 @@ export default function About() {
             </p>
           </div>
 
-          <div className='flex justify-end h-full xl:w-1/2 order-1 xl:order-2'>
+          <div className='flex lg:static md:sticky top-5 justify-end h-full md:w-1/2 order-1 md:order-2'>
             <img
               src='/src/assets/kox.webp'
-              className='h-full rounded-md w-full xl:w-[85%] object-cover'
+              className='h-full rounded-md w-full md:w-[85%] object-cover'
             />
           </div>
         </div>
