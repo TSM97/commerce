@@ -97,7 +97,7 @@ export const DraggableProducts = () => {
       id="Products"
       className="w-full lg:min-w-[50%] h-full flex flex-col items-center justify-center lg:w-1/2 py-[2dvw]  lg:order-1 order-2"
     >
-      <section className="flex items-center justify-center gap-10">
+      <section className="flex items-center h-full justify-center gap-10">
         {!isMobile && (
           <motion.div
             onClick={() => handleArrowClick("decr")}
@@ -125,23 +125,28 @@ export const DraggableProducts = () => {
             onDragEnd={onDragEnd}
             className={`flex ${
               !includesOneProduct && "cursor-grab active:cursor-grabbing"
-            } h-[90%] w-full items-center`}
+            } h-[90%] w-full items-stretch`}
           >
             {finalProductsArray.map((product, idx) => {
               return (
                 <div
                   key={idx}
-                  className={`${
-                    !product?.inStock ? "grayscale-[90%]" : null
-                  } min-w-[97%] relative lg:h-full mx-[1.5%] bg-white shadow-md rounded-3xl duration-500 hover:shadow-lg`}
+                  className="min-w-[97%] relative h-full mx-[1.5%] bg-white shadow-md rounded-3xl duration-500 hover:shadow-lg"
                 >
-                  <img
-                    draggable="false"
-                    className="aspect-square object-cover w-full h-1/2 lg:h-3/4 rounded-t-xl bg-neutral-800 text-honey"
-                    src={product?.imageUrl}
-                    alt={`${product?.Description} img`}
-                  />
-                  <div className="px-4 py-3 full">
+                  <div
+                    className={`${
+                      !product?.inStock ? "grayscale-[90%]" : null
+                    }`}
+                  >
+                    <img
+                      draggable="false"
+                      className="aspect-square object-cover w-full h-2/3 lg:h-3/4 rounded-t-xl bg-neutral-800 text-honey"
+                      src={product?.imageUrl}
+                      alt={`${product?.Description} img`}
+                    />
+                  </div>
+
+                  <div className="px-2 md:px-4 py-3 h-1/3 bg-white-default rounded-3xl overflow-hidden">
                     <span className="text-gray-400 mr-3 uppercase text-xs">
                       {product?.Quantity}
                     </span>
@@ -150,15 +155,18 @@ export const DraggableProducts = () => {
                         ? product?.Description
                         : product?.DescriptionEL}
                     </p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-lg font-semibold text-black cursor-auto my-3">
-                        {product?.Price?.toFixed(2)} €
-                      </p>
-                      <del>
-                        <p className="text-sm text-gray-600 cursor-auto">
-                          {product?.PrevPrice?.toFixed(2)}
+                    <div className="sm:flex items-center gap-2">
+                      <div className="flex items-center gap-2">
+                        <p className="text-lg font-semibold text-black cursor-auto my-3">
+                          {product?.Price?.toFixed(2)} €
                         </p>
-                      </del>
+                        <del>
+                          <p className="text-sm text-gray-600 cursor-auto">
+                            {product?.PrevPrice?.toFixed(2)}
+                          </p>
+                        </del>
+                      </div>
+
                       {!product?.inStock ? (
                         <p className="text-red-500">
                           {t("product_out_of_stock")}
@@ -168,7 +176,7 @@ export const DraggableProducts = () => {
                   </div>
                   <CustomButton
                     elementType="navLink"
-                    className="absolute bottom-3 right-3"
+                    className="absolute bottom-3 right-3 bg-white-default"
                     to={`/#Contact`}
                     onClick={() => handleClick(product)}
                   >
