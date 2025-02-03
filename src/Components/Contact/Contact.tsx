@@ -11,11 +11,13 @@ import CustomButton from "../Common/CustomButton";
 import Spinner from "../Common/Spinner/Spinner";
 import { contactImgVariant } from "./variants";
 import useScreenSize from "../../hooks/useScreenSize";
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
   const { formData, setField } = useContactFormStore();
   const [isLoading, setIsLoading] = useState(false);
   const { isMobile, isTablet } = useScreenSize();
+  const { t } = useTranslation();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -43,7 +45,7 @@ export default function Contact() {
             <CustomInput
               ClassName="mb-4"
               Name="name"
-              Label="Name"
+              Label={t("name")}
               Type="text"
               Id="name"
               OnChange={(e) => setField(e.target.name, e.target.value)}

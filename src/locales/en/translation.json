@@ -20,5 +20,7 @@
   "button_contact": "CONTACT",
   "button_read_more": "Read More",
   "product_out_of_stock": "Out of Stock",
-  "contactForm_out_of_stock": "Will this product be back in stock soon?"
+  "contactForm_out_of_stock": "Will this product be back in stock soon?",
+  "password": "Password",
+  "name": "Name"
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import CustomButton from "../../Components/Common/CustomButton";
 import CustomInput from "../../Components/Common/Input/CustomInput";
+import { t } from "i18next";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -39,13 +40,13 @@ const AdminLogin = () => {
             Name="email"
             Id="email"
             OnChange={(e) => setEmail(e.target.value)}
-            Label="email"
+            Label="Email"
             value={email}
           />
           <CustomInput
             ClassName="mb-4"
             Name="password"
-            Label="password"
+            Label={t("password")}
             Type="password"
             Id="password"
             OnChange={(e) => setPassword(e.target.value)}

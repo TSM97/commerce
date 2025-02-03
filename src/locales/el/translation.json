@@ -20,5 +20,7 @@
   "button_contact": "επικοινωνία",
   "button_read_more": "περισσότερα",
   "product_out_of_stock": "Μη διαθέσιμο",
-  "contactForm_out_of_stock": "Θα είναι αυτό το προϊόν διαθέσιμο σε απόθεμα σύντομα;"
+  "contactForm_out_of_stock": "Θα είναι αυτό το προϊόν διαθέσιμο σε απόθεμα σύντομα;",
+  "password": "Κωδικός",
+  "name": "Όνομα"
 }
