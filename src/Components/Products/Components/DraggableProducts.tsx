@@ -147,9 +147,14 @@ export const DraggableProducts = () => {
                   </div>
 
                   <div className="px-2 md:px-4 py-3 h-1/3 bg-white-default rounded-3xl overflow-hidden">
-                    <span className="text-gray-400 mr-3 uppercase text-xs">
-                      {product?.Quantity}
-                    </span>
+                    <div className="text-gray-400 mr-3 uppercase text-xs flex justify-between">
+                      <div>{product?.Quantity}</div>
+                      {!product?.inStock ? (
+                        <div className="text-red-500">
+                          {t("product_out_of_stock")}
+                        </div>
+                      ) : null}
+                    </div>
                     <p className="text-lg font-bold text-black capitalize">
                       {i18n.language === "en"
                         ? product?.Description
@@ -166,12 +171,6 @@ export const DraggableProducts = () => {
                           </p>
                         </del>
                       </div>
-
-                      {!product?.inStock ? (
-                        <p className="text-red-500">
-                          {t("product_out_of_stock")}
-                        </p>
-                      ) : null}
                     </div>
                   </div>
                   <CustomButton

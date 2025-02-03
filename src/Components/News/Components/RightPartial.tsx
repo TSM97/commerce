@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Articles from './Articles';
-import { ITEMS_PER_PAGE } from '../../../config';
-import Pagination from './Pagination';
-import { useArticlesStore } from '../../../stores/useArticlesStore';
+import Articles from "./Articles";
+import { ITEMS_PER_PAGE } from "../../../config";
+import Pagination from "./Pagination";
+import { useArticlesStore } from "../../../stores/useArticlesStore";
 
 export default function RightPartial() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,11 +17,11 @@ export default function RightPartial() {
   );
 
   return (
-    <article className='flex flex-col justify-between text-left h-full p-4 w-[80dvw] xl:w-[40dvw]  md:text-md text-sm z-10'>
+    <article className="flex flex-col justify-between text-left h-full p-4 w-[90dvw] md:w-[80dvw] xl:w-[40dvw]  md:text-md text-sm z-10">
       {!loading ? (
         <>
-          <article className='w-full'>
-            <header className='font-bold text-3xl pb-4'>News</header>
+          <article className="w-full">
+            <header className="font-bold text-3xl pb-4">News</header>
             <Articles articles={currentArticles} />
           </article>
           <Pagination

@@ -28,10 +28,9 @@ const AdminLogin = () => {
 
   return (
     <section className="min-h-screen flex justify-center items-center">
-      <div className="w-1/4 p-8 min-h-[450px] border-4 border-dashed border-primary-100 text-lg">
-        {" "}
+      <div className="w-5/6 lg:w-1/4 p-8 md:min-h-[450px] border-4 border-dashed border-primary-100 text-lg">
         <form onSubmit={handleLogin}>
-          <h2 className="font-extrabold mb-4 text-[1.3vw] text-center">
+          <h2 className="font-extrabold mb-4 text-2xl lg:text-[1.3vw] text-center">
             Sign In
           </h2>
           <CustomInput
@@ -68,13 +67,15 @@ const AdminLogin = () => {
                 isLoading ? "scale-100 opacity-100" : "scale-0 opacity-0"
               } transition-transform duration-500 text-center`}
             >
-              <div className="mt-4">
-                <p>
-                  Please wait, we are processing your request. This might take a
-                  few seconds. Don't close or refresh the page.
-                </p>
-                <Spinner ClassName="absolute top-0 left-1/2" />
-              </div>
+              {isLoading && (
+                <div className="mt-4">
+                  <p>
+                    Please wait, we are processing your request. This might take
+                    a few seconds. Don't close or refresh the page.
+                  </p>
+                  <Spinner ClassName="absolute top-0 left-1/2" />
+                </div>
+              )}
             </div>
           </div>
         </form>

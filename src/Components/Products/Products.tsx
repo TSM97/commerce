@@ -63,7 +63,7 @@ export default function Products() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={productDescItemVariants}
-              custom={i / 2 + 3}
+              custom={i / 4 + 3}
               className={`${
                 i18n.language == "en" ? "font-martel" : "font-serif"
               } p-4 font-semibold  flex text-md items-center gap-4`}

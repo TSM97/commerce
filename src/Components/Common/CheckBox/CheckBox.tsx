@@ -12,7 +12,7 @@ const Checkbox = ({
   return (
     <div className="flex items-center">
       <div
-        className={`w-6 h-6 flex items-center justify-center border-2 rounded-md border-gray-300 cursor-pointer ${
+        className={`min-w-6 min-h-6 flex items-center justify-center border-2 rounded-md border-gray-300 cursor-pointer ${
           isChecked ? `bg-primary-500 border-primary-500 ${ClassName}` : ""
         } transition-all duration-300 `}
         onClick={handleCheck}
@@ -34,7 +34,7 @@ const Checkbox = ({
           </svg>
         )}
       </div>
-      <label className="ml-3 text-lg text-black-250">{label}</label>
+      <label className="ml-3 text-md md:text-lg text-black-250">{label}</label>
     </div>
   );
 };
