@@ -5,7 +5,6 @@ import { productDescItemVariants } from "./variants";
 import useScreenSize from "../../hooks/useScreenSize";
 import { benefitsList } from "./data";
 import { DraggableProducts } from "./Components/DraggableProducts";
-import WaveBG from "../../svgs/WaveBG.svg";
 
 export default function Products() {
   const { isTablet } = useScreenSize();
@@ -15,7 +14,7 @@ export default function Products() {
     <section
       className="xl:min-h-[70vh] py-[2dvw] px-[3dvw] flex flex-col lg:flex-row items-center lg:items-start gap-[3dvw]"
       style={{
-        backgroundImage: isTablet ? "" : `url(${WaveBG})`,
+        backgroundImage: isTablet ? "" : `url(/WaveBG.svg)`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
