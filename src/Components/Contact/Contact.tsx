@@ -29,9 +29,7 @@ export default function Contact() {
   return (
     <section
       id='Contact'
-      className={`min-h-[80vh]  ${
-        isLaptop ? 'pb-[8vh]' : 'py-[10vh]'
-      } flex flex-col items-center justify-center border-b-4 border-dashed border-primary-100`}
+      className={`min-h-[100vh] flex flex-col items-center justify-center border-b-4 border-dashed border-primary-100`}
     >
       <section className='md:w-4/5 xl:w-3/5 p-8 min-h-[450px] relative border-4 border-dashed border-primary-100 text-lg md:flex'>
         <div className='md:w-1/2 md:h-[100%] md:px-7 border-dashed border-primary-100'>
