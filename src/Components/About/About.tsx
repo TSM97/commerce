@@ -22,7 +22,7 @@ export default function About() {
           </div>
         </section>
         <div className="w-full xl:w-3/4 min-h-[80vh] text-2xl mx-auto flex md:flex-row flex-col p-6 md:p-12">
-          <div className="flex md:w-1/2 flex-col justify-around pb-2 order-2 md:order-1">
+          <div className="flex md:w-1/2 flex-col justify-around pb-2 order-2 md:order-1 text-justify">
             <p>
               <div className="text-3xl font-lobster text-honey tracking-wider pb-4">
                 .Individually
