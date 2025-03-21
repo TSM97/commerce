@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import CustomInput from "../Common/Input/CustomInput";
 import { useContactFormStore } from "../../stores/useContactFormStore";
@@ -11,20 +12,50 @@ import CustomButton from "../Common/CustomButton";
 import Spinner from "../Common/Spinner/Spinner";
 import { contactImgVariant } from "./variants";
 import useScreenSize from "../../hooks/useScreenSize";
-import { useTranslation } from "react-i18next";
 import ArrowDoodle from "../../svgs/ArrowDoodle";
-import { ATHENIAN_EMAIL } from "../../config";
+import { ATHENIAN_EMAIL, emailRegex } from "../../config";
 
 export default function Contact() {
   const { formData, setField } = useContactFormStore();
   const [isLoading, setIsLoading] = useState(false);
   const { isMobile, isTablet, isLaptop } = useScreenSize();
   const { t } = useTranslation();
+  const [validatedEmail, setValidatedEmail] = useState(true);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
     setIsLoading(true);
-    e.target.submit();
+
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+
+    if (!email || !emailRegex.test(email as string)) {
+      setValidatedEmail(false);
+      setIsLoading(false);
+      return;
+    }
+
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        event.target.reset();
+        window.location.href = "https://web3forms.com/success";
+      } else {
+        console.log("Error", data);
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -34,13 +65,15 @@ export default function Contact() {
     >
       <section className="md:w-4/5 xl:w-3/5 p-8 min-h-[450px] relative border-4 border-dashed border-primary-100 text-lg md:flex">
         <div className="md:w-1/2 md:h-[100%] md:px-7 border-dashed border-primary-100">
-          <form
-            action={`https://formsubmit.co/${
-              import.meta.env.VITE_FORMSUBMIT_EMAIL_ID
-            }`}
-            method="POST"
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
+            {/* -- Custom Subject -- */}
+            <input
+              type="hidden"
+              name="subject"
+              value={`${
+                formData?.isPurchase ? "Purchase" : "Question"
+              } - from ${formData?.name}`}
+            />
             <h2 className="font-extrabold mb-4 text-3xl md:text-[1.3vw]">
               Contact Us
             </h2>
@@ -54,7 +87,7 @@ export default function Contact() {
               value={formData?.name}
             />
             <CustomInput
-              ClassName="mb-4"
+              ClassName="mb-1"
               Name="email"
               Label="Email"
               Type="email"
@@ -62,32 +95,9 @@ export default function Contact() {
               OnChange={(e) => setField(e.target.name, e.target.value)}
               value={formData?.email}
             />
-            {/* email template */}
-            <input type="hidden" name="_template" value="table" />
-            {/* redirect after submit */}
-            <input type="hidden" name="_next" value="http://localhost:5173/" />
-            {/* autoresponse input */}
-            <input
-              type="hidden"
-              name="_autoresponse"
-              value={`**"Thank you for contacting us! We will get back to you very soon to discuss ${
-                formData?.isPurchase
-                  ? "what you would like to order"
-                  : "what you would like to learn"
-              }.
-
---- ATHENIAN BEES ---
-Please note that replying to this email will send your response to ${ATHENIAN_EMAIL}."**`}
-            />
-            {/* Email Subject */}
-            <input
-              type="hidden"
-              name="_subject"
-              value={`${
-                formData?.isPurchase ? "Purchase" : "Question"
-              } - from ${formData?.name}`}
-            />
-            <input type="text" name="_honey" style={{ display: "none" }} />
+            <div className="h-[25px] py-1 text-red-500 text-sm">
+              {!validatedEmail && "Το email δεν είναι συμβατό"}
+            </div>
             <div className=" flex flex-col gap-2 mb-4">
               <Checkbox
                 isChecked={formData?.isPurchase}
@@ -100,7 +110,6 @@ Please note that replying to this email will send your response to ${ATHENIAN_EM
                 label="I would like to mention..."
               />
             </div>
-
             <div className="relative mb-4">
               <textarea
                 id="message"
