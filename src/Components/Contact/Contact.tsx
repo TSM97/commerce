@@ -87,12 +87,14 @@ export default function Contact() {
               value={formData?.name}
             />
             <CustomInput
-              ClassName="mb-1"
               Name="email"
               Label="Email"
               Type="email"
               Id="email"
-              OnChange={(e) => setField(e.target.name, e.target.value)}
+              OnChange={(e) => {
+                setField(e.target.name, e.target.value);
+                setValidatedEmail(true);
+              }}
               value={formData?.email}
             />
             <div className="h-[25px] py-1 text-red-500 text-sm">
