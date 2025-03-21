@@ -11,7 +11,7 @@ import Checkbox from "../Common/CheckBox/CheckBox";
 import CustomButton from "../Common/CustomButton";
 import Spinner from "../Common/Spinner/Spinner";
 import { contactImgVariant } from "./variants";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreenSize from "../../hooks/UseScreenSize";
 import ArrowDoodle from "../../svgs/ArrowDoodle";
 import { ATHENIAN_EMAIL, emailRegex } from "../../config";
 
