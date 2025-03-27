@@ -13,8 +13,7 @@ import { menuSlide, parentVariants, childVariants } from "./variants";
 import AnimatedHamburgerButton from "./Components/HamburgerButtom";
 import NavBee from "../../svgs/NavBee";
 import LocalSwitcher from "../Common/LocalSwitcher/LocalSwitcher";
-
-const navList: string[] = ["Home", "Products", "News", "About", "Contact"];
+import { navList } from "../../config";
 
 export default function NavBar() {
   const { scrollY } = useScroll();

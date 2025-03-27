@@ -1,5 +1,5 @@
 import getPaginationRange from "../utils/getPaginationRange";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreenSize from "../../../hooks/UseScreenSize";
 
 export default function Pagination({
   currentPage,
@@ -10,23 +10,26 @@ export default function Pagination({
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
 }) {
-  const { isTablet } = useScreenSize();
+  const { isTablet, isMobile } = useScreenSize();
   const handlePrev = () => {
     if (currentPage > 1) {
-      if (isTablet) document.getElementById("News")?.scrollIntoView();
+      if (isTablet || isMobile)
+        document.getElementById("News")?.scrollIntoView();
       setCurrentPage(currentPage - 1);
     }
   };
 
   const handleNext = () => {
+    console.log();
     if (currentPage < totalPages) {
-      if (isTablet) document.getElementById("News")?.scrollIntoView();
+      if (isTablet || isMobile)
+        document.getElementById("News")?.scrollIntoView();
       setCurrentPage(currentPage + 1);
     }
   };
 
   const handlePageClick = (page: number) => {
-    if (isTablet) document.getElementById("News")?.scrollIntoView();
+    if (isTablet || isMobile) document.getElementById("News")?.scrollIntoView();
     setCurrentPage(page);
   };
 

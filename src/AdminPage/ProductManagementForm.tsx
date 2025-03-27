@@ -155,7 +155,7 @@ export default function ProductManagementForm() {
               type='text'
               id='Description'
               className='bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white'
-              placeholder='Atheenian-Bees - Μέλι από θυμάρι'
+              placeholder='Athenian-Bees - Μέλι από θυμάρι'
               required
             />
           </div>
@@ -171,7 +171,7 @@ export default function ProductManagementForm() {
               type='text'
               id='DescriptionEL'
               className='bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white'
-              placeholder='Atheenian-Bees - Μέλι από θυμάρι'
+              placeholder='Athenian-Bees - Μέλι από θυμάρι'
               required
             />
           </div>

@@ -1,4 +1,3 @@
-import bgFlowees from "../../svgs/nFlowees.svg";
 import { useRef } from "react";
 
 export default function About() {
@@ -8,7 +7,7 @@ export default function About() {
       <section>
         <section
           style={{
-            backgroundImage: `url(${bgFlowees})`,
+            backgroundImage: `url(/nFlowees.svg)`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -19,11 +18,11 @@ export default function About() {
         >
           <div className="mx-auto w-[90%] md:w-1/2 text-center text-[12dvw] md:text-[6dvw] text-black-250 tracking-tight py-14 leading-none">
             Reveal the Unique Story Behind
-            <span className="text-honey tracking-wide"> Atheenian Bees</span>
+            <span className="text-honey tracking-wide"> Athenian Bees</span>
           </div>
         </section>
         <div className="w-full xl:w-3/4 min-h-[80vh] text-2xl mx-auto flex md:flex-row flex-col p-6 md:p-12">
-          <div className="flex md:w-1/2 flex-col justify-around pb-2 order-2 md:order-1">
+          <div className="flex md:w-1/2 flex-col justify-around pb-2 order-2 md:order-1 text-justify">
             <p>
               <div className="text-3xl font-lobster text-honey tracking-wider pb-4">
                 .Individually

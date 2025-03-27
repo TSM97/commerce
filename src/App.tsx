@@ -1,15 +1,16 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import "./App.css";
 // import Lenis from 'lenis';
 
 import NavBar from "./Components/NavBar";
 import Admin from "./AdminPage/Admin";
+import { Footer } from "./Components/Footer";
 import { Hero, Intro } from "./Components/Hero";
 import News from "./Components/News/News";
 import { ArticlePage } from "./Components/ArticlePage";
 import Products from "./Components/Products";
 import About from "./Components/About";
-import "./App.css";
 import { useArticlesStore } from "./stores/useArticlesStore";
 import { useProductsStore } from "./stores/useProductsStore";
 import Contact from "./Components/Contact";
@@ -48,6 +49,7 @@ export default function App() {
               <News />
               <About />
               <Contact />
+              <Footer />
             </>
           }
         />
@@ -60,7 +62,15 @@ export default function App() {
           }
         />
         <Route path="/admin/auth" element={<AuthRedirect />} />
-        <Route path="/article/:id" element={<ArticlePage />} />
+        <Route
+          path="/article/:id"
+          element={
+            <>
+              <ArticlePage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
     </section>
   );
