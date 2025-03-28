@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 import ArticleType from "../../types/articleType";
 import { useEffect } from "react";
@@ -58,19 +59,18 @@ export default function ArticlePage() {
           alt={`${article?.[locale]?.title} image`}
           className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
         />
-        <article className="lg:max-w-[80%] pb-[30vh]">
-          {article?.[locale]?.fullDescription
-            ?.split("||")
-            ?.map((paragraph, key) => {
-              return (
-                <article key={key}>
-                  <div className="first-letter:uppercase text-[1.3rem]">
-                    {paragraph}
-                  </div>
-                  <br />
-                </article>
-              );
-            })}
+        <article className="lg:max-w-[80%] pb-[30vh] text-[1.3rem]">
+          {article?.[locale]?.fullDescription.plainText && (
+            //! sanitize from DOMPurify to prevent xss attacks using dangerslyInnerHTML
+            <div
+              className="[&_a]:text-honey [&_a]:underline [&_a]:hover:text-honey [&_a]:cursor-pointer"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  article?.[locale]?.fullDescription.html
+                ),
+              }}
+            />
+          )}
         </article>
       </section>
     </section>

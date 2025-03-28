@@ -5,12 +5,12 @@ export type ArticleType = {
   el?: {
     title: string;
     shortDescription: string;
-    fullDescription: string;
+    fullDescription: { html: string; plainText: string };
   };
   en: {
     title: string;
     shortDescription: string;
-    fullDescription: string;
+    fullDescription: { html: string; plainText: string };
   };
   aTag?: string;
   imageUrl: string;

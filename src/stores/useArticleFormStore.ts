@@ -1,12 +1,12 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type ArticleFormStore = {
   title: string;
   shortDesc: string;
-  fullDesc: string;
+  fullDesc: { html: string; plainText: string };
   titleEL: string;
   shortDescEL: string;
-  fullDescEL: string;
+  fullDescEL: { html: string; plainText: string };
   aTag: string;
   selectedImage: File | null;
   showGreekForm: boolean;
@@ -16,26 +16,26 @@ type ArticleFormStore = {
 };
 
 export const useArticlesFormStore = create<ArticleFormStore>((set) => ({
-  title: '',
-  shortDesc: '',
-  fullDesc: '',
-  titleEL: '',
-  shortDescEL: '',
-  fullDescEL: '',
-  aTag: '',
+  title: "",
+  shortDesc: "",
+  fullDesc: { html: "", plainText: "" },
+  titleEL: "",
+  shortDescEL: "",
+  fullDescEL: { html: "", plainText: "" },
+  aTag: "",
   selectedImage: null,
   showGreekForm: false,
   isFullDescRequired: true,
   setField: (field, value) => set({ [field]: value }),
   resetForm: () =>
     set({
-      title: '',
-      shortDesc: '',
-      fullDesc: '',
-      titleEL: '',
-      shortDescEL: '',
-      fullDescEL: '',
-      aTag: '',
+      title: "",
+      shortDesc: "",
+      fullDesc: { html: "", plainText: "" },
+      titleEL: "",
+      shortDescEL: "",
+      fullDescEL: { html: "", plainText: "" },
+      aTag: "",
       selectedImage: null,
       showGreekForm: false,
       isFullDescRequired: true,

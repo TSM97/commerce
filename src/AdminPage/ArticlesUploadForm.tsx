@@ -2,6 +2,8 @@ import { Timestamp } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 import { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 import uploadDataToFirestore from "../Utils/uploadDataToFireStore";
 import { useArticlesFormStore } from "../stores/useArticleFormStore";
@@ -149,19 +151,21 @@ export default function ArticlesUploadForm() {
                   >
                     Full Description
                   </label>
-                  <div className="text-blue-700">
-                    In order to change Paragraph Write
-                    <span className="font-bold text-xl">" || "</span>
-                  </div>
                 </div>
-                <textarea
-                  value={fullDesc}
-                  onChange={(e) => setField("fullDesc", e.target.value)}
-                  id="fullDesc"
-                  rows={4}
+                <ReactQuill
+                  theme="snow"
+                  value={fullDesc.html}
                   className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14"
+                  onChange={(value, delta, source, editor) => {
+                    if (source === "user") {
+                      setField("fullDesc", {
+                        html: value,
+                        plainText: editor.getText().trim(),
+                      });
+                    }
+                  }}
                   placeholder="Write your article`s Section"
-                  required={isFullDescRequired}
+                  id="fullDesc"
                 />
               </motion.section>
             </>
@@ -207,18 +211,21 @@ export default function ArticlesUploadForm() {
                   >
                     Full Description (Ελληνική μετάφραση)
                   </label>
-                  <div className="text-blue-700">
-                    In order to change Paragraph Write
-                    <span className="font-bold text-xl">" || "</span>
-                  </div>
                 </div>
-                <textarea
-                  value={fullDescEL}
-                  onChange={(e) => setField("fullDescEL", e.target.value)}
-                  id="fullDescEL"
-                  rows={4}
+                <ReactQuill
+                  theme="snow"
+                  value={fullDescEL.html}
                   className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14"
+                  onChange={(value, delta, source, editor) => {
+                    if (source === "user") {
+                      setField("fullDescEL", {
+                        html: value,
+                        plainText: editor.getText().trim(),
+                      });
+                    }
+                  }}
                   placeholder="Γράψτε την ενότητα του άρθρου σας"
+                  id="fullDescEL"
                 />
               </motion.section>
             </>
@@ -271,7 +278,7 @@ export default function ArticlesUploadForm() {
               disabled={
                 isNullOrWhitespace(title) ||
                 isNullOrWhitespace(shortDesc) ||
-                (isNullOrWhitespace(fullDesc) && !isFullDescRequired)
+                (isNullOrWhitespace(fullDesc.plainText) && !isFullDescRequired)
               }
               type="submit"
               className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"

@@ -6,7 +6,7 @@ export default function FooterDetails() {
   return (
     <section className="flex flex-col h-full justify-between p-2 pt-6">
       <section className="md:flex justify-between px-[3vw]">
-        <div className="w-[35%] text-black-100 text-justify text-lg">
+        <div className="w-[35%] text-black-100 text-justify text-md">
           <i>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
             enim praesentium quis libero reprehenderit perferendis a repellendus
@@ -18,7 +18,7 @@ export default function FooterDetails() {
             facere impedit?
           </i>
         </div>
-        <section className="text-xl tracking-wide text-black-100">
+        <section className="text-lg tracking-wide text-black-100">
           <div className="pb-2">
             <i>Συχνές Ερωτήσεις</i>
           </div>
