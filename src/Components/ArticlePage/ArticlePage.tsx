@@ -81,7 +81,7 @@ export default function ArticlePage() {
           {article?.[locale]?.fullDescription.plainText && (
             //! sanitize from DOMPurify to prevent xss attacks using dangerslyInnerHTML
             <div
-              className="[&_a]:text-honey [&_a]:underline [&_a]:hover:text-honey [&_a]:cursor-pointer"
+              className="[&_a]:!text-honey [&_a]:underline [&_a]:!hover:text-honey [&_a]:cursor-pointer"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
                   article?.[locale]?.fullDescription.html
