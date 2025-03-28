@@ -2,12 +2,12 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { productDescItemVariants } from "./variants";
 
-import useScreenSize from "../../hooks/useScreenSize";
+import UseScreenSize from "../../hooks/UseScreenSize";
 import { benefitsList } from "./data";
 import { DraggableProducts } from "./Components/DraggableProducts";
 
 export default function Products() {
-  const { isTablet } = useScreenSize();
+  const { isTablet } = UseScreenSize();
   const { t, i18n } = useTranslation();
 
   return (

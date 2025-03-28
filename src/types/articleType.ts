@@ -6,11 +6,13 @@ export type ArticleType = {
     title: string;
     shortDescription: string;
     fullDescription: { html: string; plainText: string };
+    contactButtonTitle: string;
   };
   en: {
     title: string;
     shortDescription: string;
     fullDescription: { html: string; plainText: string };
+    contactButtonTitle: string;
   };
   aTag?: string;
   imageUrl: string;

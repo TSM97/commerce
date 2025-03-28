@@ -11,14 +11,14 @@ import Checkbox from "../Common/CheckBox/CheckBox";
 import CustomButton from "../Common/CustomButton";
 import Spinner from "../Common/Spinner/Spinner";
 import { contactImgVariant } from "./variants";
-import useScreenSize from "../../hooks/UseScreenSize";
+import UseScreenSize from "../../hooks/UseScreenSize";
 import ArrowDoodle from "../../svgs/ArrowDoodle";
 import { ATHENIAN_EMAIL, emailRegex } from "../../config";
 
 export default function Contact() {
   const { formData, setField } = useContactFormStore();
   const [isLoading, setIsLoading] = useState(false);
-  const { isMobile, isTablet, isLaptop } = useScreenSize();
+  const { isMobile, isTablet, isLaptop } = UseScreenSize();
   const { t } = useTranslation();
   const [validatedEmail, setValidatedEmail] = useState(true);
 

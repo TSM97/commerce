@@ -7,6 +7,9 @@ type ArticleFormStore = {
   titleEL: string;
   shortDescEL: string;
   fullDescEL: { html: string; plainText: string };
+  contactButtonEL: string;
+  contactButton: string;
+  hasContactButton: boolean;
   aTag: string;
   selectedImage: File | null;
   showGreekForm: boolean;
@@ -21,6 +24,9 @@ export const useArticlesFormStore = create<ArticleFormStore>((set) => ({
   fullDesc: { html: "", plainText: "" },
   titleEL: "",
   shortDescEL: "",
+  contactButtonEL: "",
+  contactButton: "",
+  hasContactButton: false,
   fullDescEL: { html: "", plainText: "" },
   aTag: "",
   selectedImage: null,

@@ -20,9 +20,12 @@ export default function ArticlesUploadForm() {
     titleEL,
     shortDescEL,
     fullDescEL,
+    contactButton,
+    contactButtonEL,
     aTag,
     selectedImage,
     showGreekForm,
+    hasContactButton,
     isFullDescRequired,
     setField,
     resetForm,
@@ -63,6 +66,7 @@ export default function ArticlesUploadForm() {
           title,
           shortDescription: shortDesc,
           fullDescription: fullDesc,
+          contactButtonTitle: contactButton,
         },
         ...(titleEL || shortDescEL || fullDescEL
           ? {
@@ -70,6 +74,7 @@ export default function ArticlesUploadForm() {
                 title: titleEL,
                 shortDescription: shortDescEL,
                 fullDescription: fullDescEL,
+                contactButtonTitle: contactButtonEL,
               },
             }
           : {}),
@@ -156,7 +161,7 @@ export default function ArticlesUploadForm() {
                   theme="snow"
                   value={fullDesc.html}
                   className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14"
-                  onChange={(value, delta, source, editor) => {
+                  onChange={(value, _, source, editor) => {
                     if (source === "user") {
                       setField("fullDesc", {
                         html: value,
@@ -216,7 +221,7 @@ export default function ArticlesUploadForm() {
                   theme="snow"
                   value={fullDescEL.html}
                   className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 min-h-14"
-                  onChange={(value, delta, source, editor) => {
+                  onChange={(value, _, source, editor) => {
                     if (source === "user") {
                       setField("fullDescEL", {
                         html: value,
@@ -230,7 +235,57 @@ export default function ArticlesUploadForm() {
               </motion.section>
             </>
           )}
+          {/* ENABLE CONTACT BUTTON */}
 
+          <motion.div className="col-span-2">
+            <Checkbox
+              isChecked={hasContactButton}
+              handleCheck={() => {
+                setField("hasContactButton", !hasContactButton);
+              }}
+              label='Apply "Contact Button" in your article'
+            />
+          </motion.div>
+
+          {hasContactButton && (
+            <div className="md:flex gap-4">
+              <motion.div>
+                <label
+                  htmlFor="TitleEL"
+                  className="block mb-2 text-lg font-medium text-white-900"
+                >
+                  Contact Button
+                </label>
+
+                <input
+                  value={contactButton}
+                  onChange={(e) => setField("contactButton", e.target.value)}
+                  type="text"
+                  id="contactButton"
+                  className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
+                  placeholder="Contact"
+                />
+              </motion.div>
+
+              <motion.div>
+                <label
+                  htmlFor="TitleEL"
+                  className="block mb-2 text-lg font-medium text-white-900"
+                >
+                  Contact Button (Ελληνική μετάφραση)
+                </label>
+
+                <input
+                  value={contactButtonEL}
+                  onChange={(e) => setField("contactButtonEL", e.target.value)}
+                  type="text"
+                  id="contactButtonEL"
+                  className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
+                  placeholder="Επικοινωνία"
+                />
+              </motion.div>
+            </div>
+          )}
           <motion.div className="col-span-2">
             <label
               htmlFor="aTag"

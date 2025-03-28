@@ -1,5 +1,5 @@
 import getPaginationRange from "../utils/getPaginationRange";
-import useScreenSize from "../../../hooks/UseScreenSize";
+import UseScreenSize from "../../../hooks/UseScreenSize";
 
 export default function Pagination({
   currentPage,
@@ -10,7 +10,7 @@ export default function Pagination({
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
 }) {
-  const { isTablet, isMobile } = useScreenSize();
+  const { isTablet, isMobile } = UseScreenSize();
   const handlePrev = () => {
     if (currentPage > 1) {
       if (isTablet || isMobile)

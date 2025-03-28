@@ -10,7 +10,7 @@ import { useProductsStore } from "../../../stores/useProductsStore";
 import { useContactFormStore } from "../../../stores/useContactFormStore";
 import isNullOrWhitespace from "../../../Utils/isNullOrWhitespace";
 import Arrow from "../../../svgs/Arrow";
-import useScreenSize from "../../../hooks/useScreenSize";
+import UseScreenSize from "../../../hooks/UseScreenSize";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 7;
@@ -24,7 +24,7 @@ export const DraggableProducts = () => {
   const outOfStockProducts = products.filter((pr) => !pr.inStock);
   const finalProductsArray = [...inStockProducts, ...outOfStockProducts];
   const { formData, setField } = useContactFormStore();
-  const { isMobile } = useScreenSize();
+  const { isMobile } = UseScreenSize();
 
   const includesOneProduct = products.length === 1;
 

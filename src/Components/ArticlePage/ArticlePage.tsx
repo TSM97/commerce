@@ -5,6 +5,8 @@ import ArticleType from "../../types/articleType";
 import { useEffect } from "react";
 import { useArticlesStore } from "../../stores/useArticlesStore";
 import useLocale from "../../hooks/useLocale";
+import CustomButton from "../Common/CustomButton";
+import Logo from "../../assets/ATHBees.webp";
 
 export default function ArticlePage() {
   const { articles } = useArticlesStore();
@@ -15,11 +17,27 @@ export default function ArticlePage() {
     window.scrollTo(0, 0); // Scrolls to the top of the page
   }, []);
 
+  //While fetching articles on reload!
+  if (!articles.length) {
+    return (
+      <section className="min-h-screen flex items-center justify-center border-b-4 border-dashed border-primary-100 ">
+        <img src={Logo} className="h-full" />
+      </section>
+    );
+  }
+
   //find specific article based on the id tha passed to url
   const article: ArticleType | null =
     articles.find((article) => article?.id === id) ?? null;
 
-  if (!article) return;
+  //if specific article doesnt exist
+  if (!article)
+    return (
+      <section className="min-h-screen flex flex-col items-center justify-center border-b-4 border-dashed border-primary-100 ">
+        <img src={Logo} className="h-full" />
+        <div className="text-3xl">No article with this ID Found...!</div>
+      </section>
+    );
 
   // Manually converting Firestore Timestamp to JavaScript Date\
   const timestamp = article.createdAt;
@@ -43,7 +61,7 @@ export default function ArticlePage() {
   return (
     <section
       id="footerWraper"
-      className="w-screen border-b-4 border-dashed border-primary-100"
+      className="w-screen border-b-4 border-dashed border-primary-100 "
     >
       <section className="container mx-auto pt-[13vh] min-h-screen">
         <article>
@@ -59,7 +77,7 @@ export default function ArticlePage() {
           alt={`${article?.[locale]?.title} image`}
           className="object-cover xl:max-w-[70dvw] max-w-full max-h-[70vh] pb-[2dvw]"
         />
-        <article className="lg:max-w-[80%] pb-[30vh] text-[1.3rem]">
+        <article className="lg:max-w-[80%] text-[1.3rem]">
           {article?.[locale]?.fullDescription.plainText && (
             //! sanitize from DOMPurify to prevent xss attacks using dangerslyInnerHTML
             <div
@@ -70,6 +88,17 @@ export default function ArticlePage() {
                 ),
               }}
             />
+          )}
+          {article?.[locale]?.contactButtonTitle && (
+            <div className=" my-10">
+              <CustomButton
+                elementType="navLink"
+                className="bg-white-default capitalize text-md"
+                to={`/#Contact`}
+              >
+                {article?.[locale]?.contactButtonTitle}
+              </CustomButton>
+            </div>
           )}
         </article>
       </section>

@@ -76,6 +76,25 @@ body {
   white-space: nowrap;
   border: 0;
 }
-/* input[type='radio']:checked {
-  background-color: #your-color;
-} */
+
+/* --- Quill Editor --- */
+.ql-editor {
+  min-height: 150px;
+}
+.ql-container {
+  min-height: 150px;
+  flex-grow: 1;
+}
+
+/* --- HEADINGS --- */
+
+h1 {
+  @apply text-3xl lg:text-6xl !important;
+}
+
+h2 {
+  @apply text-2xl lg:text-4xl !important;
+}
+h3 {
+  @apply text-xl lg:text-2xl !important;
+}
