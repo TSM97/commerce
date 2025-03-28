@@ -15,4 +15,4 @@ export const navList: string[] = [
   "Contact",
 ];
 export const emailRegex =
-  /^[A-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|me\.com|mac\.com|protonmail\.com)$/i;
+  /^[A-Z0-9._%+-]+@(gmail|yahoo|outlook|hotmail|icloud|me|mac|protonmail)\.[A-Z]{2,}$/i;
