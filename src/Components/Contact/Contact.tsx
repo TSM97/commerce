@@ -109,7 +109,7 @@ export default function Contact() {
               <Checkbox
                 isChecked={!formData?.isPurchase}
                 handleCheck={() => setField("isPurchase", false)}
-                label="I would like to mention..."
+                label="I would like to ask..."
               />
             </div>
             <div className="relative mb-4">

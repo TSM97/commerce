@@ -294,7 +294,13 @@ export default function ArticlesUploadForm() {
               The Url that you want to Link instead of writing your article*
             </label>
             <input
-              onChange={(e) => setField("aTag", e.target.value)}
+              defaultValue="https://"
+              onChange={(e) => {
+                if (!e.target.value.startsWith("https://")) {
+                  e.target.value = "https://";
+                }
+                setField("aTag", e.target.value);
+              }}
               type="text"
               id="aTag"
               className="bg-white-50 border border-white-300 text-white-900 text-lg rounded-lg block w-full  p-2.5 white"
