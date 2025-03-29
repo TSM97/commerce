@@ -1,14 +1,12 @@
 import { create } from "zustand";
 import { collection, query, orderBy } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { ITEMS_PER_PAGE } from "../config";
 import fetchFromFirebase from "../Utils/fetchFromFirebase";
 
 import ArticleType from "../types/articleType";
 
 type ArticlesStore = {
   articles: ArticleType[];
-  totalPages: number;
   loading: boolean;
   error: null | string;
   fetchArticles: () => Promise<void>;
@@ -16,7 +14,6 @@ type ArticlesStore = {
 
 export const useArticlesStore = create<ArticlesStore>((set, get) => ({
   articles: [],
-  totalPages: 0,
   loading: false,
   error: null,
   fetchArticles: async () => {
@@ -34,7 +31,6 @@ export const useArticlesStore = create<ArticlesStore>((set, get) => ({
     } else {
       set({
         articles: data,
-        totalPages: Math.ceil(data.length / ITEMS_PER_PAGE),
         loading: false,
         error: null,
       });

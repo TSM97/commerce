@@ -11,6 +11,7 @@ import isNullOrWhitespace from "../Utils/isNullOrWhitespace";
 import useImageUpload from "../hooks/useImageUpload";
 import AdminModal from "./Components/AdminModal";
 import Checkbox from "../Components/Common/CheckBox/CheckBox";
+import FilterChip from "../Components/Common/FilterChip/FilterChip";
 
 export default function ArticlesUploadForm() {
   const {
@@ -27,6 +28,7 @@ export default function ArticlesUploadForm() {
     showGreekForm,
     hasContactButton,
     isFullDescRequired,
+    articleType,
     setField,
     resetForm,
   } = useArticlesFormStore();
@@ -79,6 +81,7 @@ export default function ArticlesUploadForm() {
             }
           : {}),
         aTag,
+        articleType,
         imageUrl,
         createdAt: Timestamp.now(),
       };
@@ -235,9 +238,9 @@ export default function ArticlesUploadForm() {
               </motion.section>
             </>
           )}
-          {/* ENABLE CONTACT BUTTON */}
 
-          <motion.div className="col-span-2">
+          {/* ENABLE CONTACT BUTTON */}
+          <div>
             <Checkbox
               isChecked={hasContactButton}
               handleCheck={() => {
@@ -245,13 +248,64 @@ export default function ArticlesUploadForm() {
               }}
               label='Apply "Contact Button" in your article'
             />
-          </motion.div>
+          </div>
 
+          {/* Type of Article */}
+          <div className="flex gap-2 items-center">
+            <label
+              htmlFor="articleType"
+              className="block mb-2 text-lg font-medium text-white-900"
+            >
+              Apply Type of article :
+            </label>
+            <div className="w-1/3 border border-gray-400">
+              <select
+                value=""
+                id="articleType"
+                onChange={(e) =>
+                  setField("articleType", [...articleType, e.target.value])
+                }
+                className="bg-white-50 border border-white-300 text-white-900 text-lg block w-full  p-1  appearance-none focus:outline-none"
+              >
+                <option value="" disabled selected>
+                  Choose a type
+                </option>
+                <option disabled={articleType.includes("Article")}>
+                  Article
+                </option>
+                <option disabled={articleType.includes("Experience")}>
+                  Experience
+                </option>
+              </select>
+            </div>
+            <div className="flex">
+              {articleType &&
+                articleType.map((type) => (
+                  <FilterChip
+                    key={type}
+                    onClick={(e) =>
+                      setField(
+                        "articleType",
+                        articleType.filter((item) => item !== type)
+                      )
+                    }
+                    className="hover:bg-red-500 cursor-pointer"
+                  >
+                    <div className="flex gap-1 items-center">
+                      {type}
+                      <div>x</div>
+                    </div>
+                  </FilterChip>
+                ))}
+            </div>
+          </div>
+
+          {/* Contact Button Title */}
           {hasContactButton && (
             <div className="md:flex gap-4">
               <motion.div>
                 <label
-                  htmlFor="TitleEL"
+                  htmlFor="contactButton"
                   className="block mb-2 text-lg font-medium text-white-900"
                 >
                   Contact Button
@@ -269,7 +323,7 @@ export default function ArticlesUploadForm() {
 
               <motion.div>
                 <label
-                  htmlFor="TitleEL"
+                  htmlFor="contactButtonEL"
                   className="block mb-2 text-lg font-medium text-white-900"
                 >
                   Contact Button (Ελληνική μετάφραση)
@@ -286,6 +340,7 @@ export default function ArticlesUploadForm() {
               </motion.div>
             </div>
           )}
+
           <motion.div className="col-span-2">
             <label
               htmlFor="aTag"
@@ -307,6 +362,7 @@ export default function ArticlesUploadForm() {
               placeholder="https://theuselessweb.com/"
             />
           </motion.div>
+
           {/* Img drag n' drop */}
           <section className="w-fit">
             <div className="bg-white-default border border-white-300 text-black-250 text-lg rounded-lg block w-full  p-2.5 white">
@@ -339,7 +395,9 @@ export default function ArticlesUploadForm() {
               disabled={
                 isNullOrWhitespace(title) ||
                 isNullOrWhitespace(shortDesc) ||
-                (isNullOrWhitespace(fullDesc.plainText) && !isFullDescRequired)
+                (isNullOrWhitespace(fullDesc.plainText) &&
+                  !isFullDescRequired) ||
+                articleType.length === 0
               }
               type="submit"
               className=" bg-primary hover:bg-primary-500 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center"

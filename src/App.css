@@ -86,6 +86,11 @@ body {
   flex-grow: 1;
 }
 
+.ql-editor {
+  @apply text-[1.3rem];
+  font-family: "Playfair Display", serif;
+}
+
 /* --- HEADINGS --- */
 
 h1 {

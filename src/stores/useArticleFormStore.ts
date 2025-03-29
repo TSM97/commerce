@@ -13,6 +13,7 @@ type ArticleFormStore = {
   aTag: string;
   selectedImage: File | null;
   showGreekForm: boolean;
+  articleType: string[];
   isFullDescRequired: boolean;
   setField: (field: string, value: any) => void;
   resetForm: () => void;
@@ -31,6 +32,7 @@ export const useArticlesFormStore = create<ArticleFormStore>((set) => ({
   aTag: "",
   selectedImage: null,
   showGreekForm: false,
+  articleType: [],
   isFullDescRequired: true,
   setField: (field, value) => set({ [field]: value }),
   resetForm: () =>
@@ -44,6 +46,7 @@ export const useArticlesFormStore = create<ArticleFormStore>((set) => ({
       aTag: "",
       selectedImage: null,
       showGreekForm: false,
+      articleType: [],
       isFullDescRequired: true,
     }),
 }));

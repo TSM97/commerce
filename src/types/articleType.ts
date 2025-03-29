@@ -15,6 +15,7 @@ export type ArticleType = {
     contactButtonTitle: string;
   };
   aTag?: string;
+  articleType: string;
   imageUrl: string;
   createdAt: Timestamp;
 };
