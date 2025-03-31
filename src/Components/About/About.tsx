@@ -1,7 +1,9 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
   const container = useRef(null);
+  const { t } = useTranslation();
   return (
     <>
       <section>
@@ -17,7 +19,7 @@ export default function About() {
           className="bg-svgColor relative h-[100vh] z-10 flex justify-center items-center"
         >
           <div className="mx-auto w-[90%] md:w-1/2 text-center text-[12dvw] md:text-[6dvw] text-black-250 tracking-tight py-14 leading-none">
-            Reveal the Unique Story Behind
+            {t("about_intro")}
             <span className="text-honey tracking-wide"> Athenian Bees</span>
           </div>
         </section>

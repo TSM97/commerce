@@ -5,8 +5,8 @@ import Links from "./Components/Links";
 export default function FooterDetails() {
   return (
     <section className="flex flex-col h-full justify-between p-2 pt-6">
-      <section className="md:flex justify-between px-[3vw]">
-        <div className="w-[35%] text-black-100 text-justify text-md">
+      <section className="flex gap-3 lg:flex-row flex-col justify-between px-[3vw] ">
+        <div className="lg:w-[35%] text-black-100 text-justify text-md">
           <i>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
             enim praesentium quis libero reprehenderit perferendis a repellendus
@@ -18,7 +18,7 @@ export default function FooterDetails() {
             facere impedit?
           </i>
         </div>
-        <section className="text-lg tracking-wide text-black-100">
+        <section className="lg:text-lg tracking-wide text-black-100">
           <div className="pb-2">
             <i>Συχνές Ερωτήσεις</i>
           </div>
@@ -30,12 +30,12 @@ export default function FooterDetails() {
           </div>
         </section>
 
-        <div className="flex-col flex items-end">
+        <div className="flex-col flex items-end ">
           <Links />
         </div>
       </section>
 
-      <div className="flex justify-between">
+      <div className="sm:flex justify-between">
         <div className="text-3xl sm:text-5xl md:text-6xl xl:text-8xl tracking-wide font-extrabold text-primary-250 select-none">
           ATHENIAN BEES
         </div>

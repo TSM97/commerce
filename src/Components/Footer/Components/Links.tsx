@@ -41,7 +41,10 @@ export default function Links() {
           </a>
         </div>
       </div>
-      <img className="h-[120px] pt-2 opacity-90" src={Logo} />
+      <img
+        className="h-[120px] pt-2 lg:self-end self-center opacity-90"
+        src={Logo}
+      />
     </>
   );
 }

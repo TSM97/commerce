@@ -7,8 +7,11 @@ import { useArticlesStore } from "../../../stores/useArticlesStore";
 import FilterChip from "../../Common/FilterChip/FilterChip";
 import filterType from "../../../types/filterType";
 import { articleFilterUtil } from "../utils/articleFilterUtil";
+import { useTranslation } from "react-i18next";
 
 export default function RightPartial() {
+  const { t } = useTranslation();
+
   const [currentPage, setCurrentPage] = useState(1);
   const { articles, loading } = useArticlesStore();
   const [articleFilter, setArticleFilter] = useState<filterType>([
@@ -44,9 +47,7 @@ export default function RightPartial() {
         <>
           <article className="w-full">
             <header className="font-bold text-3xl pb-4 sm:flex justify-between">
-              <span className=" font-lobster tracking-wider">
-                From the Hive
-              </span>
+              <span className=" font-lobster">{t("news_title")}</span>
               {/* Filter */}
               <div className="flex gap-1">
                 <FilterChip
@@ -61,7 +62,7 @@ export default function RightPartial() {
                     articleFilter.includes("Experience") ? "!bg-primary" : ""
                   } cursor-pointer`}
                 >
-                  Experiences
+                  {t("news_filter_experience")}
                 </FilterChip>
                 <FilterChip
                   onClick={() =>
@@ -75,7 +76,7 @@ export default function RightPartial() {
                     articleFilter.includes("Article") ? "!bg-primary" : ""
                   } cursor-pointer`}
                 >
-                  Articles
+                  {t("news_filter_article")}
                 </FilterChip>
               </div>
             </header>
