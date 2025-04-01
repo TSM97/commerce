@@ -21,10 +21,22 @@
   "news_filter_experience": "Εμπειρίες",
   "news_filter_article": "Άρθρα",
   "about_intro": "Αποκαλύψτε τη μοναδική ιστορία πίσω από το",
+  "contact_title": "Μιλήστε μαζί μας",
+  "contactForm_buy_checkbox": "Θα ήθελα να παραγγείλω...",
+  "contactForm_ask_checkbox": "Θα ήθελα να ρωτήσω...",
   "button_contact": "επικοινωνία",
   "button_read_more": "περισσoτερα",
   "product_out_of_stock": "Μη διαθέσιμο",
   "contactForm_out_of_stock": "Θα είναι αυτό το προϊόν διαθέσιμο σε απόθεμα σύντομα;",
+  "contactForm_additional_contact": "Για απευθειάς επικοινωνία μπορείτε να στείλετε στη διεύθυνση - honeymakerapp@gmail.com - ή να μας βρείτε στα Social",
+  "contact_message": "Για απευθείας επικοινωνία μπορείτε να στείλετε στη διεύθυνση",
+  "contact_find_us_social": "βρείτε μας στα Social",
+  "footer_FAQs": "Συχνές Ερωτήσεις",
+  "footer_phone": "Τηλέφωνο",
   "password": "Κωδικός",
-  "name": "Όνομα"
+  "message": "Μήνυμα",
+  "send": "ΑΠΟΣΤΟΛΗ",
+  "name": "Όνομα",
+  "or": "ή",
+  "loading": "Παρακαλώ περιμένετε, επεξεργαζόμαστε το αίτημά σας. Αυτό μπορεί να διαρκέσει μερικά δευτερόλεπτα. Μην κλείσετε ή ανανεώσετε τη σελίδα."
 }

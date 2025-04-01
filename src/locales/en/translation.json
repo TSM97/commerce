@@ -21,10 +21,21 @@
   "news_filter_experience": "Experiences",
   "news_filter_article": "Articles",
   "about_intro": "Reveal the Unique Story Behind",
+  "contact_title": "Contact Us",
   "button_contact": "CONTACT",
   "button_read_more": "Read More",
   "product_out_of_stock": "Out of Stock",
   "contactForm_out_of_stock": "Will this product be back in stock soon?",
-  "password": "Password",
-  "name": "Name"
+  "contactForm_buy_checkbox": "I would like to buy...",
+  "contactForm_ask_checkbox": "I would like to ask...",
+  "contactForm_additional_contact": "For direct contact you can send to the address - honeymakerapp@gmail.com - or find us on Social",
+  "contact_message": "For direct contact, you can send an email to",
+  "contact_find_us_social": "find us on Social Media",
+  "footer_FAQs": "FAQs",
+  "footer_phone": "Phone",
+  "message": "Message",
+  "send": "SEND",
+  "name": "Name",
+  "or": "or",
+  "loading": "Please wait, we are processing your request. This might take a few seconds. Don't close or refresh the page."
 }
