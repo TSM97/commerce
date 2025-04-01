@@ -45,6 +45,7 @@ const LocalSwitcher = () => {
             onClick={() => {
               setOpen(false);
               i18n.changeLanguage(language?.code);
+              localStorage.setItem("selectedLanguage", language?.code);
             }}
           >
             {language?.code == "en" ? <EnglishFlag /> : <GreekFlag />}
