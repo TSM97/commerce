@@ -37,5 +37,6 @@
   "send": "SEND",
   "name": "Name",
   "or": "or",
-  "loading": "Please wait, we are processing your request. This might take a few seconds. Don't close or refresh the page."
+  "loading": "Please wait, we are processing your request. This might take a few seconds. Don't close or refresh the page.",
+  "return_homepage": "Return to homepage"
 }
