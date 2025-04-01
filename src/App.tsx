@@ -17,19 +17,13 @@ import Contact from "./Components/Contact";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import AuthRedirect from "./Auth/AuthRedirect";
 import { NotFound } from "./Components/NotFound";
-import i18n from "./Utils/i18n";
+import useStoredLanguage from "./hooks/UseStoredLanguage";
 
 export default function App() {
   //! If I upload an article data to the article's Section dont refresh. Is it actually a problem at our case?
   const { fetchArticles } = useArticlesStore();
   const { fetchProducts } = useProductsStore();
-
-  useEffect(() => {
-    const selectedLanguage = localStorage.getItem("selectedLanguage");
-    if (selectedLanguage) {
-      i18n.changeLanguage(selectedLanguage);
-    }
-  }, []);
+  useStoredLanguage();
 
   useEffect(() => {
     fetchArticles(); // Fetch articles on component mount
